@@ -13,13 +13,21 @@ class Solution(object):
         """
         if not head:
             return None
-        header = ListNode(0)
-        rest = head
+        #         header = ListNode(0)
+        #         rest = head
 
-        while rest is not None:
-            temp = header.next
-            header.next = rest
-            rest = rest.next
-            header.next.next = temp
+        #         while rest is not None:
+        #             temp = header.next
+        #             header.next = rest
+        #             rest = rest.next
+        #             header.next.next = temp
 
-        return header.next
+        #         return header.next
+        p = None
+        while head:
+            temp = head.next
+            head.next = p
+            p = head
+            head = temp
+
+        return p
