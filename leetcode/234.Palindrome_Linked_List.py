@@ -3,6 +3,9 @@
 # 反转slow 后面的内容，得到后半部分反转的列表
 # 同时遍历head 和反转列表，数值想等就后移，如果最后反转列表为空，返回正。
 
+# Time complexity: O(n)
+# Space complexity: O(1)
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):

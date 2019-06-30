@@ -1,4 +1,6 @@
 # https://leetcode.com/problems/reverse-linked-list/
+# Time complexity: O(n)
+# Space complexity: O(1)
 
 # Definition for singly-linked list.
 class ListNode(object):
