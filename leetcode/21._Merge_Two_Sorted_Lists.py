@@ -2,6 +2,10 @@
 # 设置一个新的head, 一个小技巧是随便设一个，最后返回head.next就可以不用重复写判断大小代码
 # 两个指针在来那个链表上面走
 
+# Time complexity: O(n+m)
+# Space complexity: O(1)
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):

@@ -1,8 +1,8 @@
 # https://leetcode.com/problems/product-of-array-except-self/
 # 左边向右边遍历每次多乘前面一个值
 # 同时从后向前，每个值要多乘后面的值
-# 时间：O(n)
-# 空间：O(n)
+# Time complexity: O(n)
+# Space complexity: O(n)
 
 
 class Solution(object):
