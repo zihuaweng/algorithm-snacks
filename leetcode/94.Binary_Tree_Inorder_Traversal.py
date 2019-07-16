@@ -1,7 +1,8 @@
 # https://leetcode.com/problems/binary-tree-inorder-traversal/
 # 二叉树的中序遍历
 # 遍历到最左边然后打印，再遍历右边
-
+# Time complexity: O(n)
+# Space complexity: O(h) # 感觉这里存了res，所以应该是O(n)
 
 # Definition for a binary tree node.
 class TreeNode:

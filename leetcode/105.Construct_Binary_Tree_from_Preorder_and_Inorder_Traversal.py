@@ -2,6 +2,10 @@
 # 前序遍历第一个就是root，只要找到root在中序遍历的位置，左边就是root的左分支，右边是root的右分支
 # 然后递归去实现
 
+# Time complexity: O(n^2)
+# Space complexity: O(n^2)
+
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):

@@ -2,6 +2,8 @@
 # 首先到最右边，然后右边的结点为左边结点的右结点，去除掉左节点，
 # 当前结点作为作为上一个结点递归上去。
 #
+# Time complexity: O(n)
+# Space complexity: O(1)
 
 # Definition for a binary tree node.
 class TreeNode:
