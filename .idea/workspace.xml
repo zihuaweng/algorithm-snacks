@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="496681ad-ce81-47d5-a932-607c09e56a92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/110.Balanced_Binary_Tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/430.Flatten_a_Multilevel_Doubly_Linked_List.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/445.Add_Two_Numbers_II.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/543.Diameter_of_Binary_Tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/707.Design_Linked_List.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/872.Leaf-Similar_Trees.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/889.Construct_Binary_Tree_from_Preorder_and_Postorder_Traversal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/897.Increasing_Order_Search_Tree.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/92.Reverse_Linked_List_II.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/173.Binary_Search_Tree_Iterator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode/951.Flip_Equivalent_Binary_Trees.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/104.Maximum_Depth_of_Binary_Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/104.Maximum_Depth_of_Binary_Tree.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/105.Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/105.Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/114.Flatten_Binary_Tree_to_Linked_List.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/114.Flatten_Binary_Tree_to_Linked_List.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/94.Binary_Tree_Inorder_Traversal.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/94.Binary_Tree_Inorder_Traversal.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,15 +21,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/leetcode/104.Maximum_Depth_of_Binary_Tree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/leetcode/110.Balanced_Binary_Tree.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,29 +48,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/leetcode/889.Construct_Binary_Tree_from_Preorder_and_Postorder_Traversal.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="180">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/leetcode/872.Leaf-Similar_Trees.py">
+        <entry file="file://$PROJECT_DIR$/leetcode/173.Binary_Search_Tree_Iterator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
-              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="28" />
+              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/leetcode/951.Flip_Equivalent_Binary_Trees.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/leetcode/94.Binary_Tree_Inorder_Traversal.py">
+        <entry file="file://$PROJECT_DIR$/leetcode/200.Number_of_Islands.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+            <state relative-caret-position="234">
+              <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -98,17 +87,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/leetcode/897.Increasing_Order_Search_Tree.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state relative-caret-position="18">
+              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/leetcode/543.Diameter_of_Binary_Tree.py">
+        <entry file="file://$PROJECT_DIR$/leetcode/198.House_Robber.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="450">
+              <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -149,8 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/leetcode/70.Climbing_Stairs.py" />
-        <option value="$PROJECT_DIR$/leetcode/75.Sort_Colors.py" />
         <option value="$PROJECT_DIR$/leetcode/78.Subsets.py" />
         <option value="$PROJECT_DIR$/leetcode/98.Validate_Binary_Search_Tree.py" />
         <option value="$PROJECT_DIR$/leetcode/79.Word_Search.py" />
@@ -200,6 +187,8 @@
         <option value="$PROJECT_DIR$/leetcode/114.Flatten_Binary_Tree_to_Linked_List.py" />
         <option value="$PROJECT_DIR$/leetcode/105.Construct_Binary_Tree_from_Preorder_and_Inorder_Traversal.py" />
         <option value="$PROJECT_DIR$/leetcode/889.Construct_Binary_Tree_from_Preorder_and_Postorder_Traversal.py" />
+        <option value="$PROJECT_DIR$/leetcode/173.Binary_Search_Tree_Iterator.py" />
+        <option value="$PROJECT_DIR$/leetcode/951.Flip_Equivalent_Binary_Trees.py" />
       </list>
     </option>
   </component>
@@ -412,12 +401,12 @@
       <workItem from="1562499222052" duration="2173000" />
       <workItem from="1562668942126" duration="1022000" />
       <workItem from="1563023897270" duration="3554000" />
-      <workItem from="1563201583386" duration="2728000" />
+      <workItem from="1563201583386" duration="5785000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54663000" />
+    <option name="totallyTimeSpent" value="57720000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="794" extended-state="0" />
@@ -466,20 +455,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/leetcode/78.Subsets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leetcode/79.Word_Search.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/leetcode/101.Symmetric_Tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -536,13 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/leetcode/198.House_Robber.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/leetcode/240.Search_a_2D_Matrix_II.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -561,13 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/leetcode/200.Number_of_Islands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -774,13 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/leetcode/897.Increasing_Order_Search_Tree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/leetcode/543.Diameter_of_Binary_Tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -818,8 +772,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/leetcode/889.Construct_Binary_Tree_from_Preorder_and_Postorder_Traversal.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="180">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/200.Number_of_Islands.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="23" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/897.Increasing_Order_Search_Tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/198.House_Robber.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/173.Binary_Search_Tree_Iterator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" selection-start-line="1" selection-end-line="2" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/leetcode/951.Flip_Equivalent_Binary_Trees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="25" lean-forward="true" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
         </state>
       </provider>
     </entry>
