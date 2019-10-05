@@ -5,6 +5,13 @@
 # （2）最大堆算法，一直维护一个k大小的最大堆，里面最小的值就是需要的内容
 # （3）priority tree ，root就是我们需要的结果（https://www.bilibili.com/video/av50936287?from=search&seid=8564690918367482337）
 
+# 这里的最大堆最小堆算法
+# Time complexity:  O(nlogn)
+# Space complexity:  O(n)
+
+# 这里的最大堆最小堆算法
+# Time complexity:  O(k) + O((n-k) * logk)
+# Space complexity:  O(K)
 
 class Solution(object):
     def findKthLargest(self, nums, k):
@@ -35,3 +42,19 @@ class Solution(object):
                 left = right + 1
                 right = p
         return nums[len(nums) - k]
+
+    def findKthLargest2(self, nums: List[int], k: int) -> int:
+        # 这里注意最大堆还会最小堆
+        import heapq
+        if len(nums) == 0 or k <= 0 or k > len(nums):
+            return
+        output = []
+        for i in nums:
+            if len(output) < k:
+                output.append(i)
+            else:
+                output = heapq.nsmallest(k, output)
+                if output[0] < i:
+                    output[0] = i
+        output = heapq.nsmallest(k, output)
+        return output[0]

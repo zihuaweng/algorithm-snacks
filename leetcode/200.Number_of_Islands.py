@@ -2,6 +2,9 @@
 # 遍历矩阵，只要遇到“1”就执行helper
 # helper里面是每次遇到“1”，就标记成走过了，知道没有“1”为止，这样算是一个小岛
 
+# Time complexity:  O(N*M)
+# Space complexity:  O(1)
+
 class Solution(object):
     def numIslands(self, grid):
         """
