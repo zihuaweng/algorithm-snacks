@@ -21,3 +21,21 @@ class Solution:
             p += 1
 
         return profit
+
+
+# 比较简单的写法：
+# 记录买时间，后面遇到较大的就计算profit
+# 如果遇到更小的buy就替换
+class Solution2:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        profit = 0
+        buy = prices[0]
+        for i in prices:
+            if i < buy:
+                buy = i
+            if i > buy:
+                profit = max(profit, i - buy)
+        return profit
+

@@ -27,3 +27,39 @@ class Solution(object):
             res_list[index] = nums[i] + max(res_list[last_1], res_list[last_2])
 
         return max(res_list)
+
+
+# 更加清晰的dp思路：
+# 子任务就是: dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+# 就是dp记录了目前为止最大结果，当前要不要算进去，取决于加上i-2的结果有没有大于 i-1的结果，如果i-1更大，证明这个空格可以不用算进去
+class Solution2:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        if len(nums) <= 2:
+            return max(nums)
+        dp = [0] * len(nums)
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+
+        return dp[-1]
+
+# 稍微改变了一下存储方式
+class Solution3:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        if len(nums) <= 2:
+            return max(nums)
+        dp = [0] * 3
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        for i in range(2, len(nums)):
+            index = i % 3
+            last_1 = (i - 1) % 3
+            last_2 = (i - 2) % 3
+            dp[index] = max(nums[i] + dp[last_2], dp[last_1])
+
+        return max(dp)
