@@ -1,5 +1,5 @@
 # algorithm_snacks
-Snippets of little algorithms used in image processing and text mining in both Python and C++
+Snippets of little algorithms used in image processing and text mining in both Python, Java and C++
 
 
 ### image processing
