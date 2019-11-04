@@ -46,6 +46,7 @@ class Solution2:
 
         return dp[-1]
 
+
 # 稍微改变了一下存储方式
 class Solution3:
     def rob(self, nums: List[int]) -> int:
