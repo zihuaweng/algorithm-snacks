@@ -2,39 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="496681ad-ce81-47d5-a932-607c09e56a92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/leetcode/1035.Uncrossed_Lines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/1055.Shortest_Way_to_Form_String.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/1099.Two_Sum_Less_Than_K.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/1100.Find_K-Length_Substrings_With_No_Repeated_Characters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/134.Gas_Station.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/140.Word_Break_II.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/210.Course_Schedule_II.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/253.Meeting_Rooms_II.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/26.Remove_Duplicates_from_Sorted_Array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/279.Perfect_Squares.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/283.Move_Zeroes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/286.Walls_and_Gates.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/322.Coin_Change.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/416.Partition_Equal_Subset_Sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/417.Pacific_Atlantic_Water_Flow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/435.Non-overlapping_Intervals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/583.Delete_Operation_for_Two_Strings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/698.Partition_to_K_Equal_Sum_Subsets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/72.EditDistance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/785.Is_Graph_Bipartite?.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/802.Find_Eventual_Safe_States.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/851.Loud_and_Rich.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/857.Minimum_Cost_to_Hire_K_Workers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/881.Boats_to_Save_People.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/983.Minimum_Cost_For_Tickets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/990.Satisfiability_of_Equality_Equations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/algorithm_snacks.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/algorithm_snacks.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google_oa/Compare_Strings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google_oa/Largest_Subarray_Length_K.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google_oa/Maximum_Time.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/google_oa/Most_Booked_Hotel_Room.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/1027.Longest_Arithmetic_Sequence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/124.Binary_Tree_Maximum_Path_Sum.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/125.Valid_Palindrome.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/157.Read_N_Characters_Given_Read4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/158.Read_N_CharactersGiven_Read4II-Call_multiple_times.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/199.Binary_Tree_Right_Side_View.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/211.Add_and_Search_Word-Data_structure_design.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/278.First_Bad_Version.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/282.Expression_Add_Operators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/415.Add_Strings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/426.Convert_Binary_Search_Tree_to_Sorted_Doubly_Linked_List.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/438.Find_All_Anagrams_in_a_String.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/523.Continuous_Subarray_Sum.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/551.Student_Attendance_Record_I.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/621.Task_Scheduler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/67.Add_Binary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/680.Valid_Palindrome_II.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/71.Simplify_Path.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/837.New_21_Game.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/844.Backspace_String_Compare.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/896.Monotonic_Array.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leetcode_python/953.Verifying_an_Alien_Dictionary.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/121.Best_Time_to_Buy_and_Sell_Stock.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/121.Best_Time_to_Buy_and_Sell_Stock.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/198.House_Robber.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/198.House_Robber.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leetcode/55.Jump_Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/leetcode/55.Jump_Game.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +46,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="java" />
         <option value="Python Script" />
         <option value="Leetcode" />
       </list>
@@ -94,7 +89,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Exercise2">
+  <component name="RunManager" selected="Python.727.Minimum_Window_Subsequence">
     <configuration name="313.Super_Ugly_Number" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -139,7 +134,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="704.Binary_Search" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="727.Minimum_Window_Subsequence" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,12 +142,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/704.Binary_Search.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/727.Minimum_Window_Subsequence.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -229,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.727.Minimum_Window_Subsequence" />
         <item itemvalue="Python.Exercise2" />
         <item itemvalue="Python.990.Satisfiability_of_Equality_Equations" />
         <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.313.Super_Ugly_Number" />
-        <item itemvalue="Python.704.Binary_Search" />
       </list>
     </recent_temporary>
   </component>
@@ -277,7 +272,13 @@
       <workItem from="1569950574586" duration="5379000" />
       <workItem from="1570159319707" duration="36376000" />
       <workItem from="1571071564642" duration="5454000" />
-      <workItem from="1571157569243" duration="1040000" />
+      <workItem from="1571157569243" duration="17523000" />
+      <workItem from="1572023546165" duration="27910000" />
+      <workItem from="1572987685025" duration="1281000" />
+      <workItem from="1573061711092" duration="3890000" />
+      <workItem from="1573146941642" duration="8365000" />
+      <workItem from="1573247443346" duration="11000" />
+      <workItem from="1573248861511" duration="10535000" />
     </task>
     <servers />
   </component>
@@ -318,6 +319,7 @@
     <SUITE FILE_PATH="coverage/algorithm_snacks$50_Pow_x_n_.coverage" NAME="50.Pow(x,n) Coverage Results" MODIFIED="1569867509375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$313_Super_Ugly_Number.coverage" NAME="313.Super_Ugly_Number Coverage Results" MODIFIED="1570139564413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$990_Satisfiability_of_Equality_Equations.coverage" NAME="990.Satisfiability_of_Equality_Equations Coverage Results" MODIFIED="1570598850115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$727_Minimum_Window_Subsequence.coverage" NAME="727.Minimum_Window_Subsequence Coverage Results" MODIFIED="1572806426650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1570405288849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$704_Binary_Search.coverage" NAME="704.Binary_Search Coverage Results" MODIFIED="1569867533353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
   </component>

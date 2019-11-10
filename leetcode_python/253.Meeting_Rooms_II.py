@@ -30,3 +30,36 @@ class Solution:
                 e += 1
 
         return numRooms
+
+
+class Solution:
+    def minMeetingRooms(self, intervals):
+        e = ret = 0
+        start = sorted(i[0] for i in intervals)
+        end = sorted(i[1] for i in intervals)
+
+        for s in range(len(start)):
+            if start[s] < end[e]:
+                ret += 1
+            else:
+                e += 1
+        return ret
+
+#  模版
+# https://leetcode.com/problems/car-pooling/
+# https://leetcode.com/problems/meeting-rooms-ii/discuss/322622/Simple-Python-solutions
+
+class Solution:
+    def minMeetingRooms(self, intervals):
+        lst = []
+        for start, end in intervals:
+            lst.append((start, 1))
+            lst.append((end, -1))
+        lst.sort()
+        res = 0
+        cur = 0
+        for time, num in lst:
+            cur += num
+            res = max(res, cur)
+        return res
+
