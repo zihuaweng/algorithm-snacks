@@ -22,3 +22,30 @@ class Solution(object):
             right *= nums[len(nums) - 1 - i]
 
         return res
+
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        #         [1, 2, 3, 4]
+
+        #         [1, 1, 2, 6] left =
+        #         [24, 12, 4, 1] right
+        #         [1*24, 1*12, 2*4, 6]
+        n = len(nums)
+        left = [1] * n
+        right = [1] * n
+
+        for i in range(1, n):
+            left[i] = left[i - 1] * nums[i - 1]
+
+        for i in range(n - 2, -1, -1):
+            right[i] = right[i + 1] * nums[i + 1]
+
+        for i in range(n):
+            nums[i] = left[i] * right[i]
+
+        return nums
+
+
+
+

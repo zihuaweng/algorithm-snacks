@@ -58,3 +58,25 @@ class Solution(object):
                     output[0] = i
         output = heapq.nsmallest(k, output)
         return output[0]
+
+# 简单写法
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+
+        #         [3,2,1,5,6,4]
+        #          0  1
+        #         [6  5]
+
+        #         [3,2,3,1,2,4,5,5,6] and k = 4
+        #         0 1 2 3
+        #         [6 5 5 4]
+
+        if not nums:
+            return 0
+
+        heap = nums[:k]
+        heapq.heapify(heap)
+
+        for n in nums[k:]:
+            heapq.heappushpop(heap, n)
+
+        return min(heap)

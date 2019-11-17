@@ -13,20 +13,21 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        p1 = 0
-        p2 = 0
-        while nums[p2] != 0:
-            p1 += 1
-            p2 += 1
-            if p2 == len(nums):
-                return nums
+        #         1,  3,  0,  0,  12
+        #                 |  |     i
 
-        p2 += 1
+        #         nums[i] <-> nums[slow]
 
-        while p2 < len(nums):
-            if nums[p2] != 0:
-                nums[p2], nums[p1] = nums[p1], nums[p2]
-                p1 += 1
-            p2 += 1
+        #         slow += 1 (0)
+        #         i = 1
+
+        slow = 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                continue
+            else:
+                nums[i], nums[slow] = nums[slow], nums[i]
+                slow += 1
 
         return nums
+

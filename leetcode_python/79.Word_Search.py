@@ -41,3 +41,49 @@ class Solution:
         # 要记得回溯
         board[row][col] = temp
 
+
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+
+        #         [
+        #           ['A','B','C','E'],
+        #           ['S','F','C','S'],
+        #           ['A','D','E','E']
+        #         ]
+
+        #         visited =  [
+        #           [False,'B','C','E'],
+        #           ['S','F','C','S'],
+        #           ['A','D','E','E']
+        #         ]
+        self.direction = [(-1, 0), (1, 0), (0, 1), (0, -1)]
+        if not board or not board[0]:
+            return False
+        self.find = False
+        m = len(board)
+        n = len(board[0])
+        visited = [[False] * n for _ in range(m)]
+        for i in range(m):
+            for j in range(n):
+                if self.dfs(board, visited, word, i, j):
+                    return True
+        return False
+
+    def dfs(self, board, visited, word, i, j):
+        if not word:
+            return True
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+            return False
+        if visited[i][j] or board[i][j] != word[0]:
+            return False
+
+        visited[i][j] = True
+
+        for x, y in self.direction:
+            if self.dfs(board, visited, word[1:], i + x, j + y):
+                return True
+
+        visited[i][j] = False
+        return False
+

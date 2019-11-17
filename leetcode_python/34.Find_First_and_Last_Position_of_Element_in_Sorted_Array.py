@@ -2,35 +2,34 @@
 # 二分法
 
 class Solution:
-    def searchRange(self, nums, target: int):
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+
+        #         [5,      7,      7,      8,     8,   10]
+        #         i               mid                  j
+        #                                 i              j
 
         if not nums:
             return [-1, -1]
 
-        start = 0
-        end = len(nums) - 1
-        while start + 1 < end:
-            mid = (start + end) // 2
-            if nums[mid] > target:
-                end = mid
+        i = 0
+        j = len(nums) - 1
+
+        while i <= j:
+            # print(i, j, nums[i], nums[j])
+            mid = (i + j) // 2
             if nums[mid] < target:
-                start = mid
-            if nums[mid] == target:
-                i = mid
-                j = mid
-                while i >= 0 and nums[i] == target:
-                    i -= 1
-                while j < len(nums) and nums[j] == target:
-                    j += 1
-
-                return [i + 1, j - 1]
-
-        if nums[start] == target and nums[end] == target:
-            return [start, end]
-        if nums[start] == target:
-            return [start, start]
-        if nums[end] == target:
-            return [end, end]
+                i = mid + 1
+            elif nums[mid] > target:
+                j = mid - 1
+            else:
+                k = mid
+                while k >= 0 and nums[k] == target:
+                    k -= 1
+                l = mid
+                while l < len(nums) and nums[l] == target:
+                    l += 1
+                return [k + 1, l - 1]
 
         return [-1, -1]
+
 
