@@ -7,6 +7,41 @@
 # Time complexity: O(n)
 # Space complexity: O(n)
 
+# 与438相同模板
+class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if len(s) < len(t):
+            return ''
+
+        count_map = collections.Counter(t)
+        i = 0
+        min_len = float('inf')
+        length = len(count_map)
+        res = ''
+
+        for j, char in enumerate(s):
+            if char in count_map:
+                count_map[char] -= 1
+                if count_map[char] == 0:
+                    length -= 1
+
+            while length == 0:
+                if j - i + 1 < min_len:
+                    min_len = j - i + 1
+                    res = s[i:j + 1]
+
+                if s[i] in count_map:
+                    if count_map[s[i]] == 0:
+                        length += 1
+                    count_map[s[i]] += 1
+
+                i += 1
+
+        return res
+
+
+
+
 # 传统写法： https://www.youtube.com/watch?v=9qFR2WQGqkU
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
@@ -29,39 +64,3 @@ class Solution:
                 missing += 1
 
         return s[start:end]
-
-
-class Solution:
-    def minWindow(self, s: str, t: str) -> str:
-        if len(s) < len(t):
-            return ''
-
-        count_map = collections.Counter(t)
-        slow = 0
-        min_len = float('inf')
-        match = 0
-        res = ''
-
-        for fast in range(len(s)):
-            cur = s[fast]
-            if cur not in count_map:
-                continue
-            count_map[cur] -= 1
-            if count_map[cur] == 0:
-                match += 1
-
-            while match == len(count_map):
-                if fast - slow + 1 < min_len:
-                    min_len = fast - slow + 1
-                    res = s[slow:fast + 1]
-                left = s[slow]
-                slow += 1
-                if left not in count_map:
-                    continue
-                count_map[left] += 1
-                if count_map[left] == 1:
-                    match -= 1
-
-        return res
-
-

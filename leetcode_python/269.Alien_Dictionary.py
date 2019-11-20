@@ -11,43 +11,41 @@
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
         graph = {}
-        in_degree = [0] * 26
+        in_degree = {}
         self.build_graph(graph, in_degree, words)
         res = self.dfs(graph, in_degree)
         return res
 
     def build_graph(self, graph, in_degree, words):
-        for word in words:
-            for c in word:
-                key = ord(c) - ord('a')
-                graph[key] = set()
+        for w in words:            #  这里很重要，否则例子['z', 'z']会报错
+            for c in w:
+                graph[c] = set()
+                in_degree[c] = 0
 
         for i in range(1, len(words)):
-            first = words[i - 1]
-            second = words[i]
-            length = min(len(first), len(second))
-            for c in range(length):
-                if first[c] != second[c]:
-                    _in = ord(second[c]) - ord('a')
-                    _out = ord(first[c]) - ord('a')
-                    if _in not in graph[_out]:
-                        graph[_out].add(_in)
-                        in_degree[_in] += 1
+            a = words[i - 1]
+            b = words[i]
+            idx = 0
+            while idx < len(a) and idx < len(b):
+                if a[idx] != b[idx]:
+                    if b[idx] not in graph[a[idx]]:  # 防止同样组合多次出现
+                        graph[a[idx]].add(b[idx])
+                        in_degree[b[idx]] += 1
                     break
+                idx += 1
 
     def dfs(self, graph, in_degree):
-        print(graph)
-        print(in_degree)
         res = ''
         queue = [i for i in graph if in_degree[i] == 0]
         for q in queue:
-            res += chr(q + ord('a'))
-            for i in graph[q]:
-                in_degree[i] -= 1
-                if in_degree[i] == 0:
-                    queue.append(i)
+            res += q
+            for char in graph[q]:
+                in_degree[char] -= 1
+                if in_degree[char] == 0:
+                    queue.append(char)
 
         if len(res) == len(graph):
             return res
         else:
-            return ''
+            return ""
+

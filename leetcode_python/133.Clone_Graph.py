@@ -44,7 +44,6 @@ class Solution:
         queue = [node]
         for cur in queue:
             for neig in cur.neighbors:
-                cur_copy = graph[cur]
                 if neig in graph:
                     graph[cur].neighbors.append(graph[neig])
                 else:

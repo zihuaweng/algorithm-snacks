@@ -23,7 +23,7 @@ class Solution:
                 stack.append(_id)
                 pre = time
             else:
-                cur = stack.pop()
+                stack.pop()
                 res[_id] += time - pre + 1
                 pre = time + 1
         return res

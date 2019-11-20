@@ -28,3 +28,25 @@ class Solution:
             self.helper(l - 1, r, string + '(', res)
         if r > 0:
             self.helper(l, r - 1, string + ')', res)
+
+
+# https://www.youtube.com/watch?v=PCb1Ca_j6OU
+
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        if n == 0:
+            return res
+        self.helper(n, 0, 0, res, '')
+        return res
+
+    def helper(self, k, left, right, res, temp):
+        if right == k:
+            res.append(temp)
+            return
+        if left < k:
+            self.helper(k, left + 1, right, res, temp + '(')
+        if right < left:
+            self.helper(k, left, right + 1, res, temp + ')')
+
+

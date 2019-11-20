@@ -37,12 +37,13 @@ class AutocompleteSystem:
         return self.dfs(p)
 
     def dfs(self, root):
+        if not root:
+            return []
         res = []
-        if root:
-            if root.data:
-                res.append((root.rank, root.data))
-            for child in root.children:
-                res.extend(self.dfs(root.children[child]))
+        if root.data:
+            res.append((root.rank, root.data))
+        for child in root.children:
+            res.extend(self.dfs(root.children[child]))
         return res
 
     def input(self, c: str) -> List[str]:

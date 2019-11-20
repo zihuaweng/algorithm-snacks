@@ -6,24 +6,20 @@
 
 # https://leetcode.com/problems/max-consecutive-ones-iii/
 
-class Solution:
-    def longestOnes(self, A: List[int], K: int) -> int:
-        n = len(A)
-        slow = fast = 0
+class Solution(object):
+    def longestOnes(self, A, K):
+        i = 0
         count = 0
         max_len = 0
 
-        while fast < n:
-            if A[fast] == 0:
+        for j, char in enumerate(A):
+            if A[j] == 0:
                 count += 1
-            fast += 1
 
             while count > K:
-                if A[slow] == 0:
+                if A[i] == 0:
                     count -= 1
-                slow += 1
+                i += 1
 
-            max_len = max(max_len, fast - slow)
-
+            max_len = max(max_len, j-i+1)
         return max_len
-

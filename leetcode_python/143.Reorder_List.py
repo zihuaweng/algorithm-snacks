@@ -31,7 +31,7 @@ class Solution:
         # 间隔插入head链表里面
         res = ListNode(0)
         cur = res
-        while reverse and head.next:
+        while reverse and head.next:    # 123->None    543 -> None
             cur.next = head
             head = head.next
             cur.next.next = reverse

@@ -53,20 +53,18 @@ class Solution:
 
         layer = {}
         layer[beginWord] = [[beginWord]]
-
         while layer:
             new_layer = collections.defaultdict(list)
-            for w in layer:
-                if w == endWord:
-                    res.extend(lst for lst in layer[w])
+            for key, path in layer.items():
+                if key == endWord:
+                    res.extend(path)
                 else:
-                    for i in range(len(w)):
+                    for i in range(len(key)):
                         for e in 'qwertyuiopasdfghjklzxcvbnm':
-                            new_w = w[:i] + e + w[i + 1:]
-                            if new_w in words:
-                                new_layer[new_w] += [lst + [new_w] for lst in layer[w]]
-            words -= new_layer.keys()
+                            new = key[:i] + e + key[i + 1:]
+                            if new in words:
+                                new_layer[new] += [lst + [new] for lst in path]
+            words -= set(new_layer.keys())
             layer = new_layer
-            # print(layer)
 
         return res

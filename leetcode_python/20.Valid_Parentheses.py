@@ -20,3 +20,19 @@ class Solution:
                 return False
 
         return not stack
+
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        p = {')': '(', ']': '[', '}': '{'}
+        stack = []
+        for char in s:
+            if char in p.values():
+                stack.append(char)
+            else:
+                if not stack or p[char] != stack.pop():
+                    return False
+            # print(stack)
+
+        return not stack
+

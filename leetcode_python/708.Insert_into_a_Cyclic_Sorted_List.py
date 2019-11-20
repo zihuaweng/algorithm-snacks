@@ -21,6 +21,7 @@ class Solution:
 
         node = Node(insertVal, head)
         if not head:
+            node.next = node
             return node
 
         pre, cur = head, head.next
