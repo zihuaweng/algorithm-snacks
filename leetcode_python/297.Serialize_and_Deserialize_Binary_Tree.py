@@ -39,7 +39,7 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        vals = iter(data.split())
+        vals = iter(data.split())   # 也可以写成一个queue
 
         def pre_order():
             val = next(vals)

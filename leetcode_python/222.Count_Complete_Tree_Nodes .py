@@ -34,3 +34,22 @@ class Solution:
             return (1 << height_l) - 1  # 完全树的节点个数计算： 2^h - 1
         else:
             return self.countNodes(root.left) + self.countNodes(root.right) + 1
+
+
+# Time complexity: O(log(n) * log(n))
+class Solution:
+    def countNodes(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+
+        l = self.get_h(root.left)
+        r = self.get_h(root.right)
+        if l == r:
+            return (1 << l) + self.countNodes(root.right)
+        else:
+            return (1 << r) + self.countNodes(root.left)
+
+    def get_h(self, root):
+        if not root:
+            return 0
+        return 1 + self.get_h(root.left)

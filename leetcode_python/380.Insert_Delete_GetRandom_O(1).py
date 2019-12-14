@@ -35,7 +35,7 @@ class RandomizedSet:
             self.num[target] = self.num[-1]
             self.idx[self.num[-1]] = target
             self.num.pop()
-            self.idx.pop(val)
+            del self.idx[val]
             return True
         else:
             return False

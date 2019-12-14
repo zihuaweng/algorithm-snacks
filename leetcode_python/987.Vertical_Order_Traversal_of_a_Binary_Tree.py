@@ -15,28 +15,30 @@
 #         self.left = None
 #         self.right = None
 
-class Solution:
-    def verticalTraversal(self, root: TreeNode) -> List[List[int]]:
+class Solution(object):
+    def verticalTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
         res = []
         if not root:
             return res
 
         loc = collections.defaultdict(list)
-        queue = collections.deque()
-        queue.append((0, root))
+        queue = [(0, root)]
         while queue:
-            length = len(queue)
+            temp = []
             new = collections.defaultdict(list)
-            for _ in range(length):
-                s, node = queue.popleft()
+            for s, node in queue:
                 if node.left:
-                    queue.append((s - 1, node.left))
+                    temp.append((s - 1, node.left))
                 if node.right:
-                    queue.append((s + 1, node.right))
+                    temp.append((s + 1, node.right))
                 new[s].append(node.val)
             for key, val in new.items():
                 loc[key].extend(sorted(val))
+            queue = temp
 
         return [loc[i] for i in sorted(loc)]
-
 

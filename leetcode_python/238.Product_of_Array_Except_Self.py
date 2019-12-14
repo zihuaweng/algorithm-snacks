@@ -33,16 +33,15 @@ class Solution:
         #         [1*24, 1*12, 2*4, 6]
         n = len(nums)
         left = [1] * n
-        right = [1] * n
 
         for i in range(1, n):
             left[i] = left[i - 1] * nums[i - 1]
 
-        for i in range(n - 2, -1, -1):
-            right[i] = right[i + 1] * nums[i + 1]
-
-        for i in range(n):
-            nums[i] = left[i] * right[i]
+        right = 1
+        for i in range(n - 1, -1, -1):
+            temp = nums[i]
+            nums[i] = right * left[i]
+            right = right * temp
 
         return nums
 

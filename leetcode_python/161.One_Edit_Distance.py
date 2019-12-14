@@ -25,9 +25,9 @@ class Solution:
             i = 0
             while i < m:
                 if s[i] != t[i]:
-                    break
+                    if s[i:] != t[i + 1:]:
+                        return False
+                    else:
+                        return True
                 i += 1
-            for j in range(i, m):
-                if s[j] != t[j + 1]:
-                    return False
             return True

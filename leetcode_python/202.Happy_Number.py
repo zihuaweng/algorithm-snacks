@@ -24,3 +24,21 @@ class Solution:
                 return True if happy_sum(temp_sum) else False
 
         return happy_sum(n)
+
+
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        seen = set()
+        return self.helper(n, seen)
+
+    def helper(self, n, seen):
+        if n == 1:
+            return True
+        if n in seen:
+            return False
+        res = 0
+        seen.add(n)
+        while n > 0:
+            res += (n % 10) ** 2
+            n //= 10
+        return self.helper(res, seen)

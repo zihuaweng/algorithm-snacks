@@ -17,13 +17,11 @@ class Solution:
 
         m = len(maze)
         n = len(maze[0])
-        visited = [[False] * n for _ in range(m)]
-        visited[start[0]][start[1]] = True
-        queue = collections.deque([])
-        queue.append(start)
+        visited = set()
+        visited.add(tuple(start))
+        queue = [start]
         # print(queue)
-        while queue:
-            x, y = queue.popleft()
+        for x, y in queue:
             for _x, _y in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
                 new_x = x
                 new_y = y
@@ -33,7 +31,7 @@ class Solution:
 
                 if new_x == destination[0] and new_y == destination[1]:
                     return True
-                if not visited[new_x][new_y]:
-                    visited[new_x][new_y] = True
+                if (new_x, new_y) not in visited:
+                    visited.add((new_x, new_y))
                     queue.append((new_x, new_y))
         return False

@@ -8,7 +8,7 @@ class Solution:
     def removeInvalidParentheses(self, s: str) -> List[str]:
 
         def valid(eles):
-            stack = [241. Different Ways to Add Parentheses]
+            stack = []
             for i in eles:
                 if stack and i == ')' and stack[-1] == '(':
                     stack.pop()

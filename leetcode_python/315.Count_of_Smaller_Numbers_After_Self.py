@@ -54,3 +54,7 @@ class Solution:
         merge_sort(items)
         return res
 
+
+# bit binary serach 方法
+# https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76657/3-ways-(Segment-Tree-Binary-Indexed-Tree-Binary-Search-Tree)-clean-python-code
+# https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76731/Nlogn-Python-solution-binary-indexed-tree-160-ms

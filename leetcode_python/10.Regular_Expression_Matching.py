@@ -41,12 +41,6 @@ class Solution:
         # * (T) T [T] F
         # b F   F  F T
 
-        #         aa
-        #         a*
-
-        #         a  aa
-        #         ab*aa
-
         m = len(p)
         n = len(s)
         dp = [[False] * (n + 1) for _ in range(m + 1)]

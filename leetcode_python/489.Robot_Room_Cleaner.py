@@ -43,7 +43,7 @@ class Solution:
         :type robot: Robot
         :rtype: None
         """
-        self.directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]  # 这里面的上下左右位置很重要
+        self.directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]  # 这里面的上下左右位置很重要,否则会死循环
         self.dfs(robot, 0, 0, 0, set())
 
     def dfs(self, robot, x, y, cur, visited):

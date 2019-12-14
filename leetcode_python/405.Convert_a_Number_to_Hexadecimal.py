@@ -17,7 +17,7 @@ class Solution:
 
         res = ''
         while num != 0:
-            res = str(chars[num & 15]) + res
+            res = chars[num & 15] + res
             num >>= 4
 
         return res

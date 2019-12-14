@@ -17,7 +17,7 @@ class Solution:
         return res
 
     def build_graph(self, graph, in_degree, words):
-        for w in words:            #  这里很重要，否则例子['z', 'z']会报错
+        for w in words:            #  这里很重要，否则例子['z', 'z']会报错 # 或者使用一个长度26的list保存
             for c in w:
                 graph[c] = set()
                 in_degree[c] = 0

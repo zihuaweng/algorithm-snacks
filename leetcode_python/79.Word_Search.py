@@ -60,7 +60,6 @@ class Solution:
         self.direction = [(-1, 0), (1, 0), (0, 1), (0, -1)]
         if not board or not board[0]:
             return False
-        self.find = False
         m = len(board)
         n = len(board[0])
         visited = [[False] * n for _ in range(m)]

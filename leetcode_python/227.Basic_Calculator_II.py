@@ -37,3 +37,43 @@ class Solution:
                 num = 0
 
         return sum(stack)
+
+
+class Solution:
+    def calculate(self, s: str) -> int:
+        if not s:
+            return 0
+
+        s = s.replace(' ', '')
+
+        order_mp = {'+': 0, '-': 0, '*': 1, '/': 1}
+        numstack, opstack = [], []
+        i = 0
+        s += '+'
+        while i < len(s):
+            if s[i].isdigit():
+                tmp_num = ''
+                while i < len(s) and s[i].isdigit():
+                    tmp_num += s[i]
+                    i += 1
+                numstack.append(int(tmp_num))
+            else:
+                while opstack and order_mp[s[i]] <= order_mp[opstack[-1]]:
+                    num2 = numstack.pop(-1)
+                    num1 = numstack.pop(-1)
+                    tmp_res = self.helper(num1, num2, opstack.pop(-1))
+                    numstack.append(tmp_res)
+
+                opstack.append(s[i])
+                i += 1
+        return numstack[0]
+
+    def helper(self, n1, n2, op):
+        if op == '+':
+            return n1 + n2
+        elif op == '-':
+            return n1 - n2
+        elif op == '*':
+            return n1 * n2
+        else:
+            return n1 // n2

@@ -8,22 +8,14 @@
 
 class Solution:
     def missingElement(self, nums: List[int], k: int) -> int:
-        if not nums or k == 0:
-            return 0
+        i = 0
+        j = len(nums) - 1
 
-        diff = nums[-1] - nums[0] + 1
-        missing = diff - len(nums)
-        if k > missing:
-            return nums[-1] + k - missing
-
-        left, right = 0, len(nums) - 1
-        while left + 1 < right:
-            mid = (left + right) // 2
-            missing = nums[mid] - nums[left] - (mid - left)
-            if missing < k:
-                left = mid
-                k -= missing
+        while i < j:
+            mid = (i + j + 1) // 2
+            if nums[mid] - nums[0] - mid >= k:
+                j = mid - 1
             else:
-                right = mid
+                i = mid
 
-        return nums[left] + k
+        return k + nums[0] + i

@@ -9,7 +9,4 @@ class Solution:
                 dic[temp] += [string]
             else:
                 dic[temp] = [string]
-        res = []
-        for value in dic.values():
-            res.append(value)
-        return res
+        return list(dic.values())

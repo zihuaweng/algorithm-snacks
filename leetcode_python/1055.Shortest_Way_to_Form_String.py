@@ -26,3 +26,24 @@ class Solution:
                 return -1
 
         return res[-1]
+
+
+# two pointer
+class Solution:
+    def shortestWay(self, source: str, target: str) -> int:
+        res = 0
+        t = 0
+        while t < len(target):
+            check = t
+
+            for s in source:
+                if t < len(target) and s == target[t]:
+                    t += 1
+
+            if check == t:
+                return -1
+            res += 1
+
+        return res
+
+

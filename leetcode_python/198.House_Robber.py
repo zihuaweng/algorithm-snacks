@@ -2,6 +2,20 @@
 # 这道题和走楼梯一样，也是斐波那契数列改变题目
 # 每个值取决于他前面第二个，和前面第三个值的大小，反正不能是前面第一个，会报警，且不能是前第四个，因为中间肯定还有一个值可以加
 
+
+# https://www.youtube.com/watch?v=-i2BFAU25Zk
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        rob = 0
+        not_rob = 0
+        for num in nums:
+            pre = max(not_rob, rob)
+            rob = not_rob + num
+            not_rob = pre
+        return max(rob, not_rob)
+
+
+
 class Solution(object):
     def rob(self, nums):
         """
