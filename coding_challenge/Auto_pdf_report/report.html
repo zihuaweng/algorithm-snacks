@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Urin report</title>
+    </head>
+    <body>
+        <h2>尿液微生物检测报告</h2>
+        <table class="table">
+            <tr>
+                <tr>
+                    <td>姓名</td>
+                    <td>{{ info[id]['name'] }}</td>
+                    <td>性别</td>
+                    <td>{{ info[id]['gender'] }}</td>
+                    <td>年龄</td>
+                    <td>{{ info[id]['age'] }}</td>
+                </tr>
+                <tr>
+                    <td>样品编号</td>
+                    <td>{{ info[id]['sampleid'] }}</td>
+                    <td>检测日期</td>
+                    <td>{{ info[id]['test_date'] }}</td>
+                    <td>报告日期</td>
+                    <td>{{ info[id]['report_date'] }}</td>
+                </tr>
+            </tr>
+        </table>
+        <h3>检测内容</h3>
+        <p>该检测基于Illumina高通量测序技术，对尿液中存在的细菌进行16S RNA测序，分析尿液的细菌组成。检测过程包括：核酸提取、测序文库构建、序列测定、序列分析、信息解读及报告撰写。</p>
+        <h3>检测结果</h3>
+        <p>您的尿液的细菌类别总数为
+            {{ data['part_1'][id] }}
+        种</p>
+        <p>其中占比较多的细菌类别如下:</p>
+        <img src="{{ path }}" alt="" class="result_img">
+        <p>
+	{{ data['part_3_1'][id] }}
+	</p>
+	{% if data['part_3_2'][id] %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="4">泌尿系统感染常见致病菌检测</th>
+                </tr>
+                <tr>
+                    <th>类型</th>
+                    <th>中文名</th>
+                    <th>英文名</th>
+                    <th>含量</th>
+                </tr>
+            </thead>
+            <tbody>
+		            {% for k,v in data['part_3_2'][id].iteritems() %}
+			             <tr>
+                     <td>{{ v.gram }}</td>
+                     <td>{{ v.zname }}</td>
+                     <td><i>{{ k }}</i></td>
+                     <td>{{ v.abun }}</td>
+                   </tr>
+		                 {% endfor %}
+            </tbody>
+
+        </table>
+		{% endif %}
+		<p>参考文献</p>
+		<p><font size="2">
+		Qiao L D, Chen S, Yang Y, et al. Characteristics of urinary tract infection pathogens and their in vitro susceptibility to antimicrobial agents in China: data from a multicenter study[J]. BMJ open, 2013, 3(12): e004152.
+		</font></p>
+    </body>
+</html>

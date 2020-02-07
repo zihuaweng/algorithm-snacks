@@ -2,33 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="496681ad-ce81-47d5-a932-607c09e56a92" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/google_oa/Compare_Strings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/google_oa/Largest_Subarray_Length_K.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/google_oa/Maximum_Time.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/google_oa/Most_Booked_Hotel_Room.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/1027.Longest_Arithmetic_Sequence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/124.Binary_Tree_Maximum_Path_Sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/125.Valid_Palindrome.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/157.Read_N_Characters_Given_Read4.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/158.Read_N_CharactersGiven_Read4II-Call_multiple_times.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/199.Binary_Tree_Right_Side_View.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/211.Add_and_Search_Word-Data_structure_design.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/278.First_Bad_Version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/282.Expression_Add_Operators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/415.Add_Strings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/426.Convert_Binary_Search_Tree_to_Sorted_Doubly_Linked_List.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/438.Find_All_Anagrams_in_a_String.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/523.Continuous_Subarray_Sum.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/551.Student_Attendance_Record_I.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/621.Task_Scheduler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/67.Add_Binary.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/680.Valid_Palindrome_II.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/71.Simplify_Path.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/837.New_21_Game.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/844.Backspace_String_Compare.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/896.Monotonic_Array.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leetcode_python/953.Verifying_an_Alien_Dictionary.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/google_oa/Compare_Strings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/google_oa/Largest_Subarray_Length_K.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/google_oa/Maximum_Time.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/google_oa/Most_Booked_Hotel_Room.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode_python/divisors.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode_python/ibm.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leetcode_python/ibm_oa_Aladdin_and_his_Carpet.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="java" />
-        <option value="Python Script" />
         <option value="Leetcode" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -89,8 +70,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.727.Minimum_Window_Subsequence">
-    <configuration name="313.Super_Ugly_Number" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.divisors">
+    <configuration name="149.Max_Points_on_a_Line" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -98,12 +79,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/313.Super_Ugly_Number.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/149.Max_Points_on_a_Line.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="490.The_Maze" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="algorithm_snacks" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode_python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/490.The_Maze.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -134,7 +137,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="727.Minimum_Window_Subsequence" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="bit" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,7 +150,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/727.Minimum_Window_Subsequence.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/bit.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,7 +159,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="990.Satisfiability_of_Equality_Equations" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="dijkstra" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -164,12 +167,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/990.Satisfiability_of_Equality_Equations.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/dijkstra.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,7 +181,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Exercise2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="divisors" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="algorithm_snacks" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -186,34 +189,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/e5110a77ac3d693e3342f9fe0494a0e8/Message/MessageTemp/edee082c23f2fa2f700bcc25456957b3/File/New folder" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/e5110a77ac3d693e3342f9fe0494a0e8/Message/MessageTemp/edee082c23f2fa2f700bcc25456957b3/File/New folder/Exercise2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="algorithm_snacks" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/leetcode_python" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/leetcode_python/divisors.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -224,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.727.Minimum_Window_Subsequence" />
-        <item itemvalue="Python.Exercise2" />
-        <item itemvalue="Python.990.Satisfiability_of_Equality_Equations" />
-        <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.313.Super_Ugly_Number" />
+        <item itemvalue="Python.divisors" />
+        <item itemvalue="Python.dijkstra" />
+        <item itemvalue="Python.149.Max_Points_on_a_Line" />
+        <item itemvalue="Python.bit" />
+        <item itemvalue="Python.490.The_Maze" />
       </list>
     </recent_temporary>
   </component>
@@ -278,7 +259,21 @@
       <workItem from="1573061711092" duration="3890000" />
       <workItem from="1573146941642" duration="8365000" />
       <workItem from="1573247443346" duration="11000" />
-      <workItem from="1573248861511" duration="10535000" />
+      <workItem from="1573248861511" duration="83210000" />
+      <workItem from="1574221819954" duration="50045000" />
+      <workItem from="1574397427645" duration="3000" />
+      <workItem from="1574446420165" duration="525000" />
+      <workItem from="1574539623371" duration="87000" />
+      <workItem from="1574906085104" duration="1144000" />
+      <workItem from="1574970374866" duration="1832000" />
+      <workItem from="1575047209816" duration="6215000" />
+      <workItem from="1575572028743" duration="1770000" />
+      <workItem from="1575786065499" duration="6020000" />
+      <workItem from="1575916266542" duration="73897000" />
+      <workItem from="1578071024656" duration="11309000" />
+      <workItem from="1579543773321" duration="12296000" />
+      <workItem from="1580326024575" duration="5647000" />
+      <workItem from="1580926126216" duration="5075000" />
     </task>
     <servers />
   </component>
@@ -311,16 +306,34 @@
           <line>49</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode_python/29.Divide_Two_Integers.py</url>
+          <line>10</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/leetcode_python/bit.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/algorithm_snacks$Exercise2.coverage" NAME="Exercise2 Coverage Results" MODIFIED="1570646309675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/e5110a77ac3d693e3342f9fe0494a0e8/Message/MessageTemp/edee082c23f2fa2f700bcc25456957b3/File/New folder" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$50_Pow_x_n_.coverage" NAME="50.Pow(x,n) Coverage Results" MODIFIED="1569867509375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
-    <SUITE FILE_PATH="coverage/algorithm_snacks$313_Super_Ugly_Number.coverage" NAME="313.Super_Ugly_Number Coverage Results" MODIFIED="1570139564413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$990_Satisfiability_of_Equality_Equations.coverage" NAME="990.Satisfiability_of_Equality_Equations Coverage Results" MODIFIED="1570598850115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
-    <SUITE FILE_PATH="coverage/algorithm_snacks$727_Minimum_Window_Subsequence.coverage" NAME="727.Minimum_Window_Subsequence Coverage Results" MODIFIED="1572806426650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$149_Max_Points_on_a_Line.coverage" NAME="149.Max_Points_on_a_Line Coverage Results" MODIFIED="1576106544800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1570405288849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
     <SUITE FILE_PATH="coverage/algorithm_snacks$704_Binary_Search.coverage" NAME="704.Binary_Search Coverage Results" MODIFIED="1569867533353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$29_Divide_Two_Integers.coverage" NAME="29.Divide_Two_Integers Coverage Results" MODIFIED="1573422478951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$bit.coverage" NAME="bit Coverage Results" MODIFIED="1575917797436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$dijkstra.coverage" NAME="dijkstra Coverage Results" MODIFIED="1576443906438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$divisors.coverage" NAME="divisors Coverage Results" MODIFIED="1576485738795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$313_Super_Ugly_Number.coverage" NAME="313.Super_Ugly_Number Coverage Results" MODIFIED="1570139564413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$ibm.coverage" NAME="ibm Coverage Results" MODIFIED="1573777375224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$727_Minimum_Window_Subsequence.coverage" NAME="727.Minimum_Window_Subsequence Coverage Results" MODIFIED="1572806426650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$273_Integer_to_English_Words.coverage" NAME="273.Integer_to_English_Words Coverage Results" MODIFIED="1573509972605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
+    <SUITE FILE_PATH="coverage/algorithm_snacks$490_The_Maze.coverage" NAME="490.The_Maze Coverage Results" MODIFIED="1573799112372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/leetcode_python" />
   </component>
 </project>

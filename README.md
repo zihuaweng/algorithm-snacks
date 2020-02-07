@@ -8,11 +8,19 @@ Snippets of little algorithms used in image processing and text mining in both P
 3. non maximum supperession
 4. scale invariant feature transform (sift)
 
+### OA
+1. Google
+2. IBM
+3. Dropbox
 
 ### Leetcode
-1. Solutions in Java and Python
+1. (Py) Leetcode
+1. (Java) Leetcode
 
 
 ### Coding challenge
-1. Sales Taxes application
+1. (Py) Auto PDF creator
+2. (Java) Liferay, Sales Taxes application
 
+
+### Statistics
