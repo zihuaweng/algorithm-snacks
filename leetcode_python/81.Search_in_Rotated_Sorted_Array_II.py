@@ -9,28 +9,23 @@ class Solution:
     def search(self, nums: List[int], target: int) -> bool:
         if not nums:
             return False
-
-        start = 0
-        end = len(nums) - 1
-
-        while start + 1 < end:
-            mid = (start + end) // 2
-            if nums[mid] > nums[start]:
-                if nums[start] <= target <= nums[mid]:
-                    end = mid
+        l = 0
+        r = len(nums) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if nums[mid] == target:
+                return True
+            elif nums[mid] < nums[r]:
+                if nums[mid] < target <= nums[r]:
+                    l = mid + 1
                 else:
-                    start = mid
-
-            elif nums[mid] < nums[start]:
-                if nums[mid] <= target <= nums[end]:
-                    start = mid
+                    r = mid - 1
+            elif nums[mid] > nums[r]:
+                if nums[l] <= target < nums[mid]:
+                    r = mid - 1
                 else:
-                    end = mid
+                    l = mid + 1
             else:
-                if nums[start] == target:
-                    return True
-                start += 1
+                r -= 1
 
-        if nums[start] == target or nums[end] == target:
-            return True
         return False

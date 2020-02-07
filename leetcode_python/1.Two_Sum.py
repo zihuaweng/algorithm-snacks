@@ -15,3 +15,13 @@ class Solution:
                 return [seen[m], i]
             else:
                 seen[n] = i
+
+
+class Solution:
+    def twoSum(self, nums, target):
+        seen = {}
+        for i, n in enumerate(nums):
+            if n in seen:
+                return [seen[n], i]
+            else:
+                seen[target-n] = i

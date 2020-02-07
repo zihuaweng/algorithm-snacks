@@ -27,37 +27,37 @@ class BIT:
     # def __init__(self, list):
     #    """Initialize BIT with list in O(n*log(n))"""
     #    self.array = [0] * (len(list) + 1)
-    #    for idx, val in enumerate(list):
-    #        self.update(idx, val)
+    #    for i, val in enumerate(list):
+    #        self.update(i, val)
 
     def __init__(self, list):
         """"Initialize BIT with list in O(n)"""
         self.array = [0] + list
-        for idx in range(1, len(self.array)):
-            idx2 = idx + (idx & -idx)
-            print(idx, bin(idx), bin(-idx), idx & -idx, idx2)
-            if idx2 < len(self.array):
-                self.array[idx2] += self.array[idx]
+        for i in range(1, len(self.array)):
+            i2 = i + (i & -i)
+            print(i, bin(i), bin(-i), i & -i, i2)
+            if i2 < len(self.array):
+                self.array[i2] += self.array[i]
 
-    def prefix_query(self, idx):
-        """Computes prefix sum of up to including the idx-th element"""
-        idx += 1
+    def prefix_query(self, i):
+        """Computes prefix sum of up to including the i-th element"""
+        i += 1
         result = 0
-        while idx:
-            result += self.array[idx]
-            idx -= idx & -idx
+        while i:
+            result += self.array[i]
+            i -= i & -i
         return result
 
-    def range_query(self, from_idx, to_idx):
+    def range_query(self, from_i, to_i):
         """Computes the range sum between two indices (both inclusive)"""
-        return self.prefix_query(to_idx) - self.prefix_query(from_idx - 1)
+        return self.prefix_query(to_i) - self.prefix_query(from_i - 1)
 
-    def update(self, idx, add):
-        """Add a value to the idx-th element"""
-        idx += 1
-        while idx < len(self.array):
-            self.array[idx] += add
-            idx += idx & -idx
+    def update(self, i, add):
+        """Add a value to the i-th element"""
+        i += 1
+        while i < len(self.array):
+            self.array[i] += add
+            i += i & -i
 
 
 if __name__ == '__main__':
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     bit.update(4, 2)
     print('Add {} to element at pos {}'.format(2, 4))
-    new_array = [bit.range_query(idx, idx) for idx in range(len(array))]
+    new_array = [bit.range_query(i, i) for i in range(len(array))]
     print('Array: [{}]'.format(', '.join(map(str, new_array))))
     print()
 

@@ -17,3 +17,18 @@ class Solution:
             res = res ^ i ^ nums[i]
 
         return res ^ n
+
+# 二分搜索
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        l = 0
+        r = len(nums)
+        while l < r:
+            mid = (l + r) // 2
+            if nums[mid] == mid:
+                l = mid + 1
+            else:
+                r = mid
+
+        return r

@@ -24,15 +24,14 @@ class Solution:
 
 class Solution:
     def isValid(self, s: str) -> bool:
-        p = {')': '(', ']': '[', '}': '{'}
+        check = {'(': ')', '[':']', '{':'}'}
         stack = []
-        for char in s:
-            if char in p.values():
-                stack.append(char)
+        for n in s:
+            if n in check:
+                stack.append(n)
             else:
-                if not stack or p[char] != stack.pop():
+                if stack and n == check[stack[-1]]:
+                    stack.pop()
+                else:
                     return False
-            # print(stack)
-
         return not stack
-

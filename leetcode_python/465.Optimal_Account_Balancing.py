@@ -10,26 +10,27 @@
 class Solution:
     def minTransfers(self, transactions: List[List[int]]) -> int:
         total = collections.defaultdict(int)
-        for send, receive, money in transactions:
-            total[send] -= money
-            total[receive] += money
+        for s, r, money in transactions:
+            total[s] -= money
+            total[r] += money
 
         debt = [x for x in total.values() if x != 0]
-        return self.dfs(0, 0, debt)
+        return self.dfs(debt, 0)
 
-    def dfs(self, idx, trans, debt):
-        while idx < len(debt) and debt[idx] == 0:
-            idx += 1
+    def dfs(self, debt, idx):
+        if idx == len(debt):
+            return 0
+        if debt[idx] == 0:
+            return self.dfs(debt, idx + 1)
 
-        if idx >= len(debt):
-            return trans
-
-        min_trans = float('inf')
+        trans = float('inf')
         for i in range(idx + 1, len(debt)):
-            if debt[i] * debt[idx] < 0:
+            if debt[idx] * debt[i] < 0:
                 debt[i] += debt[idx]
-                temp_min_trans = self.dfs(idx + 1, trans + 1, debt)
-                min_trans = min(min_trans, temp_min_trans)
+                trans = min(self.dfs(debt, idx + 1) + 1, trans)
                 debt[i] -= debt[idx]
 
-        return min_trans
+                # 加速运算，如果一次消清账单的话为最优
+                if debt[idx] + debt[i] == 0:
+                    break
+        return trans

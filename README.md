@@ -2,7 +2,7 @@
 Snippets of little algorithms used in image processing and text mining in both Python, Java and C++
 
 
-### image processing
+### Image processing
 1. affine transformation
 2. bilinear interpolation
 3. non maximum supperession
@@ -13,6 +13,6 @@ Snippets of little algorithms used in image processing and text mining in both P
 1. Solutions in Java and Python
 
 
-### text mining
-
+### Coding challenge
+1. Sales Taxes application
 

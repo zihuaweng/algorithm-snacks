@@ -1,4 +1,4 @@
-#  https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+  https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 # 设置两个指针，头指针先往前面移动n个位置，然后头，尾指针同时往前移动直至最后
 # Time complexity: O(n)
 # Space complexity: O(1)

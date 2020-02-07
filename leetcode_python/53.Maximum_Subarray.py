@@ -7,13 +7,29 @@
 
 
 class Solution:
-    def maxSubArray(self, nums):
-        if not nums:
-            return 0
-        temp_sum = nums[0]
-        total_sum = nums[0]
-        for i in nums[1:]:
-            temp_sum = max(temp_sum + i, i)
-            total_sum = max(temp_sum, total_sum)
+    def maxSubArray(self, nums: List[int]) -> int:
+        total = float('-inf')
+        cur = 0
+        for n in nums:
+            if cur < 0:
+                cur = n
+            else:
+                cur += n
+            total = max(cur, total)
 
-        return total_sum
+        return total
+
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        n = len(nums)
+        dp = [0] * n
+        dp[0] = nums[0]
+        max_sum = nums[0]
+
+        for i in range(1, n):
+            temp = dp[i - 1] if dp[i - 1] > 0 else 0
+            dp[i] = nums[i] + temp
+            max_sum = max(max_sum, dp[i])
+
+        return max_sum

@@ -32,4 +32,17 @@ class Solution:
         return b
 
 
+class Solution:
+    def confusingNumberII(self, n: int) -> int:
+        sub = {0: 0, 1: 1, 9: 6, 8: 8, 6: 9}
 
+        def dfs(num, flip_num, digit):
+            res = 0
+            if num != flip_num:
+                res += 1
+            for d, val in sub.items():
+                if 0 < num * 10 + d <= n:
+                    res += dfs(num * 10 + d, val * digit + flip_num, digit * 10)
+            return res
+
+        return dfs(0, 0, 1)

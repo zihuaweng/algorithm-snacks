@@ -88,8 +88,31 @@ class Solution:
         return res
 
 
+class Solution:
+    def numberToWords(self, num: int) -> str:
+        thousands = ["", "Thousand", "Million", "Billion"]
+        if num == 0:
+            return 'Zero'
+        res = ''
+        for i in range(4):
+            if num % 1000 != 0:
+                res = self.helper(num % 1000) + thousands[i] + ' ' + res
+            num //= 1000
 
+        return res.strip()
 
+    def helper(self, num):
+        lessThan20 = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
+                      "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"]
+        tens = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
+        if num == 0:
+            return ''
+        elif num < 20:
+            return lessThan20[num] + ' '
+        elif num < 100:
+            return tens[num // 10] + ' ' + self.helper(num % 10)
+        else:
+            return lessThan20[num // 100] + ' Hundred ' + self.helper(num % 100)
 
 
 

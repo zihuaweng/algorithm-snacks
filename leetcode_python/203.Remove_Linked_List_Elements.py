@@ -27,3 +27,16 @@ class Solution:
                 cur = cur.next
 
         return head
+
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        res = ListNode(0)
+        res.next = head
+        p = res
+        while p and p.next:
+            while p.next and p.next.val == val:
+                p.next = p.next.next
+            p = p.next
+
+        return res.next

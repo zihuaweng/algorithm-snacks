@@ -23,7 +23,7 @@ class Solution:
                 n -= 1
             idx -= 1
 
-        while n >= 0:
+        while n >= 0:   # 使用for循环会漏掉
             nums1[n] = nums2[n]
             n -= 1
 

@@ -31,7 +31,7 @@ def get_leaf_sum(head):
                     prev.right = head.children[i]
                 prev = head.children[i]
             head = head.right
-        head = first
+            head = first
 
     return leaf_sum
 

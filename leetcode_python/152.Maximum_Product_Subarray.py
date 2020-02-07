@@ -25,3 +25,19 @@ class Solution(object):
             max_to_cur, min_to_cur = max_temp, min_temp
 
         return max_product
+
+
+class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_p = nums[0]
+        min_p = nums[0]
+        total = nums[0]
+        for num in nums[1:]:
+            if num < 0:
+                max_p, min_p = min_p, max_p
+
+            min_p = min(min_p * num, num)
+            max_p = max(max_p * num, num)
+            total = max(total, max_p)
+
+        return total

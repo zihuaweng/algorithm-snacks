@@ -5,7 +5,8 @@
 # Space complexity: O()
 
 # https://leetcode.com/problems/count-primes/
-# https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+# https://en.wikipedia.org/wiki/Sieve_of_Eratosthene
+# 质数
 
 class Solution:
     def countPrimes(self, n: int) -> int:

@@ -16,7 +16,7 @@ class Solution:
         dp = [0 for _ in range(N + 1)]
         dp[0] = 1
         prop = 1 / W
-        prev = 0
+        prev = 0   # 方便后面不需要再重复计算求和
 
         # for less than K
         for i in range(1, K + 1):

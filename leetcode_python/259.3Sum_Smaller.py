@@ -5,6 +5,7 @@
 # Space complexity: O()
 
 # https://leetcode.com/problems/3sum-smaller/
+# I think it does not matter and i<j<k<n means one number could not be used more than once.
 
 class Solution:
     def threeSumSmaller(self, nums: List[int], target: int) -> int:
@@ -26,5 +27,25 @@ class Solution:
                 else:
                     res += p2 - p1
                     p1 += 1
+
+        return res
+
+
+class Solution:
+    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+        res = 0
+        n = len(nums)
+        nums.sort()
+        for i in range(n):
+            t = target - nums[i]
+            j = i + 1
+            k = n - 1
+            while j < k:
+                temp = nums[j] + nums[k]
+                if temp >= t:
+                    k -= 1
+                else:
+                    res += k - j
+                    j += 1
 
         return res
