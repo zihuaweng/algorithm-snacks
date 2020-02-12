@@ -21,16 +21,16 @@ def inorderTraversal(self, root: TreeNode) -> List[int]:
 
 def preorderTraversal(self, root: TreeNode) -> List[int]:
     if not root:
-        return
+        return []
     res = []
-    stack = [root]
-    while stack:
-        cur = stack.pop()
-        res.append(cur.val)
-        if cur.right:
-            stack.append(cur.right)
-        if cur.left:
-            stack.append(cur.left)
+    stack = []
+    while stack or root:
+        while root:
+            stack.append(root)
+            res.append(root.val)
+            root = root.left
+        root = stack.pop()
+        root = root.right
     return res
 
 
@@ -46,4 +46,19 @@ def preorderTraversal(self, root: TreeNode) -> List[int]:
             stack.append(cur.right)
         if cur.left:
             stack.append(cur.left)
+    return res
+
+
+def postorderTraversal(self, root: TreeNode) -> List[int]:
+    if not root:
+        return
+    res = []
+    stack = [root]
+    while stack:
+        cur = stack.pop()
+        res = [cur.val] + res
+        if cur.left:
+            stack.append(cur.left)
+        if cur.right:
+            stack.append(cur.right)
     return res
