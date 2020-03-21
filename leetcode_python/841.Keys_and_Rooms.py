@@ -9,13 +9,14 @@
 
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        queue = collections.deque(rooms[0])
         opened = set()
         opened.add(0)
-        stack = [0]
-        while stack:
-            cur = stack.pop()
-            for i in rooms[cur]:
-                if i not in opened:
-                    opened.add(i)
-                    stack.append(i)
-        return True if len(opened) == len(rooms) else False
+        while queue:
+            cur = queue.pop()
+            if cur not in opened:
+                opened.add(cur)
+                for i in rooms[cur]:
+                    queue.append(i)
+
+        return len(opened) == len(rooms)

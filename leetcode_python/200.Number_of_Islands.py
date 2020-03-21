@@ -5,28 +5,29 @@
 # Time complexity:  O(N*M)
 # Space complexity:  O(1)
 
-class Solution(object):
-    def numIslands(self, grid):
-        """
-        :type grid: List[List[str]]
-        :rtype: int
-        """
-        self.d = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+        m = len(grid)
+        n = len(grid[0])
         count = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
+        for i in range(m):
+            for j in range(n):
                 if grid[i][j] == '1':
                     count += 1
-                    self.helper(i, j, grid)
+                    self.count_island(grid, i, j)
         return count
 
-    def helper(self, x, y, grid):
-        if x < 0 or x >= len(grid) or y < 0 or y >= len(grid[0]) or grid[x][y] != '1':
+    def count_island(self, grid, i, j):
+        if grid[i][j] != '1':
             return
-
-        grid[x][y] = '2'
-        for _x, _y in self.d:
-            self.helper(x + _x, y + _y, grid)
+        grid[i][j] = '2'
+        for _x, _y in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+            new_x = i + _x
+            new_y = j + _y
+            if 0 <= new_x < len(grid) and 0 <= new_y < len(grid[0]) and grid[new_x][new_y] == '1':
+                self.count_island(grid, new_x, new_y)
 
 
 class Solution:

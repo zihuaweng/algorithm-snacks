@@ -33,3 +33,15 @@ class Solution:
             max_sum = max(max_sum, dp[i])
 
         return max_sum
+
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        pre = 0
+        pre_min = 0
+        max_sum = float('-inf')
+        for i in range(len(nums)):
+            pre += nums[i]
+            max_sum = max(max_sum, pre-pre_min)
+            pre_min = min(pre_min, pre)
+        return max_sum
