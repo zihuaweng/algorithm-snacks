@@ -25,3 +25,6 @@ class Solution:
 
             step += 1
             queue = new_q
+
+
+

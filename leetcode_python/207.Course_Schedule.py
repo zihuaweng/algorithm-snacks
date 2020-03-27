@@ -5,36 +5,20 @@
 #
 
 
-class Solution(object):
-    def canFinish(self, numCourses, prerequisites):
-        """
-        :type numCourses: int
-        :type prerequisites: List[List[int]]
-        :rtype: bool
-        """
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = collections.defaultdict(list)
+        degree = collections.defaultdict(int)
+        for next_class, pre_class in prerequisites:
+            graph[pre_class].append(next_class)
+            degree[next_class] += 1
 
-        graph = {i: [] for i in range(numCourses)}
-        for u, v in prerequisites:
-            graph[u].append(v)
-
-        # 0：没有走过
-        # 1：正在走
-        # 2：已经走过了
-        visited = [0] * numCourses
-
-        for i in range(numCourses):
-            if not self.dfs(i, visited, graph):
-                return False
-        return True
-
-    def dfs(self, key, visited, graph):
-        if visited[key] == 1:
-            return False
-        if visited[key] == 2:
-            return True
-        visited[key] = 1
-        for edge in graph[key]:
-            if not self.dfs(edge, visited, graph):
-                return False
-        visited[key] = 2
-        return True
+        queue = collections.deque([c for c in range(numCourses) if c not in degree])
+        while queue:
+            cur_class = queue.popleft()
+            numCourses -= 1
+            for c in graph[cur_class]:
+                degree[c] -= 1
+                if degree[c] == 0:
+                    queue.append(c)
+        return numCourses == 0

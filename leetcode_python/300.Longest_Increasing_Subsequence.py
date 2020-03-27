@@ -26,17 +26,13 @@ class Solution:
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
         dp = []
-        length = 0
         for num in nums:
             idx = bisect.bisect_left(dp, num)
             # print(dp, idx)
-            if idx == length:
-                length += 1
+            if idx == len(dp):
                 dp.append(num)
             else:
                 dp[idx] = num
 
-        return length
-
-
+        return len(dp)
 
