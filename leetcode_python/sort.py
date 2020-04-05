@@ -51,113 +51,86 @@ class InsertionSort:
         return arr
 
 
-class HeapSort:
-    def heapify(self, arr, n, i):
-        largest = i
-        l = 2 * i + 1
-        r = 2 * i + 2
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
 
-        # compare left child to the parent
-        if l < n and arr[l] > arr[i]:
-            largest = l
+        ## quick sort:
+        def quick_sort(head, tail):
+            if tail <= head:
+                return
+            l = head
+            r = tail
+            p = r
+            while l < r:
+                while l < r and nums[l] < nums[p]:
+                    l += 1
+                while l < r and nums[r] >= nums[p]:
+                    r -= 1
+                if l < r:
+                    nums[l], nums[r] = nums[r], nums[l]
+            nums[r], nums[p] = nums[p], nums[r]
+            quick_sort(head, l - 1)
+            quick_sort(r + 1, tail)
 
-        # compare the right to the largest as the largest might change previously.
-        if r < n and arr[r] > arr[largest]:
-            largest = r
+        quick_sort(0, len(nums) - 1)
 
-        if largest != i:
-            arr[largest], arr[i] = arr[i], arr[largest]
+        ## merge sort
+        def merge_sort(array):
+            if len(array) == 1:
+                return
+            mid = len(array) // 2
+            L = array[:mid]
+            R = array[mid:]
 
-            # Only run recursively when largest changed.
-            self.heapify(arr, n, largest)
+            merge_sort(L)
+            merge_sort(R)
 
-    # @time_it
-    def sort(self, arr):
-        # First build the maxheap, start from bottom every time (bottom-up)
-        n = len(arr)
+            i = j = k = 0
+
+            while i < len(L) and j < len(R):
+                if L[i] < R[j]:
+                    array[k] = L[i]
+                    i += 1
+                else:
+                    array[k] = R[j]
+                    j += 1
+                k += 1
+
+            if i < len(L):
+                array[k:] = L[i:]
+
+            if j < len(R):
+                array[k:] = R[j:]
+
+        merge_sort(nums)
+
+        return nums
+
+# heap sort
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+
+        def heapify(i, last):
+            largest = i
+            l = 2 * i + 1
+            r = 2 * i + 2
+
+            if l < last and nums[l] > nums[largest]:
+                largest = l
+            if r < last and nums[r] > nums[largest]:
+                largest = r
+            if largest != i:
+                nums[largest], nums[i] = nums[i], nums[largest]
+                heapify(largest, last)
+
+        n = len(nums)
+
         for i in range(n - 1, -1, -1):
-            self.heapify(arr, n, i)
+            heapify(i, n)
 
-        # Retrieve the largest element and swap with the last element each time
-        for i in range(n - 1, 0, -1):
-            arr[0], arr[i] = arr[i], arr[0]
-            # Only need to check 0 as 0 is the only one changed
-            self.heapify(arr, i, 0)
+        for i in range(n - 1, -1, -1):
+            nums[0], nums[i] = nums[i], nums[0]
+            heapify(0, i)
 
-        return arr
+        return nums
 
-
-class MergeSort:
-    def merge(self, arr, arr_l, arr_r):
-        # Copy sort element to arr
-        i = l = r = 0
-        while l < len(arr_l) and r < len(arr_r):
-            if arr_l[l] < arr_r[r]:
-                arr[i] = arr_l[l]
-                l += 1
-            else:
-                arr[i] = arr_r[r]
-                r += 1
-            i += 1
-
-        # check if any elements left
-        if l < len(arr_l):
-            arr[i:] = arr_l[l:]
-        if r < len(arr_r):
-            arr[i:] = arr_r[r:]
-        return arr
-
-    def merget_sort(self, arr):
-        if len(arr) == 1:
-            return arr
-        mid = len(arr) // 2
-
-        return self.merge(arr, self.merget_sort(arr[:mid]), self.merget_sort(arr[mid:]))
-
-    # @time_it
-    def sort(self, arr):
-        return self.merget_sort(arr)
-
-
-class QuickSort:
-    def quick_sort(self, arr, left, right):
-        if right <= left:
-            return
-        start = left
-        end = right
-        p = right
-        while left < right:
-            # First check elements that already smaller than pivot (l) and
-            # larger than pivot (r). Swap them when needed.
-            while left < right:
-                while arr[left] < arr[p] and left < right:
-                    left += 1
-                while arr[right] >= arr[p] and left < right:
-                    right -= 1
-                if left != right:
-                    arr[left], arr[right] = arr[right], arr[left]
-            arr[right], arr[p] = arr[p], arr[right]
-        self.quick_sort(arr, start, right - 1)
-        self.quick_sort(arr, right + 1, end)
-
-    # @time_it
-    def sort(self, arr):
-        self.quick_sort(arr, 0, len(arr) - 1)
-        return arr
-
-
-def test():
-    arr_text = [12, 11, 13, 5, 6, 1, 3, 2, 9]
-    print(SelectionSort().sort(arr_text))
-    arr_text = [12, 11, 13, 5, 6, 1, 3, 2, 9]
-    print(InsertionSort().sort(arr_text))
-    arr_text = [12, 11, 13, 5, 6, 1, 3, 2, 9]
-    print(HeapSort().sort(arr_text))
-    arr_text = [12, 11, 13, 5, 6, 1, 3, 2, 9]
-    print(MergeSort().sort(arr_text))
-    arr_text = [12, 11, 13, 5, 6, 1, 3, 2, 9]
-    print(QuickSort().sort(arr_text))
-
-
-if __name__ == '__main__':
-    test()

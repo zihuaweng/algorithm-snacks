@@ -6,6 +6,7 @@
 
 # https://leetcode.com/problems/network-delay-time/
 # https://leetcode.com/problems/network-delay-time/discuss/187713/Python-concise-queue-and-heap-solutions
+# Dijkstra
 
 class Solution:
     def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
