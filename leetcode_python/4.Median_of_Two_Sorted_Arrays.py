@@ -3,9 +3,7 @@
 
 # hard 题目
 # https://leetcode.com/problems/median-of-two-sorted-arrays/
-# 比较好的解释https://www.youtube.com/watch?v=LPFhl65R7ww&feature=youtu.be&t=1441
-# https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2481/Share-my-O(log(min(mn)))-solution-with-explanation
-# https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
+# https://www.youtube.com/watch?v=ScCg9v921ns
 
 # Time complexity: O(log(min(m, n)))
 # Space complexity: O()
@@ -22,25 +20,20 @@ class Solution:
 
         start = 0
         end = x
-        while start <= end:
-            # nums1的分割点
-            p1 = (end + start) // 2
-            # nums2的分割点
-            # 加一的原因是分割出来的两部分，x,y的左边所有数目在奇数情况个数更多，
-            # 所以后面奇数的情况可以使用return max(max_left_x, max_left_y)
-            p2 = (x + y + 1) // 2 - p1
-            # 会出现边际问题，需要定义最大最小做比较
+        while (start <= end):
+            p1 = (end + start) // 2  # nums1 左边元素个数
+            p2 = (x + y) // 2 - p1  # nums2 左边元素个数
             max_left_x = float('-inf') if p1 == 0 else nums1[p1 - 1]
             min_right_x = float('inf') if p1 == x else nums1[p1]
             max_left_y = float('-inf') if p2 == 0 else nums2[p2 - 1]
             min_right_y = float('inf') if p2 == y else nums2[p2]
 
-            if max_left_x <= min_right_y and max_left_y <= min_right_x:
+            if max_left_x > min_right_y:
+                end = p1 - 1
+            elif max_left_y > min_right_x:
+                start = p1 + 1
+            else:
                 if (x + y) % 2 == 0:
                     return (max(max_left_x, max_left_y) + min(min_right_x, min_right_y)) / 2
                 else:
-                    return max(max_left_x, max_left_y)
-            elif max_left_x > min_right_y:
-                end = p1 - 1
-            else:
-                start = p1 + 1
+                    return min(min_right_x, min_right_y)
