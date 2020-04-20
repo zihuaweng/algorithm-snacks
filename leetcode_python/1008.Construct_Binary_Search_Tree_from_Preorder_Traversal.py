@@ -5,6 +5,7 @@
 # Space complexity: O()
 
 # https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
+# refer to java!
 
 # Definition for a binary tree node.
 # class TreeNode:
