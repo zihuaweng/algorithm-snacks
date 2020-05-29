@@ -21,3 +21,24 @@ class Solution:
                 l += 1
             ans = max(ans, r - l + 1)
         return ans
+
+
+# 438 的template
+class Solution:
+    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
+        c = collections.defaultdict(int)
+        i = 0
+        length = 0
+        res = 0
+        for j, char in enumerate(s):
+            if c[char] == 0:
+                length += 1
+            c[char] += 1
+
+            while length > 2:
+                c[s[i]] -= 1
+                if c[s[i]] == 0:
+                    length -= 1
+                i += 1
+            res = max(res, j - i + 1)
+        return res

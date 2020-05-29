@@ -8,15 +8,15 @@
 
 class Solution:
     def maxSubArrayLen(self, nums: List[int], k: int) -> int:
-        counter = collections.defaultdict(int)
-        counter[0] = -1
-        pre_sum = 0
-        min_len = 0
-        for i in range(len(nums)):
-            pre_sum += nums[i]
-            target = pre_sum - k
-            if target in counter:
-                min_len = max(min_len, i - counter[target])
-            if pre_sum not in counter:
-                counter[pre_sum] = i
-        return min_len
+        d = {0: -1}
+        s = 0
+        l = 0
+        for i, num in enumerate(nums):
+            s += num
+            target = s - k
+            if target in d:
+                l = max(l, i - d[target])
+            if s not in d:
+                d[s] = i
+
+        return l
