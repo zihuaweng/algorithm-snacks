@@ -20,3 +20,33 @@ class Solution(object):
         self.invertTree(root.left)
         self.invertTree(root.right)
         return root
+
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        temp = root.left
+        root.left = self.invertTree(root.right)
+        root.right = self.invertTree(temp)
+        return root
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return None
+        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+        return root
+
+
+# bfs
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            if node:
+                node.left, node.right = node.right, node.left
+                stack.append(node.left)
+                stack.append(node.right)
+        return root

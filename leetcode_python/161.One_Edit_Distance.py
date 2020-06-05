@@ -10,24 +10,19 @@ class Solution:
     def isOneEditDistance(self, s: str, t: str) -> bool:
         m = len(s)
         n = len(t)
-        if n < m:
+        if m < n:
             return self.isOneEditDistance(t, s)
 
-        if n - m > 1:
+        if m - n > 1:
             return False
-        elif n == m:
+        elif m == n:
             diff = 0
             for i in range(m):
                 if s[i] != t[i]:
                     diff += 1
             return diff == 1
         else:
-            i = 0
-            while i < m:
+            for i in range(n):
                 if s[i] != t[i]:
-                    if s[i:] != t[i + 1:]:
-                        return False
-                    else:
-                        return True
-                i += 1
+                    return s[i + 1:] == t[i:]
             return True
