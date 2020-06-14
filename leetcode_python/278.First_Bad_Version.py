@@ -17,13 +17,12 @@ class Solution:
         :type n: int
         :rtype: int
         """
-        i = 0
-        j = n - 1
-        while i <= j:
-            mid = (i + j) // 2   # 这里的Java实现会integer overflow， 所以最好i + (j-i) // 2
-            if not isBadVersion(mid):
-                i = mid + 1
+        i = 1
+        j = n
+        while i < j:
+            mid = (i+j) >> 1
+            if isBadVersion(mid):
+                j = mid
             else:
-                j = mid - 1
-
+                i = mid + 1
         return i

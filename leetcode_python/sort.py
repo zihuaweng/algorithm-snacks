@@ -107,10 +107,12 @@ class Solution:
         return nums
 
 # heap sort
+# Build Max Heap O(n)
+# heap sort is O(nlogn)
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
 
-        def heapify(i, last):
+        def heapify(i, last):  # O(logn)
             largest = i
             l = 2 * i + 1
             r = 2 * i + 2
@@ -125,7 +127,7 @@ class Solution:
 
         n = len(nums)
 
-        for i in range(n - 1, -1, -1):
+        for i in range(n - 1, -1, -1):  #Build Max Heap O(n)
             heapify(i, n)
 
         for i in range(n - 1, -1, -1):

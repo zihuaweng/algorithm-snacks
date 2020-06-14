@@ -36,7 +36,8 @@ class Solution:
 
         return ans
 
-
+# 最后return r有点类似左右边界的问题，但是这里是如果有整数结果，就在中间返回，
+# 否则就返回r,即向上取整的结果
 class Solution:
     def mySqrt(self, x: int) -> int:
         l = 1
