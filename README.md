@@ -21,3 +21,6 @@ Snippets of little algorithms used in image processing and text mining & all oth
 1. Google
 2. IBM
 3. Dropbox
+
+### Learning Materials
+

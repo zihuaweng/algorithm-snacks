@@ -16,5 +16,5 @@ def download(youtube_link, dir_path, file_name):
 
 if __name__ == '__main__':
     # youtube_link, dir_path, file_name = argv[1:]
-    youtube_link, dir_path, file_name = "https://www.youtube.com/watch?v=s6DKRgtVLGA&t=493s", "./", "japanese_Katakana"
+    youtube_link, dir_path, file_name = "https://www.youtube.com/watch?v=EDRmJSwrVns", "./", "song"
     download(youtube_link, dir_path, file_name)

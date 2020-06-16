@@ -17,3 +17,17 @@ class Solution:
         # for i in range(index, len(nums)-1):
         self.helper(nums, res, i + 1, temp)
         self.helper(nums, res, i + 1, temp + [nums[i]])
+
+
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        self.dfs(res, [], 0, nums)
+        return res
+
+    def dfs(self, res, temp, start, nums):
+        res.append(temp[:])
+        for i in range(start, len(nums)):
+            self.dfs(res, temp + [nums[i]], i + 1, nums)
