@@ -5,56 +5,30 @@
 # Time complexity:  O(N*M)
 # Space complexity:  O(1)
 
+# 模板
+# 先判断条件 if grid[i][j] == '1' || if i not in seen
+# 然后dfs 一开始就做操作 grid[i][j] = '2' || seen.add(i)
+# 递归的时候判断 边界 + 判断条件
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
+        count = 0
         if not grid:
             return 0
         m = len(grid)
         n = len(grid[0])
-        count = 0
+
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
                     count += 1
-                    self.count_island(grid, i, j)
+                    self.dfs(grid, i, j)
         return count
 
-    def count_island(self, grid, i, j):
-        if grid[i][j] != '1':
-            return
+    def dfs(self, grid, i, j):
         grid[i][j] = '2'
-        for _x, _y in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-            new_x = i + _x
-            new_y = j + _y
-            if 0 <= new_x < len(grid) and 0 <= new_y < len(grid[0]) and grid[new_x][new_y] == '1':
-                self.count_island(grid, new_x, new_y)
-
-
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid or not grid[0]:
-            return 0
-
-        res = 0
-        m = len(grid)
-        n = len(grid[0])
-        direction = [(-1, 0), (1, 0), (0, 1), (0, -1)]
-
-        def dfs(x, y):
-            stack = [(x, y)]
-            for point in stack:
-                for _x, _y in direction:
-                    new_x = point[0] + _x
-                    new_y = point[1] + _y
-                    if 0 <= new_x < m and 0 <= new_y < n and grid[new_x][new_y] == '1':
-                        grid[new_x][new_y] = '2'    # 加进去之前就要判断，不然需要很多重复计算
-                        stack.append((new_x, new_y))
-
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == '1':
-                    grid[i][j] = '2'
-                    res += 1
-                    dfs(i, j)
-
-        return res
+        for _x, _y in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+            x = i + _x
+            y = j + _y
+            if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == '1':
+                self.dfs(grid, x, y)

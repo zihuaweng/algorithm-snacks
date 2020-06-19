@@ -10,9 +10,16 @@
     - [project](https://github.com/cmu-db/bustub)
     
     
-## Language
+## Languages
 ### Python
 ### Java
 ### C++
 1. [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 2. 
+
+
+## Tools
+### Bazel
+1. [BazelCon 2019 Bazel Bootcamp 1](https://www.youtube.com/watch?v=BGOEq5FdNUQ)
+1. [BazelCon 2019 Bazel Bootcamp 2](https://www.youtube.com/watch?v=1KbfkOWO-DY)
+

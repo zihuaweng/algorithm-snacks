@@ -24,9 +24,9 @@ class Solution:
                 node, cur_product = queue.popleft()
                 if node == e:
                     return cur_product
+                seen.add(node)
                 for next_node, value in graph[node]:
                     if next_node not in seen:
-                        seen.add(node)
                         queue.append((next_node, value * cur_product))
 
             return -1

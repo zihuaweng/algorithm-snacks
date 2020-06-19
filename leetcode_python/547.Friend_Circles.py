@@ -7,6 +7,27 @@
 # Time complexity: O(N+K)
 # Space complexity: O(N)
 
+# 与200题一样模板
+class Solution:
+    def findCircleNum(self, M: List[List[int]]) -> int:
+        count = 0
+        if not M:
+            return 0
+
+        seen = set()
+        m = len(M)
+        for i in range(m):
+            if i not in seen:
+                count += 1
+                self.dfs(M, seen, i)
+        return count
+
+    def dfs(self, M, seen, i):
+        seen.add(i)
+        for idx, num in enumerate(M[i]):
+            if num == 1 and idx not in seen:
+                self.dfs(M, seen, idx)
+
 
 class Solution:
     def findCircleNum(self, M: List[List[int]]) -> int:
@@ -26,20 +47,5 @@ class Solution:
 
         return res
 
-    # dfs另一种写法
-    def findCircleNum2(self, M: List[List[int]]) -> int:
-        seen = set()
-        res = 0
-        for i in range(len(M)):
-            if i not in seen:
-                to_see = [i]
-                while to_see:
-                    cur = to_see.pop()
-                    if cur not in seen:
-                        seen.add(cur)
-                        for j, k in enumerate(M[cur]):
-                            if k == 1 and j not in seen:
-                                to_see.append(j)
-                res += 1
 
-        return res
+

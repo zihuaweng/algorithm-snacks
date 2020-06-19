@@ -6,29 +6,32 @@
 
 # https://leetcode.com/problems/possible-bipartition/
 
+# 思路和代码都和785一致
+# 唯一不同就是需要自己构建graph
+
 class Solution:
     def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:
+        g = {}
         graph = collections.defaultdict(list)
-        seen = [0] * (N + 1)
+
         for u, v in dislikes:
             graph[u].append(v)
             graph[v].append(u)
 
-        for n in range(1, N + 1):
-            if seen[n] == 0:
-                queue = [n]
-                value = 1
-                while queue:
-                    temp = []
-                    for k in queue:
-                        if seen[k] != 0:
-                            if seen[k] != value:
-                                return False
-                        else:
-                            seen[k] = value
-                            temp.extend(graph[k])
-                    value *= -1
-                    queue = temp
+        for i in range(1, N + 1):
+            if i not in g and not self.dfs(graph, g, i, 1):  # 已经确定好分组的就不需要再走
+                return False
+        return True
+
+    def dfs(self, graph, g, node, val):
+        g[node] = val
+        for i in graph[node]:
+            if i in g:
+                if g[i] == val:
+                    return False
+            else:
+                if not self.dfs(graph, g, i, -val):
+                    return False
         return True
 
 

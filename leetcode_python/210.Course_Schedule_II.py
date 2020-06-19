@@ -34,17 +34,23 @@ class Solution1:
 # Time complexity: O(n)
 # Space complexity: O(n)
 
+# 此代码是直接在207基础上修改
+# 如果判断能否上完所有课，只需要判断 numCourses == 0 （207题）
+# 如果返回上课顺序，需要返回queue + 判断 numCourses == 0 （210题）
+
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        class_next = collections.defaultdict(set)
-        class_pre = [0 for i in range(numCourses)]
-        for c, prec in prerequisites:
-            class_next[prec].add(c)
-            class_pre[c] += 1
-        bfs = [i for i in range(numCourses) if class_pre[i] == 0]
-        for i in bfs:
-            for j in class_next[i]:
-                class_pre[j] -= 1
-                if class_pre[j] == 0: # 这里不能小于零，否则重复添加内容了
-                    bfs.append(j)
-        return bfs if len(bfs) == numCourses else []
+        graph = collections.defaultdict(list)
+        degree = collections.defaultdict(int)
+        for next_class, pre_class in prerequisites:
+            graph[pre_class].append(next_class)
+            degree[next_class] += 1
+
+        queue = [c for c in range(numCourses) if c not in degree]
+        for cur_class in queue:
+            numCourses -= 1
+            for c in graph[cur_class]:
+                degree[c] -= 1
+                if degree[c] == 0:   # 这里不能小于零，否则重复添加内容了
+                    queue.append(c)
+        return queue if numCourses == 0 else []

@@ -15,7 +15,7 @@ class Solution:
         heap = [(0, 0, src)]
         while heap:
             cost, stops, cur_stop = heapq.heappop(heap)
-            if cur_stop == dst:
+            if cur_stop == dst:          # 需要在开头判断才是正确的
                 return cost
             if stops <= K:
                 for v, w in graph[cur_stop]:

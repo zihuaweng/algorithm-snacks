@@ -20,3 +20,20 @@ class Solution:
                     queue.append(i)
 
         return len(opened) == len(rooms)
+
+
+# 模板
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        seen = set()
+        self.dfs(rooms, 0, seen)
+        return len(seen) == len(rooms)
+
+    def dfs(self, rooms, i, seen):
+        seen.add(i)
+        for j in rooms[i]:
+            if j not in seen:
+                self.dfs(rooms, j, seen)
+
+
+

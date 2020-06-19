@@ -19,7 +19,7 @@ class Solution:
         heap = [(0, K)]
         while heap:
             cost, node = heapq.heappop(heap)
-            if node not in seen:
+            if node not in seen:      # 这个判断需要在while loop开头，否则cost有可能不是最小值
                 seen[node] = cost
                 for n, c in graph[node]:
                     heapq.heappush(heap, (cost + c, n))
