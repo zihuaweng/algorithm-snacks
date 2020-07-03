@@ -47,3 +47,6 @@
                     self.dfs(graph, j, stack, seen)
             stack.append(i)
     ```
+7. [Karnaugh Maps](https://en.wikipedia.org/wiki/Karnaugh_map)
+    - The Karnaugh map (KM or K-map) is a method of simplifying Boolean algebra expressions.
+    - [video](https://www.youtube.com/watch?v=RO5alU6PpSU)
