@@ -6,6 +6,7 @@
 
 # https://leetcode.com/problems/ugly-number-ii/
 
+# drawing note in OneNote
 class Solution:
     def nthUglyNumber(self, n: int) -> int:
 
@@ -27,3 +28,18 @@ class Solution:
 
         return ugly[-1]
 
+
+## this is kind of nlog(h) solution
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        heap = [2, 3, 5]
+        res = [1]
+        while len(res) < n:
+            next_n = heapq.heappop(heap)
+            while next_n == res[-1]:
+                next_n = heapq.heappop(heap)
+            res.append(next_n)
+            for i in [2, 3, 5]:
+                heapq.heappush(heap, next_n * i)
+
+        return res[-1]
