@@ -9,9 +9,10 @@
 
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
-        dis = x^y
-        c = 0
-        while dis:
-            dis &= (dis - 1)
-            c+=1
-        return c
+        temp = x ^ y
+        res = 0
+        while temp:
+            res += temp & 1
+            temp >>= 1
+
+        return res
