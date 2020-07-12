@@ -25,15 +25,12 @@ class Solution:
         return len(nums)
 
 
-class Solution2:
+class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        if len(nums) > 0:
-            i = 1
-        else:
-            i = 0
+        i = 0
 
         for n in nums:
-            if n > nums[i - 1]:
+            if i < 1 or n > nums[i - 1]:
                 nums[i] = n
                 i += 1
 

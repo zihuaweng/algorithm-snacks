@@ -6,6 +6,9 @@
 
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/submissions/
 
+
+# similar to 340
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         left = 0

@@ -23,3 +23,15 @@ class Solution(object):
 
             max_len = max(max_len, j-i+1)
         return max_len
+
+
+# sliding window
+class Solution:
+    def longestOnes(self, A: List[int], K: int) -> int:
+        i = 0
+        for j, val in enumerate(A):
+            K -= 1 - val
+            if K < 0:
+                K += 1 - A[i]
+                i += 1
+        return j - i + 1

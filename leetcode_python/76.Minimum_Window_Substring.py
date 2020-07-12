@@ -8,6 +8,10 @@
 # Space complexity: O(n)
 
 # 与438相同模板
+# 1. Use two pointers: start and end to represent a window.
+# 2. Move end to find a valid window.
+# 3. When a valid window is found, move start to find a smaller window.
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(s) < len(t):
