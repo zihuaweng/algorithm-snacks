@@ -69,11 +69,26 @@ def find(x):
 def union(x, y):
     p_x = find(x)
     p_y = find(y)
-    if p_x != p_y:                    # union find by rank 可以优化查询, 这里没有记录rank
+    if p_x != p_y:               
         parent[p_y] = p_x
         
 for u, v in edges:
     union(u, v)
+```
+Union Find By Rank
+```python
+parent, rank = {}, {}
+def find(x):
+    if parent[x] != x:
+        parent[x] = find(parent[x])
+    return parent[x]
+def union(x, y):
+    x, y = find(x), find(y)
+    if x != y:
+        if rank[x] < rank[y]:
+            x, y = y, x
+        parent[y] = x
+        rank[x] += rank[x] == rank[y]
 ```
 ### Graph
 #### DFS
