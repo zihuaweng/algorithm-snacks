@@ -12,13 +12,13 @@
 # 说明这两个点都能链接到该parent，加上这个新的边就会成为一个环
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-
-        parent = [i for i in range(len(edges) + 1)]    # 0 is dummy
+        parent = [i for i in range(len(edges) + 1)]
+        print(parent)
 
         def find(x):
-            if parent[x] == x:
-                return x
-            return find(parent[x])
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
 
         def union(x, y):
             p_x = find(x)

@@ -54,6 +54,78 @@
 
 
 ## Category
-### Union Find
+## Union Find
+### Union Find by Rank
+```python
+323. Number of Connected Components in an Undirected Graph
+
+parent = [x for x in range(n)]
+
+def find(x):  
+    if parent[x] != x:
+        parent[x] = find(parent[x])    # path compression
+    return parent[x]
+
+def union(x, y):
+    p_x = find(x)
+    p_y = find(y)
+    if p_x != p_y:                    # union find by rank 可以优化查询, 这里没有记录rank
+        parent[p_y] = p_x
+        
+for u, v in edges:
+    union(u, v)
+```
+### Graph
+#### DFS
+1. dfs 一开始就做操作 grid[i][j] = '2' || seen.add(i), 递归的时候判断 边界 + 判断seen + 判断下一个loop条件 grid[x][y] == '1'
+```python
+200. number of islands
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        count = 0
+        if not grid:
+            return 0
+        m = len(grid)
+        n = len(grid[0])
+
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    count += 1
+                    self.dfs(grid, i, j)
+        return count
+
+    def dfs(self, grid, i, j):
+        grid[i][j] = '2'  # 首先记录seen
+        for _x, _y in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+            x = i + _x
+            y = j + _y
+            if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == '1':  # 这里因为走过的改成了'2'所以只要判断？= '1'相当于判断了seen和当前val
+                self.dfs(grid, x, y)
+```
+1. 如果dfs需要判断上一层的结果并返回，则把边界放到判断后面，下一个dfs遍历之前。
+```python
+79. word search
+
+def dfs(self, board, i, j, word):
+    if not word:
+        return True
+    # 因为这里有判断，这个word是又前面的dfs生成的，对边界的判断应该放在最前面，如果没有判断word，例如计算island个数
+    # 那样的可以放在生成了新的x,y后面立马判断。
+    if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+        return
+    if board[i][j] == "#" or board[i][j] != word[0]:  # 判断seen 及条件
+        return False
+    temp = board[i][j]
+    board[i][j] = "#"    # backtrack， 记录seen
+    for x, y in [(i, j + 1), (i, j - 1), (i + 1, j), (i - 1, j)]:
+        if self.dfs(board, x, y, word[1:]):
+            return True
+    board[i][j] = temp
+    return False
+```
 
 ### Two pointers
+
+

@@ -57,32 +57,29 @@ class Solution:
         #           ['S','F','C','S'],
         #           ['A','D','E','E']
         #         ]
-        self.direction = [(-1, 0), (1, 0), (0, 1), (0, -1)]
-        if not board or not board[0]:
+        if not board:
             return False
         m = len(board)
         n = len(board[0])
-        visited = [[False] * n for _ in range(m)]
         for i in range(m):
             for j in range(n):
-                if self.dfs(board, visited, word, i, j):
+                if self.dfs(board, i, j, word):
                     return True
         return False
 
-    def dfs(self, board, visited, word, i, j):
+    def dfs(self, board, i, j, word):
         if not word:
             return True
+        # 因为这里有判断，这个word是又前面的dfs生成的，对边界的判断应该放在最前面，如果没有判断word，例如计算island个数
+        # 那样的可以放在生成了新的x,y后面立马判断。
         if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+            return
+        if board[i][j] == "#" or board[i][j] != word[0]:
             return False
-        if visited[i][j] or board[i][j] != word[0]:
-            return False
-
-        visited[i][j] = True
-
-        for x, y in self.direction:
-            if self.dfs(board, visited, word[1:], i + x, j + y):
+        temp = board[i][j]
+        board[i][j] = "#"
+        for x, y in [(i, j + 1), (i, j - 1), (i + 1, j), (i - 1, j)]:
+            if self.dfs(board, x, y, word[1:]):
                 return True
-
-        visited[i][j] = False
+        board[i][j] = temp
         return False
-
