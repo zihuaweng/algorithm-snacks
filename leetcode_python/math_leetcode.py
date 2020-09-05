@@ -24,7 +24,7 @@ def divisor1(num):
     return count
 
 
-# count primer
+# count prime
 class Solution:
     def countPrimes(self, n: int) -> int:
         if n < 3:
@@ -36,6 +36,17 @@ class Solution:
                 for j in range(i + i, n, i):
                     primes[j] = False
         return sum(primes)
+
+# 判断prime，因为所有prime都是6n+1或者6n-1，同时我们只需要计算到sqrt(n)就可以
+def find_primer(n):
+    if n <= 3:
+        return n > 1
+    if n%6 != 1 and n%6 != 5:
+        return False
+    for i in range(5, int(n**0.5)+1, 6):
+        if n%i == 0 or n %(i+2) == 0:
+            return False
+    return True
 
 
 # 计算约数个数

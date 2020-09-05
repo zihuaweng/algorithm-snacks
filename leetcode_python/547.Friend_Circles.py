@@ -47,5 +47,29 @@ class Solution:
 
         return res
 
+# union find
+class Solution:
+    def findCircleNum(self, M: List[List[int]]) -> int:
+        n = len(M)
+        parent = {i: i for i in range(n)}
 
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
 
+        def union(x, y):
+            p_x = find(x)
+            p_y = find(y)
+            if p_x != p_y:
+                parent[p_y] = p_x
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                if M[i][j] == 1:
+                    union(i, j)
+
+        for i in range(n):
+            find(i)
+
+        return len(set(parent.values()))

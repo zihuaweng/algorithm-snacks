@@ -144,3 +144,15 @@ def dfs(self, board, i, j, word):
 ### Two pointers
 
 
+### Calculate 4 directions
+```python
+# up
+dx, dy = 0, 1
+# right
+dx, dy = dy, -dx
+# left 
+dx, dy = -dy, dx
+# down
+dx, dy = dx, -dy
+```
+

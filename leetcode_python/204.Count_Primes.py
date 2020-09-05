@@ -14,6 +14,12 @@ class Solution:
             return 0
         primes = [True] * n
         primes[0] = primes[1] = False
+        # Use upper limit of (n**0.5)+1, because:
+        #  (a) the smallest factor of a non-prime number will not be > sqrt(n).
+        #      Ex. non-prime = 100,
+        #           5*20
+        #           10*10,
+        #           20*5   # !! we have seen 5 before.
         for i in range(int(n**0.5)+1):
             if primes[i]:
                 for j in range(i+i, n, i):
