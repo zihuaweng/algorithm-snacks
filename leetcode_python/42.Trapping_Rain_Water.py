@@ -20,11 +20,9 @@ class Solution:
             left_highest[i] = max(left_highest[i - 1], height[i - 1])
 
         right_highest = 0
-        for i in range(len(height) - 1, -1, -1):
-            temp = min(right_highest, left_highest[i]) - height[i]
-            if temp > 0:
-                ans += temp
-            right_highest = max(right_highest, height[i])
+        for i in range(len(height) - 2, 0, -1):   # 第一个和最后一个不需要计算
+            right_highest = max(right_highest, height[i+1])
+            ans += max(min(right_highest, left_highest[i]) - height[i], 0)   # 需要max(res, 0), 因为蓄水不能为负数
 
         return ans
 

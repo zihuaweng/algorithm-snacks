@@ -11,7 +11,7 @@
 
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        # 首先保证len(nums1) < len(nums2)
+        # 首先保证len(nums1) < len(nums2), 因为我们需要定pivot point，从小的入手可以保证另外一个左右两边是平分的，从大的入手有可能剩下的数少于1/2
         x = len(nums1)
         y = len(nums2)
         if x > y:

@@ -29,39 +29,34 @@ class LRUCache:
         self.tail.pre = self.head
 
     def get(self, key: int) -> int:
-        # self._print_node()
         if key in self.ele:
-            value = self.ele[key].val
-            self._remove(self.ele[key])
-            self._add(key, value)
-            return self.ele[key].val
-        else:
-            return -1
+            node = self.ele[key]
+            self._remove(node)
+            self._add(node)
+            return node.val
+
+        return -1
 
     def put(self, key: int, value: int) -> None:
-        # self._print_node()
         if key in self.ele:
             self._remove(self.ele[key])
-
         elif len(self.ele) == self.capacity:
-            first = self.head.next
-            self._remove(first)
-
-        self._add(key, value)
-
-    def _add(self, key, value):
+            self._remove(self.head.next)
         node = Node(key, value)
-        p = self.tail.pre
-        p.next = node
-        node.pre = p
+        self._add(node)
+
+    def _add(self, node):
+        last = self.tail.pre
+        last.next = node
+        node.pre = last
         node.next = self.tail
         self.tail.pre = node
-        self.ele[key] = node
+        self.ele[node.key] = node
 
     def _remove(self, node):
-        p = node.pre
-        p.next = node.next
-        node.next.pre = p
+        pre = node.pre
+        pre.next = node.next
+        node.next.pre = pre
         del self.ele[node.key]
 
     def _print_node(self):

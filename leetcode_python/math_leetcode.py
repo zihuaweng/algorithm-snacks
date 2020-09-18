@@ -10,8 +10,10 @@ import math
 def get_gcd(a, b):
     if b == 0:
         return a
+    print(a, b)
     return get_gcd(b, a % b)
 
+get_gcd(48, 30)
 
 # 计算约数个数
 # 时间复杂度 O(n)

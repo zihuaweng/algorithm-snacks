@@ -129,7 +129,6 @@ public class Member extends Account {
 
   public bool renewBookItem(BookItem bookItem) {
     this.checkForFine(bookItem.getBarcode());
-    BookReservation bookReservation = BookReservation.fetchReservationDetails(bookItem.getBarcode());
     // check if this book item has a pending reservation from another member
     if (bookReservation != null && bookReservation.getMemberId() != this.getMemberId()) {
       ShowError("This book is reserved by another member");

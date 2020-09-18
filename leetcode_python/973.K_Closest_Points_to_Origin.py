@@ -31,12 +31,11 @@ class Solution2:
         for idx, point in enumerate(points):
             x, y = point
             dist = x * x + y * y
-            if len(heap) < K:
-                heapq.heappush(heap, (-dist, idx))
-            elif -dist > heap[0][0]:
-                heapq.heapreplace(heap, (-dist, idx))
-            # print(heap)
-
+            heapq.heappush(heap, (-temp, idx))
+            if len(heap) > K:
+                heapq.heappop(heap)
+        
+        # print(heap)
         res = []
         for dist, idx in heap:
             res.append(points[idx])

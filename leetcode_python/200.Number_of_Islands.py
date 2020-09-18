@@ -12,12 +12,11 @@
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        count = 0
         if not grid:
             return 0
+        count = 0
         m = len(grid)
         n = len(grid[0])
-
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == '1':
@@ -27,8 +26,6 @@ class Solution:
 
     def dfs(self, grid, i, j):
         grid[i][j] = '2'
-        for _x, _y in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
-            x = i + _x
-            y = j + _y
+        for x, y in [(i, j - 1), (i, j + 1), (i - 1, j), (i + 1, j)]:
             if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == '1':
                 self.dfs(grid, x, y)

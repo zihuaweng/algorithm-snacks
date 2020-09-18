@@ -138,8 +138,19 @@ def dfs(self, board, i, j, word):
         if self.dfs(board, x, y, word[1:]):
             return True
     board[i][j] = temp
-    return False
+    return FalseF
 ```
+
+#### Critical Connections
+```python
+# 需要找到critical-connections就是需要找不在环上面的边，他们都是critical-connections。
+# 所以我们走graph，然后记录rank，如果子节点的rank比当前节点的rank更小，证明当前是环内的连接，连到了原来走过的节点。我们更新当前节点到最小值
+# 如果子节点最后的rank是当前rank+1，证明这是一个线性的连接，就是critical-connections
+
+# 例子看1192
+```
+
+#### Find cycle in directed graph
 
 ### Two pointers
 

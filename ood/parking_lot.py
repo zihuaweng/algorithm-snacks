@@ -177,6 +177,11 @@ class ParkingFloor:
     }
     switcher.get(spot.get_type(), 'Wrong parking spot type')
 
+    # we can also use
+    import collections.defaultdict
+    d = defaultdict(lambda: 'Wrong parking spot type', switcher)
+    return d[ParkingSpotType.HANDICAPPED]
+
   def assign_vehicleToSpot(self, vehicle, spot):
     spot.assign_vehicle(vehicle)
     switcher = {

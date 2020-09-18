@@ -29,32 +29,22 @@ class Solution:
 class Solution:
     def prisonAfterNDays(self, cells: List[int], N: int) -> List[int]:
         num = 0
-        has_cycle = False
         seen = {str(cells): num}
-        while N:
+        for num in range(1, N + 1):
             cells = self.next_day(cells)
             key = str(cells)
-            num += 1
-            N -= 1
             if key not in seen:
                 seen[key] = num
             else:
-                has_cycle = True
-                break
-
-        if has_cycle:
-            remain = N % (num - seen[key])
-            while remain:
-                cells = self.next_day(cells)
-                remain -= 1
+                remain = (N - num) % (num - seen[key])
+                while remain:
+                    cells = self.next_day(cells)
+                    remain -= 1
+                return cells
 
         return cells
 
     def next_day(self, cells):
-        temp = [
-            1 if cells[j - 1] == cells[j + 1] else 0
-            for j in range(1,
-                           len(cells) - 1)
-        ]
+        temp =  [1 if cells[j-1] == cells[j+1] else 0 for j in range(1, len(cells)-1)]
         temp = [0] + temp + [0]
         return temp

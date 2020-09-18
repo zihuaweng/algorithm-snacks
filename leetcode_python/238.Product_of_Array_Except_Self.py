@@ -31,20 +31,18 @@ class Solution:
         #         [1, 1, 2, 6] left =
         #         [24, 12, 4, 1] right
         #         [1*24, 1*12, 2*4, 6]
-        n = len(nums)
-        left = [1] * n
-
-        for i in range(1, n):
-            left[i] = left[i - 1] * nums[i - 1]
-
+        # 首先计算前面累乘的结果
+        res = [1] * len(nums)
+        for i in range(1, len(nums)):
+            res[i] = res[i-1] * nums[i-1]
+            
+        # 然后计算后面累乘的结果
         right = 1
-        for i in range(n - 1, -1, -1):
-            temp = nums[i]
-            nums[i] = right * left[i]
-            right = right * temp
-
-        return nums
-
+        for i in range(len(nums)-2, -1, -1):
+            right *= nums[i+1]
+            res[i] *= right
+            
+        return res
 
 
 
