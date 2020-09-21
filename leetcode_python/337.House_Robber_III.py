@@ -16,6 +16,18 @@
 
 class Solution:
     def rob(self, root: TreeNode) -> int:
+        """
+        1. each node could be robbed or not robbed, [r, n_r]
+        2. if the node is robbed: total = curr + not rob left child + not rob right child
+        3. if the node is not robbed:   children could be rob or not rob,  total = max(left child) + max(right child)
+        4. result = max(r_root, n_r_root)
+
+             3      [r, n_r]   r: current + n_r_left + n_r_right       n_r = max(r_left, n_r_left) + max(r_right, n_r_right) 
+            / \
+           2   3     
+            \   \ 
+             3   1
+        """       
         return max(self.helper(root))
 
     def helper(self, root):

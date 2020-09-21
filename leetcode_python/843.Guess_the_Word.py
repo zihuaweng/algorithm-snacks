@@ -18,6 +18,15 @@
 
 class Solution:
     def findSecretWord(self, wordlist: List[str], master: 'Master') -> None:
+         """
+        10 guess
+        each word has 6 char
+        each time we guess on num get k matches
+        
+        1. choose a random word from wordlist, guess it, get k matches
+        2. the secret should have that k matches, we can eliminate other words that do not have k same matches with gusss word
+            1. for all other words, we need to find words share k matches with guessed word       
+        """
         n = 0
         while n < 6:
             word = random.choice(wordlist)

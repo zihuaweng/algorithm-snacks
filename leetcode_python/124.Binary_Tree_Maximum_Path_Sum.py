@@ -17,8 +17,31 @@
 class Solution(object):
     def maxPathSum(self, root):
         """
-        :type root: TreeNode
-        :rtype: int
+        path sum = max(0, sum(root.left)) + root.val + max(0, sum(root.right))
+        
+        cur node works as a child node and return
+            cur .val + max(0, sum(cur.left), sum(cur.right))
+
+
+           -10
+           / \
+          9  20
+            /  \
+           15   7   
+
+
+           -10
+           / \
+          9  42  
+
+        cur_max = 42 | 41
+        
+        test case &corner case:
+            1
+            
+            
+        time O(n)
+        space O(1)
         """
         self.max_sum = float('-inf')
         if not root:

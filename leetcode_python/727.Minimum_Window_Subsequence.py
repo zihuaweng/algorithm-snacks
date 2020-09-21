@@ -4,125 +4,132 @@
 # Time complexity: O()
 # Space complexity: O()
 
-
+# 最优解
 class Solution:
     def minWindow(self, S: str, T: str) -> str:
-        length_s = len(S)
-        length_t = len(T)
-        t_idx = 0
-        res = ''
-        min_length = float('inf')
-        fast = 0
+        """
+        abcdebdde
 
-        while fast < length_s:
-            if S[fast] == T[t_idx]:
-                t_idx += 1
-            if t_idx == length_t:
-                t_idx -= 1
-                slow = fast
-                while slow >= 0 and t_idx >= 0:
-                    if S[slow] == T[t_idx]:
-                        t_idx -= 1
+         b de
+          bde
 
-                        if t_idx == -1:
-                            if fast - slow + 1 < min_length:
-                                min_length = fast - slow + 1
-                                res = S[slow:fast + 1]
-                            break
-                    slow -= 1
 
-                fast = slow + 1
-                t_idx = 0
-            else:
-                fast += 1
+        brute force
+        time O(n*n)
+        n: length of S
+        k: length of T
+        
+        
+        optimize:
+        fffffffffffffffffffffffffffffffffffffffabc
+        fabc
+        
+        fffffffffffffffffffffffffffffffffffffffabc
+                                              fabc  (we want to start from the last f not the seconde f)
+        match the end of T, then we move the left pointer to the cloest left, so we don't need to run duplicated times.
+        
+        corner case:
+            S = '' T=''
+            len(s) < len(T)
 
+        time O(nm)
+        space O(1)
+        """
+        i = 0
+        left = 0
+        right = 0
+        length = float('inf')
+        res = ""
+        j = 0
+        while i < len(S): 
+            if S[i] == T[j]:
+                if j == len(T) - 1:
+                    # check feasibility from left to right of T
+                    right = i+1
+                    # check optimization from right to left of T
+                    while j > 0:
+                        while S[i-1] != T[j-1]:
+                            i -= 1
+                        i -=1
+                        j -= 1
+                    if right - i < length:
+                        length = right - i
+                        res = S[i:right]
+                else:
+                    j+=1
+            
+            i += 1
+        
         return res
 
 
+def minWindow(self, S: str, T: str) -> str:
+        """
+        abcdebdde
 
-# dp 做法
-# class Solution:
-#     def minWindow(self, S: str, T: str) -> str:
-#         n = len(S)
-#         m = len(T)
-#         min_length = float('inf')
-#         res = ''
-#         dp = [[0] * (n + 1) for _ in range(m + 1)]
-#
-#         for i in range(n + 1):
-#             dp[0][i] = i + 1
-#
-#         for i in range(1, m + 1):
-#             for j in range(1, n + 1):
-#                 if T[i - 1] == S[j - 1]:
-#                     dp[i][j] = dp[i - 1][j - 1]
-#                 else:
-#                     dp[i][j] = dp[i][j - 1]
-#
-#         # print(dp)
-#
-#         for i in range(1, n + 1):
-#             if dp[m][i] != 0:
-#                 if i - dp[m][i] + 1 < min_length:
-#                     min_length = i - dp[m][i] + 1
-#                     res = S[dp[m][i] - 1:i]
-#
-#         return res
-#
-#
-# class Solution:
-#     def minWindow(self, S: str, T: str) -> str:
-#         n = len(S)
-#         m = len(T)
-#         min_length = float('inf')
-#         res = ''
-#         dp = [i for i in range(1, n + 2)]
-#
-#         for i in range(m):
-#             temp = [0] * (n + 1)
-#             for j in range(1, n + 1):
-#                 if T[i] == S[j - 1]:
-#                     temp[j] = dp[j - 1]
-#                 else:
-#                     temp[j] = temp[j - 1]
-#
-#             dp = temp
-#
-#         # print(dp)
-#
-#         for i in range(1, n + 1):
-#             if dp[i] != 0:
-#                 if i - dp[i] + 1 < min_length:
-#                     min_length = i - dp[i] + 1
-#                     res = S[dp[i] - 1:i]
-#
-#         return res
+         b de
+          bde
 
 
-class Solution:
-    def minWindow(self, S: str, T: str) -> str:
-        m = len(T)
-        n = len(S)
-        dp = [[-1] * n for _ in range(m)]
-        for i in range(n):
-            if T[0] == S[i]:
+        brute force
+        time O(n*n)
+        n: length of S
+        k: length of T
+        
+        
+        optimize:
+        fffffffffffffffffffffffffffffffffffffffabc
+        fabc
+        
+        fffffffffffffffffffffffffffffffffffffffabc
+                                              fabc  (we want to start from the last f not the seconde f)
+        match the end of T, then we move the left pointer to the cloest left, so we don't need to run duplicated times.
+        
+        corner case:
+            S = '' T=''
+            len(s) < len(T)
+            
+        dp:
+        abcdebdde
+        012345678
+      b  1   5
+      d    1  5
+      e     1    5
+      
+         11115555
+      
+        res = 4-1+1 = 4
+        
+        1. for each char in T, we check if its previous char appear in S
+        2. calculate the min_length of all substring
+
+        time O(nm)
+        space O(n)
+        """
+        l_s = len(S)
+        l_t = len(T)
+        dp = [[-1] * l_s for _ in range(l_t)]
+        # set up the first row
+        for i in range(l_s):
+            if S[i] == T[0]:
                 dp[0][i] = i
-
-        for i in range(1, m):
+                
+        # find the left and right index
+        for i in range(1, l_t):
             idx = -1
-            for j in range(n):
-                if idx != -1 and T[i] == S[j]:
+            for j in range(l_s):
+                if S[j] == T[i] and idx != -1:
                     dp[i][j] = idx
-                if dp[i - 1][j] != -1:
-                    idx = dp[i - 1][j]
+                if dp[i-1][j] != -1:
+                    idx = dp[i-1][j]
 
-        min_len = len(S) + 1
+        # find the min_res
+        length = float('inf')
         res = ''
-        for i in range(n):
-            if dp[m - 1][i] != -1 and i - dp[m - 1][i] + 1 < min_len:
-                min_len = i - dp[m - 1][i] + 1
-                res = S[dp[m - 1][i]:i + 1]
-
-        # print(dp)
-
+        for i in range(l_s):
+            idx = dp[l_t-1][i]
+            if idx != -1 and i - idx + 1 < length:
+                res = S[idx:i+1]
+                length = i-idx+1
+                
         return res

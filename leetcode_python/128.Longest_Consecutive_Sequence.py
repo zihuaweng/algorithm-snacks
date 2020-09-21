@@ -28,6 +28,33 @@ class Solution:
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        """
+        brute force:
+        1. sort array.  O(nlogn)
+        2. look for num and get the continues nums.  O(n)
+
+        O(nlogn)
+        O(1) # sort in place
+
+
+        [100, 4, 200, 1, 3, 2]
+
+        - need to find # of increasing consecutive numbers for the current num in O(1):  O(n)
+            100: no 101. (1)
+            4: no 5 (1)
+            1: 234 (4)
+            
+        - put nums in set so we can find numbers in O(1)
+
+        1. change nums to set(nums)   O(n)
+        2. for each num we find all the next consecutive numbers -> #num of consecutive num     length * O(1)
+            if num -1 in set, we skip it to avoid duplicated computing
+        3. return max(#num of consecutive num)  O(1)
+
+        time: O(n)
+        space: O(n)
+
+        """
         if not nums:
             return 0
 

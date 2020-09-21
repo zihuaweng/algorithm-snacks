@@ -155,11 +155,6 @@ class Payment:
     self.__status = payment_status
 
 
-
-
-
-
-
 class City:
   def __init__(self, name, state, zip_code):
     self.__name = name

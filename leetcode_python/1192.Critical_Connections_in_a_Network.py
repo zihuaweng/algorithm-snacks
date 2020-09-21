@@ -10,7 +10,28 @@
 
 class Solution:
     def criticalConnections(self, n: int, connections: List[List[int]]) -> List[List[int]]:
-        
+        """
+        find the critical connection 
+                    -> edges that not in a cycle
+                    -> OR when deleted, we get one more group
+
+
+        # need to find cycle
+            1. using rank, for one more step, the rank add 1
+            2. if there is a cycle, the node is visited, the rank or next edge != rank + 1
+
+        2 -> 0 -> 1     -> 3
+        0.   1    2        3
+        2 -> 0 -> 1     -> 2
+        0.   1    2        0               
+        0    0    0
+
+        # return edges that are not in cycle
+            1. return connection: next_rank = cur_rank + 1
+
+        time O(n)
+        space O(n)
+        """
         g = collections.defaultdict(list)
         for u, v in connections:
             g[u].append(v)

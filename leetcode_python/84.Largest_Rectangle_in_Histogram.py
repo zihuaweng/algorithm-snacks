@@ -8,6 +8,29 @@
 
 class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
+        """
+        # find left bondary and right bondary
+            1. left - > first on the left hand side that less than the current
+            2. right -> first on right hand side that less than the current
+            
+            - > maintain an increasing stack
+            
+        # cal area:
+            1. height: the last one in the stack [cause we find the right bondary]
+            2. width: right - left -1 
+            3. area = max(area, height * width)
+            
+        0  2  1.  5.  6.  2.  3  0
+        0. 1.  2.  3.  4.  5  6. 7
+
+        0. 1  5       2
+        0. 2  3       5
+
+        space:
+        2 * (2-0-1) = 2
+        6 * (5-3-1) = 6
+        5 * (5-2-1) = 10
+        """
         area = 0
         if not heights:
             return area

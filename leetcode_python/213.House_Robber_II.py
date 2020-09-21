@@ -8,6 +8,17 @@
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
+        """     
+                            2   3   2
+        [rob first]               
+        rob                 2   3   4
+        not rob             0   2   3    
+
+        [not rob first]
+        rob                 0   3.  2 
+        not rob.            0   0   3
+
+        """ 
         if not nums:
             return 0
         if len(nums) == 1:

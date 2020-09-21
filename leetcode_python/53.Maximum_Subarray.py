@@ -22,26 +22,14 @@ class Solution:
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        dp = [0] * n
-        dp[0] = nums[0]
-        max_sum = nums[0]
-
-        for i in range(1, n):
-            temp = dp[i - 1] if dp[i - 1] > 0 else 0
-            dp[i] = nums[i] + temp
-            max_sum = max(max_sum, dp[i])
-
-        return max_sum
-
-
-class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        pre = 0
-        pre_min = 0
-        max_sum = float('-inf')
+        """
+        if we want to have max of sum, we can store the max_sum of each position k
+            1. the max_sum only contain k
+            2. the max_sum continas k + max_sum of k-1
+        """
+        best = float('-inf')
+        cur_sum = 0
         for i in range(len(nums)):
-            pre += nums[i]
-            max_sum = max(max_sum, pre-pre_min)
-            pre_min = min(pre_min, pre)
-        return max_sum
+            cur_sum = max(nums[i], cur_sum+nums[i])
+            best = max(best, cur_sum)
+        return best
