@@ -91,6 +91,25 @@ def union(x, y):
         rank[x] += rank[x] == rank[y]
 ```
 ### Graph
+#### Representation
+1. Adjacency Matrix
+##### Pros
+- Space efficient for reprenseting dense graphs (have a lot edges)
+- Edge weight lookup is O(1)
+- Simplest graph representation
+##### Cons
+- Space O(V^2)
+- Iterating over all edges takes O(V^2)
+
+2. Adjacency List
+##### Pros
+- Space efficient for reprenseting sparse graphs (have a lot nodes)
+- Iterating over all edges is efficient
+##### Cons
+- Less space efficient for reprenseting dense graphs
+- Edge lookup is O(E)
+- slightly more complex graph representation
+
 #### DFS
 1. dfs 一开始就做操作 grid[i][j] = '2' || seen.add(i), 递归的时候判断 边界 + 判断seen + 判断下一个loop条件 grid[x][y] == '1'
 ```python
@@ -151,51 +170,71 @@ def dfs(self, board, i, j, word):
 ```
 
 #### Find cycle in directed graph
-```python
-# 当前路径放到on_stack， 如果我们走到下一个节点也在stack里面，证明有cycle
-# 之前走完的节点要存到visited，下次不会继续访问
-def find_cycle(graph):
-    length = len(graph)
-    visited = [False] * length # 保存子节点已经访问完的节点
-    on_stack = [False] * length # 保存当前访问路径已经走过的节点
-    
-    def dfs(node):
-        on_stack[node] = True    # 加当前节点到stack，意味着该节点是在当前路径中的
-        for child in graph[node]:   
-            if not visited[child]:   # 只看之前没有访问过的节点
-                if on_stack[child]:  # 如果这个子节点是在当前访问的路径上，证明存在cycle
-                    return True
-                if dfs(child):       # 继续递归看下面的子节点
-                    return True
-        on_stack[node] = False    # 这里是回退，需要把访问的节点从stack中删除
-        visited[node] = True     # 因为所有子节点都访问了，该节点可以改为finished
-        return False
-    
-    for i in range(length):
-        if not visited[i]:
-            if dfs(i):
-                return True
-    return False
-    
-    
-graph = {0:[1],
-        1:[2],
-        2:[0],
-        3:[7, 4],
-        4:[5],
-        5:[0,6],
-        6:[0,2,4],
-        7:[3,5]}
-
-
-print(find_cycle(graph))
-```
-
+graph_find_cycle.py
 
 #### strongly connected component
 - [video](https://www.youtube.com/watch?v=wUgWX0nc4NY)
+1. Tarjan's
+    graph_strongly_connected_component.py
+
+#### critical connections, bridge
+- [video](https://www.youtube.com/watch?v=aZXi1unBdJA)
+graph_critical_connections.py
+
+#### Shortest Path Problem
+1. BFS (unweighted graph)
+2. Dijkstra's 
+3. Bellman-Ford
+4. Floyd-Warshall
+5. A*
+
+#### Connectivity
+1. Union find
+2. DFS / BFS
+
+#### Negative Cycles
+1. Bellman-Ford
+2. Floyd-Warshall
+
+### Traveling Salesman Proble
+1. Held-Karp
+2. branch and bound
 
 
+### Tree
+#### center of undirected tree
+[link](https://www.youtube.com/watch?v=nzF_9bjDzdc&list=PLDV1Zeh2NRsDGO4--qE8yH72HFL1Km93P&index=10)
+1. The center is always the middle vertex or middle two vertices in every longest path along the tree.
+    - Get the middle of the longest path
+2. Another way is to iteratively pick off each leaf node layer like we're peeling an onion.
+    - Computer the degree of each node. Each node will have a degree of 1
+    - Prune nodes also reduce the node degree
+    - tree_find_center.py
+
+#### Identifying Isomorphic Trees
+1. Get the center of both trees
+2. Root both trees and encode them.
+    1. encode: we use '()' to represent one node. If one node has two children. it should be '(()())', if it only has one child, it should be '(())'. When we create the tree parent encoding, child need to be sorted. '((())())' is corrent but not '(()(()))'
+3. Compare the encode tree. We need to root the other tree using all the centers, since we might have two tree center.
+
+```python
+def is_isomorphic(tree1, tree2):
+    if not tree1 or not tree2:
+        return
+
+    center1 = find_tree_center(tree1)
+    center2 = find_tree_center(tree2)
+
+    rooted_tree1 = root_tree(tree1, center1[0])  # dosen't matter which center
+    encoded_tree1 = encode_tree(rooted_tree1)
+
+    for center in center2:
+        rooted_tree2 = root_tree(tree2, center)
+        encoded_tree2 = encode_tree(rooted_tree2)
+        if encoded_tree1 == encoded_tree2:
+            return True
+    return False
+```
 
 
 ### Two pointers

@@ -4,7 +4,7 @@
 
 # 需要找到critical-connections就是需要找不在环上面的边，他们都是critical-connections。
 # 所以我们走graph，然后记录rank，如果子节点的rank比当前节点的rank更小，证明当前是环内的连接，连到了原来走过的节点。我们更新当前节点到最小值
-# 如果子节点最后的rank是当前rank+1，证明这是一个线性的连接，就是critical-connections
+# 如果子节点最后的rank大于等于当前rank+1，证明这是一个线性的连接，就是critical-connections
 
 # https://www.youtube.com/watch?v=mKUsbABiwBI
 
@@ -32,32 +32,27 @@ class Solution:
         time O(n)
         space O(n)
         """
-        g = collections.defaultdict(list)
-        for u, v in connections:
-            g[u].append(v)
-            g[v].append(u)
+        g = collections.defaultdict(set)
+        for u,v in connections:
+            g[u].add(v)
+            g[v].add(u)
             
-        rank = [-1] * len(connections)
         res = []
-        self.dfs(g, rank, 0, 0, -1, res)
+        ranks = [-1] * n
+        
+        
+        def dfs(i, prev, level):
+            ranks[i] = level
+            for next_node in g[i]:
+                if next_node == prev:    # 跳过父节点
+                    continue
+                if ranks[next_node] == -1:        # 只需要遍历没有visited过的
+                    dfs(next_node, i, level+1)    
+                # 上一步递归会把赋值更小的rank，如果子节点有更小的，意味有一个环，那么当前节点应该选择其中的最小值
+                ranks[i] = min(ranks[i], ranks[next_node])
+                # 如果下一个点的rank不是level+1，证明该连接没有环，就是Critical Connection
+                if ranks[next_node] >= level+1:
+                    res.append([i, next_node])
+        
+        dfs(0, -1, 0)
         return res
-            
-    def dfs(self, graph: dict, rank: list, level: int, cur: int, prev: int, res: list) -> int:
-        rank[cur] = level
-        for child in graph[cur]:
-            
-            if child == prev:
-                # 跳过父节点
-                continue
-            elif rank[child] == -1:
-                # 如果子节点有更小的，意味有一个环，那么当前节点应该选择其中的最小值
-                rank[cur] = min(rank[cur], self.dfs(graph, rank, level+1, child, cur, res))
-            else:
-                # 如果子节点已经走过了，同样：如果子节点有更小的，意味有一个环，那么当前节点应该选择其中的最小值
-                rank[cur] = min(rank[cur], rank[child])
-                
-        # 如果走完了发现rank没变化，证明改连接没有环，就是Critical Connection
-        if rank[cur] == level and level != 0:
-            res.append([cur, prev])
-
-        return rank[cur]
