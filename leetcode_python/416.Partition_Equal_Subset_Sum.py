@@ -7,7 +7,7 @@
 # Time complexity: O()
 # Space complexity: O()
 
-
+# no good
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         if sum(nums) % 2:
@@ -30,6 +30,10 @@ class Solution:
 
         return dfs(0, average_sum)
 
+
+
+# optimal solution, dp, knapsack question
+# time O(sum*n)
 class Solution2:
     def canPartition(self, nums: List[int]) -> bool:
 

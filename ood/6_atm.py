@@ -80,12 +80,6 @@ class CheckingAccount(Account):
     self.__debit_card_number = debit_card_number
 
 
-
-
-
-
-
-
 class Bank:
   def __init__(self, name, bank_code):
     self.__name = name
@@ -108,8 +102,7 @@ class ATM:
     self.__screen = Screen()
     self.__printer = Printer()
     self.__check_deposit = CheckDeposit()
-    self.__cash_deposit = CashDeposit
-
+    self.__cash_deposit = CashDeposit()
   def authenticate_user(self):
     None
 
@@ -167,12 +160,6 @@ class CashDepositSlot(DepositSlot):
     None
 
 
-
-
-
-
-
-
 from abc import ABC, abstractmethod
 
 class Transaction(ABC):
@@ -181,12 +168,14 @@ class Transaction(ABC):
     self.__creation_time = creation_date
     self.__status = status
 
+  @abstractmethod
   def make_transation(self):
     None
 
 
 class BalanceInquiry(Transaction):
-  def __init__(self, account_id):
+  def __init__(self, id, creation_date, status, account_id):
+    super().__init__(id, creation_date, status)
     self.__account_id = account_id
 
   def get_account_id(self):
@@ -194,7 +183,8 @@ class BalanceInquiry(Transaction):
 
 
 class Deposit(Transaction):
-  def __init__(self, amount):
+  def __init__(self, id, creation_date, status, amount):
+    super().__init__(id, creation_date, status)
     self.__amount = amount
 
   def get_amount(self):
@@ -202,7 +192,8 @@ class Deposit(Transaction):
 
 
 class CheckDeposit(Deposit):
-  def __init__(self, check_number, bank_code):
+  def __init__(self, id, creation_date, status, amount, check_number, bank_code):
+    super().__init__(id, creation_date, status, amount)
     self.__check_number = check_number
     self.__bank_code = bank_code
 
@@ -211,12 +202,13 @@ class CheckDeposit(Deposit):
 
 
 class CashDeposit(Deposit):
-  def __init__(self, cash_deposit_limit):
-    self.__cash_deposit_limit = cash_deposit_limit
+  def __init__(self, id, creation_date, status, amount, cash_deposit_limit):
+    super().__init__(id, creation_date, status, amount)
 
 
 class Withdraw(Transaction):
-  def __init__(self, amount):
+  def __init__(self, id, creation_date, status, amount):
+    super().__init__(id, creation_date, status)
     self.__amount = amount
 
   def get_amount(self):
@@ -224,7 +216,8 @@ class Withdraw(Transaction):
 
 
 class Transfer(Transaction):
-  def __init__(self, destination_account_number):
+  def __init__(self, id, creation_date, status, destination_account_number):
+    super().__init__(id, creation_date, status)
     self.__destination_account_number = destination_account_number
 
   def get_destination_account(self):

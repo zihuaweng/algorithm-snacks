@@ -33,6 +33,7 @@ class Solution:
         return dp[l][amount]
 
 
+# O(amount * n)
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         res = 0

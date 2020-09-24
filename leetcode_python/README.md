@@ -20,36 +20,14 @@
     - The graph must be Directed Acyclic Graph (DAG).
     - For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks.
     - Find Eulerian path, school class prerequisites, visit location order
-    - code:
-    ```python
-    class Topological:
-        def topological_graph(self, vertices: list) -> list:  # vertices: [[a, b], [b,c]]
-            # Build graph
-            graph = collections.defaultdict(list)
-            for a, b in vertices:
-                graph[a].append(b)
-
-            seen = set()
-            # Here we can also use stack = collection.deque()
-            # and stack.appendleft(i) for adding new elements,
-            # and just return stack at the end. O(1)
-            stack = []
-
-            for i in range(vertices):
-                if i not in seen:
-                    self.dfs(graph, i, stack, seen)
-            return stack[::-1]
-
-        def dfs(self, graph, i, stack, seen):
-            seen.add(i)
-            for j in graph[i]:
-                if j not in seen:
-                    self.dfs(graph, j, stack, seen)
-            stack.append(i)
-    ```
+    - code: graph_topological_sort.py
+    
 7. [Karnaugh Maps](https://en.wikipedia.org/wiki/Karnaugh_map)
     - The Karnaugh map (KM or K-map) is a method of simplifying Boolean algebra expressions.
     - [video](https://www.youtube.com/watch?v=RO5alU6PpSU)
+
+8. knapsack question
+    - select a subset from an array where there sum equals to a target
 
 
 
@@ -175,16 +153,24 @@ graph_find_cycle.py
 #### strongly connected component
 - [video](https://www.youtube.com/watch?v=wUgWX0nc4NY)
 1. Tarjan's
-    graph_strongly_connected_component.py
+    - graph_strongly_connected_component.py
+    - O(V+E)
 
 #### critical connections, bridge
 - [video](https://www.youtube.com/watch?v=aZXi1unBdJA)
 graph_critical_connections.py
+O(V+E)
 
 #### Shortest Path Problem
 1. BFS (unweighted graph)
-2. Dijkstra's 
-3. Bellman-Ford
+    - O(E + V)
+2. Dijkstra's (non-negative acycles)
+    - Only works for non-negative weights DAG
+    - O(E * logV)
+    - code: graph_dijkstra.py
+3. Bellman-Ford (negative cycles)
+    - works if there is negative weight path, it could use to detect negative cycle
+    - O(E * V)
 4. Floyd-Warshall
 5. A*
 
@@ -200,6 +186,21 @@ graph_critical_connections.py
 1. Held-Karp
 2. branch and bound
 
+#### Topological Sort 
+1. Applications:Get the order of graph: class prerequisites, program dependencies. 
+1. Does not work for graph with cycle
+1. Algorithm 1 dfs:
+    1. pick an unvisited node
+    2. begin with the selected node, do a dfs, exploring only unvisited nodes.
+    3. on the recursive callback of dfs, add the current node to list
+    4. reverse the list
+1. Algorithm 2 Kahn's Algorithm:
+    1. count in degree for all node
+    2. add nodes with in degree == 0 to queue
+    3. walk throught the queue, add current node to result, decrease the indegree for the next node, if indegree == 0, add to the queue.
+1. code: graph_topological_sort.py
+1. O(E+V)
+
 
 ### Tree
 #### center of undirected tree
@@ -210,6 +211,7 @@ graph_critical_connections.py
     - Computer the degree of each node. Each node will have a degree of 1
     - Prune nodes also reduce the node degree
     - tree_find_center.py
+3. O(V+E)
 
 #### Identifying Isomorphic Trees
 1. Get the center of both trees
@@ -251,4 +253,55 @@ dx, dy = -dy, dx
 # down
 dx, dy = dx, -dy
 ```
+
+
+### 题目总结
+1. Complete search
+    - Generating subsets: 使用二进制0101011 （ 0:1<<n -1）生成组合，然后生成subset
+    - Pruning the search: 矩阵能走过每个点一次的路径数量，可以优化：
+        - 只需要走一遍，对称另一边 * 2，确保第一步一定是走同一个方向即可
+        - 提前走到终点，该路径不符合条件
+        - 如果走到一个点只能选两个方向中一个，证明一定会有另一边的路径不能走到，该路径不符合条件
+    - Meet in the middle: 将任务分成两组，对于2^n任务来说可以优化时间
+
+
+2. Greedy algorithms
+Constructs a solution to the problem by always making a choice that looks the best at the moment.
+    - Scheduling，计算可以去的最多的meeting：每次选择结束最早的meeting
+    - Tasks and deadlines，每次选择耗时最短的
+    - Data compression：使用不同长度编码，频率最高的编码成最短的（0），频率较高的编码成较长的（10， 110），但是每个编码不能prefix相同。使用Huffman coding。
+
+
+3. Dynamic programming
+Combines the correctness of complete search and the efficiency of greedy algorithms.
+
+    - 使用场景
+        - Finding an optimal solution
+        - Counting the number of solutions
+        - 下一个结果只依赖前一个结果
+    - coin problem：
+        - 一组subset的sum需要等于一个target  （从0到target，当前k只会依赖于target-k的结果）
+        - 多少组subset的sum可以等于一个target  （从0到target，当前k只会依赖于target-k的结果）
+    - Longest increasing subsequence
+        - 当前increasing subsequence的长度只取决于前面最大值比他小subset的长度
+        - O(nlogn)
+    - Paths in a grid
+        - 从矩阵的左上角走到右下角，只能往右或者下边走，当前结果只取决于左边结果和上边结果
+    - Knapsack problems
+        - The term knapsack refers to problems where a set of objects is given, and
+subsets with some properties have to be found. 
+        - 给一个数组，求出符合条件的subset， [1,3,3,5], 求出sum==12 的subset
+        - 每个点都可以选择取或者不取，当前和k （0<k<=sum）只取决于取当前值（k-current）或者不取当前值结果（前一个到达k的结果）
+        - possible(x,k) = possible(x−wk,k −1)∨possible(x,k −1)
+        - 可以用于计算给定weight，value选择subset
+    - Edit distance
+        - 当前点只取决于与前一个比较，删减，添加，还是替换
+        - distance(a,b) = min(distance(a,b −1)+1, distance(a−1,b)+1, distance(a−1,b −1)+cost(a,b))
+
+
+
+
+
+
+
 

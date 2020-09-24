@@ -29,3 +29,35 @@ class Solution:
                 queen.append('.'*col + 'Q' + '.'*(n-col-1))
             result.append(queen)
         return result
+
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        left_corner = [False] * (2*n-1) 
+        right_corner = [False] * (2*n-1) 
+        res = []
+        
+        def dfs(queens):
+            row = len(queens)
+            if row == n:
+                res.append(queens)
+                return
+            
+            for col in range(n):
+                left = row+col
+                right = row-col+n-1
+                if col in queens or left_corner[left] or right_corner[right]:
+                    continue
+                left_corner[left] = right_corner[right] = True     # backtrack
+                dfs(queens+[col])
+                left_corner[left] = right_corner[right] = False    # backtrack
+                    
+
+        dfs([])
+        result = []
+        for r in res:
+            queen = []
+            for col in r:
+                queen.append('.'*col + 'Q' + '.'*(n-col-1))
+            result.append(queen)
+        return result
