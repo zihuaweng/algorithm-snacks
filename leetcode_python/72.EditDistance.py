@@ -23,3 +23,8 @@ class Solution:
                     temp[j] = min(dp[j]+1, temp[j - 1]+ 1, dp[j-1]+(word1[i - 1] != word2[j - 1]))
             dp = temp
         return dp[-1]
+
+
+import Levenshtein
+
+print(Levenshtein.editops("AABACC", "BABCAC"))

@@ -166,12 +166,56 @@ O(V+E)
     - O(E + V)
 2. Dijkstra's (non-negative acycles)
     - Only works for non-negative weights DAG
-    - O(E * logV)
+    - O((E+V)*LogV) = O(ELogV)
     - code: graph_dijkstra.py
 3. Bellman-Ford (negative cycles)
     - works if there is negative weight path, it could use to detect negative cycle
-    - O(E * V)
+    - steps
+        - set all node dist to inf
+        - set dist[start] to 0
+        - relax each edge V-1 times
+        ```python
+        for i in range(V-1):
+            for edge in edges:
+                # update the node to the shortest path
+                if edge.start + cost < edge.to:
+                    edge.to = edge.start + cost
+
+        # find nodes in the negative cycle, just loop the graph again
+        for i in range(V-1):
+            for edge in edges:
+                # update the node to the shortest path
+                if edge.start + cost < edge.to:
+                    edge.to = float('-inf)
+        ```
+    - The time complexity of the algorithm is O(nm), because the algorithm consists
+of n−1 rounds and iterates through all m edges during a round. If there are no
+negative cycles in the graph, all distances are final after n −1 rounds, because
+each shortest path can contain at most n−1 edges
+
 4. Floyd-Warshall
+    - It finds all shortest paths between the nodes in a single run, using dp to solve it and returns the shortest dist between two arbitrary nodes. 
+    - Maintain a two-dimensional array that contains distances between the nodes. First the distances are calculated only using direct edges between nodes, and then the algorithm reduces disatances by using intermidiate nodes in the paths
+    - dp[i][j] == dist between i, j, we need to know if there is an intermidiate node k that dp[i][j] > dp[i][k] + dp[k][j], if yes, update the dist and it is the shorter path.
+    - code
+    ```python
+    # initialze the dp first
+    n = len(V)
+    dp = [[float('inf')] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if i == j: dp[i][j] = 0 # node to itself has dist == 0
+            elif j in graph[i]: dp[i][j] = graph[i][j] # pupulate the cost
+
+    # update dp in a single run
+    for k in range(n):   # k is the intermidiate node
+        for i in range(n):
+            for j in range(n):
+                dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j])
+    ```
+    - time O(n^3), only use it when the graph is small
+    - space O(n^2)
+
 5. A*
 
 #### Connectivity
@@ -200,6 +244,18 @@ O(V+E)
     3. walk throught the queue, add current node to result, decrease the indegree for the next node, if indegree == 0, add to the queue.
 1. code: graph_topological_sort.py
 1. O(E+V)
+
+#### Eulerian Paths and Circuits
+1. Eulerian Path is a path that visit all edges in a graph exactly once
+2. Eulerian Circuit is a Eulerian Path that starts and ends on the same vertex
+3. Algorithm: if we can find the path, we can find the circuit
+    - verify if the graph has an eulerian path.
+    - find the start vertex
+    - dfs
+    - return path if len(path) == len(edges) + 1
+4. code: graph_eulerian_path.py
+5. examples:
+    - [332. Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)
 
 
 ### Tree
@@ -240,6 +296,23 @@ def is_isomorphic(tree1, tree2):
 
 
 ### Two pointers
+- Sliding Window Problemsz
+    - Constrained Subsequence Sum
+    - Number of Substrings Containing All Three Characters
+    - Count Number of Nice Subarrays
+    - Replace the Substring for Balanced String
+    - Max Consecutive Ones III
+    - 930. Binary Subarrays With Sum
+        - 第一种方法使用pre_sum dict
+        - 第二种方法，subarray, 如果是at most k distinct的话，可以使用sliding window，但是是extract k distinct的话，就需要用atMost(k)-atMost(k-1)
+    - 992. Subarrays with K Different Integers
+        - subarray, 如果是at most k distinct的话，可以使用sliding window，但是是extract k distinct的话，就需要用atMost(k)-atMost(k-1)
+    - 159. Longest Substring with At Most Two Distinct Characters
+        - subarray, 保存一个freq的dict
+    - 862. Shortest Subarray with Sum at Least K
+        - subarray, 与209差别是包含负数, 维护一个递增的pre_sum list
+    - 209. Minimum Size Subarray Sum
+        - subarray, 所有是正数，所以滑动窗口，sum是累加的，通过右边加，左边减，可以得到结果
 
 
 ### Calculate 4 directions
@@ -297,6 +370,49 @@ subsets with some properties have to be found.
     - Edit distance
         - 当前点只取决于与前一个比较，删减，添加，还是替换
         - distance(a,b) = min(distance(a,b −1)+1, distance(a−1,b)+1, distance(a−1,b −1)+cost(a,b))
+
+4. Amortized analysis
+    - stack， 单调栈
+        - Nearest smaller elements
+            - 需要返回每个数最近的最小值，1 3 4 2 5 3 4 2 -> 0 1 3 1 2 2 3 1
+            - 规律：当后面出现有更小的值k，前面的比k大的所有数都不需要考虑
+            - 维护一个单调栈 1 3 4 2 -> stack: 1 2，因为中间3，4以后都不会使用上
+        - Sliding window minimum
+            - 返回每个Sliding window的最小值
+            - 规律：当后面出现有更小的值k，前面的比k大的所有数都不需要考虑
+            - 维护一个Sliding window里的单调栈
+
+
+5. Range queries
+    - sum(a,b): calculate the sum of values in range [a,b]
+        - for static array, use pre sum
+    - min(a,b): find the minimum value in range [a,b]
+        - The idea is to precalculate all values of minq(a,b) where b − a +1 (the length
+of the range) is a power of two. For example, for the array
+        - The number of precalculated values is O(nlogn) using recursive formula: minq(a,b) = min(minq(a,a+w−1),minq(a+w,b))
+        - Get result in O(1): Let k be the largest power of two that does not exceed
+b − a+1, minq(a,b) = min(minq(a,a+ k −1),minq(b − k +1,b)).
+
+    - Binary indexed tree (对需要更新的list，logn更新, logn计算区间sum)
+        - can be seen as a dynamic variant of a prefix sum array
+        - O(logn) time operations on return array sum and updating a value.
+        - [link](https://www.topcoder.com/community/competitive-programming/tutorials/binary-indexed-trees/)
+
+    - Segment tree
+        - support updating an array value, support sum queries, minimum and maximum queries in O(logn) time
+        - is a more general data structure than binary index tree
+
+    - Index compression
+        - if we know all the indices needed during the algorithm beforehand
+        - find a function c for c(a) < c(b) where a < b  [c(8) = 1, c(555) = 2, c(109
+) = 3]
+        - use to save space
+
+    
+
+
+
+
 
 
 

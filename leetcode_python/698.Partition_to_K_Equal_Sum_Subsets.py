@@ -11,6 +11,30 @@
 
 class Solution:
     def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
+        """
+        nums = [4, 3, 2, 3, 5, 2, 1], k = 4
+
+        target = sum(nums) // k
+
+        - sum(nums) % k !== 0
+
+        [4, 3, 2, 3, 5, 2, 1]         
+        0   0
+        1   1
+        2   2
+        3   3
+
+        - for each group, when we put a num, the group_sum <= target, otherwise, put the num to the next group   
+            dfs, recursive, 
+            group_sum = [0] * k
+        - if a num if not able to be put in a group where group_sum <= target, fail to split nums into k groups
+        - when we reach to the end of nums, we return true
+
+        time O(n^k)
+        For each item, try all possible destined bucket
+        space O()
+
+        """
         if not nums or len(nums) < k:
             return False
         if sum(nums) % k != 0:
