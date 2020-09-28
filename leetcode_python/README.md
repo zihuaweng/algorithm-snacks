@@ -297,11 +297,15 @@ def is_isomorphic(tree1, tree2):
 
 ### Two pointers
 - Sliding Window Problemsz
-    - Constrained Subsequence Sum
-    - Number of Substrings Containing All Three Characters
-    - Count Number of Nice Subarrays
-    - Replace the Substring for Balanced String
-    - Max Consecutive Ones III
+    - 1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+    - 1425. Constrained Subsequence Sum
+    - 1358. Number of Substrings Containing All Three Characters
+        - 需要知道怎么才能累加所有可能不漏掉 res += i
+    - 1248. Count Number of Nice Subarrays
+        - subarray, 如果是at most k distinct的话，可以使用sliding window，但是是extract k distinct的话，就需要用atMost(k)-atMost(k-1)
+    - 1234. Replace the Substring for Balanced String
+        - 需要替换其中的subarray，判断条件就是滑窗外面的count，注意index区间会out of range
+    - 1004. Max Consecutive Ones III
     - 930. Binary Subarrays With Sum
         - 第一种方法使用pre_sum dict
         - 第二种方法，subarray, 如果是at most k distinct的话，可以使用sliding window，但是是extract k distinct的话，就需要用atMost(k)-atMost(k-1)
@@ -310,10 +314,23 @@ def is_isomorphic(tree1, tree2):
     - 159. Longest Substring with At Most Two Distinct Characters
         - subarray, 保存一个freq的dict
     - 862. Shortest Subarray with Sum at Least K
-        - subarray, 与209差别是包含负数, 维护一个递增的pre_sum list
+        - 参照239. Sliding Window Maximum， 239是维护一个递减queue
+        - subarray, 与209差别是包含负数, 维护一个递增的pre_sum queue
     - 209. Minimum Size Subarray Sum
         - subarray, 所有是正数，所以滑动窗口，sum是累加的，通过右边加，左边减，可以得到结果
 
+
+### Stack
+    - monotonic stack
+        - Constrained Subsequence Sum
+        - Minimum Cost Tree From Leaf Values  #### star question
+        - Sum of Subarray Minimums
+        - Online Stock Span
+        - Score of Parentheses
+        - Next Greater Element II
+        - Next Greater Element I
+        - Largest Rectangle in Histogram
+        - Trapping Rain Water
 
 ### Calculate 4 directions
 ```python

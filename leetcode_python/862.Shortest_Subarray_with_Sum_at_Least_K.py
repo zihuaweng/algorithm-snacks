@@ -1,6 +1,7 @@
 class Solution:
     def shortestSubarray(self, A: List[int], K: int) -> int:
         """
+        - similar to 239. Sliding Window Maximum
         - it contains negative numbers, so it could be any subsequence
         - xxxxx i[ xxx  j]  xx
         - for i < j, need to find pre_sum[j] - pre_sum[i] >= k

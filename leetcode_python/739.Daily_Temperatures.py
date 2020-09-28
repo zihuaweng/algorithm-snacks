@@ -8,12 +8,19 @@
 
 class Solution:
     def dailyTemperatures(self, T: List[int]) -> List[int]:
+        """
+        [73, 74, 75, 71, 69, 72, 76, 73]
+
+        1    1       2   1
+        75, 2 | 72 5 |    
+        """
+        
         stack = []
         res = [0] * len(T)
-        for i in range(len(T) - 1, -1, -1):
-            while stack and T[stack[-1]] <= T[i]:
-                stack.pop()
-            if stack:
-                res[i] = stack[-1] - i
+        
+        for i, val in enumerate(T):
+            while stack and T[stack[-1]] < val:
+                index = stack.pop()
+                res[index] = i - index
             stack.append(i)
         return res

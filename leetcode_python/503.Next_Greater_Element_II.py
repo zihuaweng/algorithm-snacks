@@ -25,3 +25,26 @@ class Solution:
             if not stack:
                 break
         return res
+
+
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        """
+        maintain a monotonic decreasing queue
+        when a new num is bigger than the values in stack
+        we pop the value out and assign the next greater value to it at the same time
+        
+        since it is circular array, we can just loop twoic to get the result
+        """
+        n = len(nums)
+        res = [-1] * n
+        stack = []
+        
+        for i in range(n*2):
+            num = nums[i%n]
+            while stack and nums[stack[-1]] < num:
+                temp = stack.pop()
+                res[temp] = num
+            stack.append(i%n)
+                
+        return res           

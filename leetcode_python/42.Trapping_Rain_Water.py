@@ -48,3 +48,19 @@ class Solution:
                 res += right_max - height[r]
                 r -= 1
         return res
+
+
+# 维护单调递减的序列
+# 和max Histogram那个题一样
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        res = 0
+        for i, h in enumerate(height):
+            while stack and height[stack[-1]] < h:
+                cur = stack.pop()
+                if stack:
+                    res +=  (i-stack[-1]-1) * (min(h, height[stack[-1]]) - height[cur])
+                
+            stack.append(i)
+        return res
