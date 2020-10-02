@@ -56,7 +56,7 @@ class Solution:
         size = 0
         for num in nums:
             l = 0
-            r = n+1
+            r = n
             while l < r:
                 m = (l+r) // 2
                 if num < dp[m]:

@@ -344,6 +344,53 @@ dx, dy = -dy, dx
 dx, dy = dx, -dy
 ```
 
+### Binary search
+https://www.youtube.com/watch?v=UyFShaHNbNY
+如果需要在中间返回结果，使用下面模板：
+```python
+def bs(arr):
+    left = 0
+    right = len(arr) - 1
+    while left <= right:
+        mid = (left+right) // 2
+        if check(mid) == target:
+            return mid
+        elif check(mid) < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+```
+
+如果需要返回index，使用下面模板：
+这样的写法终止条件是left==right, 区间就剩下一个元素，所以如果有结果一定是left，如果left不对，那就返回默认值
+```python
+# 寻找右边界
+def bs(arr):
+    left = 0
+    right = len(arr)
+    while left < right:
+        mid = (left+right) // 2
+        if check(mid):
+            left = mid + 1
+        else:
+            right = mid
+
+# 寻找左边界
+def bs(arr):
+    left = 0
+    right = len(arr)
+    while left < right:
+        mid = (left+right+1) // 2  # 看到left=mid，就需要上取整！不然会进入死循环
+        if check(mid):
+            right = mid - 1
+        else:
+            left = mid   
+
+# mid = (left+right+1) // 2 的原因：
+# 如果最后剩下两个元素，我们有left=mid，而(left+right) // 2 会给我们上区间，就是left的位置，所以
+# 所以mid最后还是会等于left，就产生死循环，所以+1后我们可以得到下区间，退出循环。
+```
+
 
 ### 题目总结
 1. Complete search

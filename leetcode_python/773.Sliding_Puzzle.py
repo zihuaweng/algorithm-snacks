@@ -8,31 +8,33 @@
 
 class Solution:
     def slidingPuzzle(self, board: List[List[int]]) -> int:
-        s = ''.join(str(a) for b in board for a in b)
-        queue = collections.deque()
-        queue.append((s, s.index('0')))
-        seen = set((s, s.index('0')))
-
-        # directions
-        step = 0
+        nums = ''.join(str(a) for b in board for a in b)
+            
+        index = nums.index('0')
+        target = '123450'
+        seen = set()
+        
+        queue = collections.deque([(index, nums)])
+        res = 0
         while queue:
-            length = len(queue)
-            for _ in range(length):
-                t, idx = queue.popleft()
-                if t == '123450':
-                    return step
-                i = idx // 3
-                j = idx % 3
-                for x, y in [(i, j + 1), (i, j - 1), (i + 1, j), (i - 1, j)]:
-                    if 0 <= x < 2 and 0 <= y < 3:
-                        idx_n = 3 * x + y
-                        a = list(t)
-                        a[idx], a[idx_n] = a[idx_n], a[idx]
-                        t_n = ''.join(a)
-                        if (t_n, idx_n) not in seen:
-                            seen.add((t_n, idx_n))
-                            queue.append((t_n, idx_n))
-
-            step += 1
+            for _ in range(len(queue)):
+                i, n = queue.popleft()
+                seen.add((i,n))
+                if n == target:
+                    return res
+                x = i // 3
+                y = i % 3
+                for new_x, new_y in [(x, y+1), (x, y-1), (x-1, y), (x+1, y)]:
+                    if 0 <= new_x < 2 and 0<= new_y < 3:
+                        new_i = 3*new_x + new_y
+                        temp = list(n)
+                        temp[i], temp[new_i] = temp[new_i], temp[i]
+                        new_n = ''.join(temp)
+                        if (new_i, new_n) not in seen:
+                            queue.append((new_i, new_n))
+                            
+            res += 1
         return -1
-
+                
+                
+                

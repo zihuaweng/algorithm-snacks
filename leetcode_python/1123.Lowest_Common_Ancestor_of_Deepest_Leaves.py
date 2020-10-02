@@ -40,3 +40,28 @@ class Solution:
         if left == right == self.depth:
             self.loc = node
         return max(left, right)
+
+
+class Solution:
+    def lcaDeepestLeaves(self, root: TreeNode) -> TreeNode:
+        """
+        - dfs trivel the tree
+            - if left > right: return left, otherwise, return right
+            - if left == right: return root
+        - helper function for dfs, return depth, and res note
+            
+        """
+        res, depth = self.helper(root, 0)
+        return res
+        
+    def helper(self, root, depth):
+        if not root:
+            return None, depth
+        left_root, left_depth = self.helper(root.left, depth+1)
+        right_root, right_depth = self.helper(root.right, depth+1)
+        if left_depth == right_depth:
+            return root, left_depth
+        elif left_depth > right_depth:
+            return left_root, left_depth
+        else:
+            return right_root, right_depth

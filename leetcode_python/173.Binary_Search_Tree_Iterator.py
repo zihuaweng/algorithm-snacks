@@ -9,6 +9,17 @@
 #         self.left = None
 #         self.right = None
 
+
+"""
+
+time O(1)
+The average time complexity of next() function is O(1) indeed in your case. 
+As the next function can be called n times at most, and the number of right 
+nodes in self.pushAll(tmpNode.right) function is maximal n in a tree which 
+has n nodes, so the amortized time complexity is O(1).
+
+space O(1)
+"""
 class BSTIterator:
 
     def __init__(self, root: TreeNode):

@@ -42,3 +42,13 @@ class Solution:
             if self.board[start_row + i // 3][start_col + i % 3] == new_str:
                 return False
         return True
+
+
+        # def check_in_square(self, board, i, j, val):
+        # idx_x = (i // 3)*3
+        # idx_y = (j // 3)*3
+        # for x in range(idx_x, idx_x+3):
+        #     for y in range(idx_y, idx_y+3):
+        #         if board[x][y] == val:
+        #             return True
+        # return False

@@ -19,6 +19,15 @@ class ListNode:
 
 class Solution:
     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        """
+        [[1,4,5],[1,3,4],[2,6]]
+        
+        - everytime, we add the elements in the begining to the result
+        - only need to company the first element in each array and pick the min element
+            - for k is big enough, we could use heap to get the min element in O(logn)
+            - that means we need to maintain a min heap
+            - in the heap, we need to store, i (0<=i<k), val
+        """
         if not any(lists):
             return None
 

@@ -30,31 +30,26 @@
 #        :rtype List[NestedInteger]
 #        """
 
-class NestedIterator(object):
-
-    def __init__(self, nestedList):
-        """
-        Initialize your data structure here.
-        :type nestedList: List[NestedInteger]
-        """
-        self.queue = collections.deque(nestedList)
-
-    def next(self):
-        """
-        :rtype: int
-        """
-        return self.queue.popleft().getInteger()
-
-    def hasNext(self):
-        """
-        :rtype: bool
-        """
-        while self.queue:
-            if self.queue[0].isInteger():
-                return True
-            first = self.queue.popleft()
-            self.queue.extendleft(first.getList()[::-1])
-        return False
+class NestedIterator:
+    """
+    we should use stack instead of queue to make sure the order.
+    If we use queue, when we popleft, it could not be added to the list again with the same order.
+    So we could use stack and add with reversed order.
+    """
+    def __init__(self, nestedList: [NestedInteger]):
+        self.stack = []
+        for i in range(len(nestedList)-1, -1, -1):
+            self.stack.append(nestedList[i])
+    
+    def next(self) -> int:
+        return self.stack.pop().getInteger()
+    
+    def hasNext(self) -> bool:
+        while self.stack and not self.stack[-1].isInteger():
+            last = self.stack.pop().getList()
+            for i in range(len(last)-1, -1, -1):
+                self.stack.append(last[i])
+        return len(self.stack) > 0
 
 # Your NestedIterator object will be instantiated and called as such:
 # i, v = NestedIterator(nestedList), []

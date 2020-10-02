@@ -12,36 +12,28 @@ class TimeMap:
         """
         Initialize your data structure here.
         """
-        self.timemap = collections.defaultdict(list)
+        self.d = collections.defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.timemap[key].append((timestamp, value))
-        return ""
+        self.d[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
-        if key not in self.timemap:
-            return ""
-        lst = self.timemap[key]
-        if timestamp < lst[0][0]:
-            return ""
-        if timestamp >= lst[-1][0]:
-            return lst[-1][1]
-        s = 0
-        e = len(lst) - 1
-        while s <= e:
-            mid = (s + e) >> 1
-            if lst[mid][0] == timestamp:
-                return lst[mid][1]
-            if lst[mid][0] < timestamp:
-                if lst[mid + 1][0] > timestamp:
-                    return lst[mid][1]
-                s = mid + 1
+        arr = self.d[key]
+        l = 0
+        r = len(arr)
+        
+        # using bisect.bisect_right()
+        while l<r:
+            mid = (l+r)//2
+            if arr[mid][0] > timestamp:
+                r = mid
             else:
-                e = mid - 1
-        if lst[s][0] <= timestamp:
-            return lst[s][0]
-        else:
-            return ""
+                l = mid + 1
+                
+        if l==0:
+            return ''
+        return arr[l-1][1]
+
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
