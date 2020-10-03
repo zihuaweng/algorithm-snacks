@@ -9,21 +9,47 @@
 
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        res = [0] * n
-        first = logs[0].split(':')
-        _id, status, time = int(first[0]), first[1], int(first[2])
-        stack = [_id]
-        pre = time
-        for log in logs[1:]:
-            temp = log.split(':')
-            _id, status, time = int(temp[0]), temp[1], int(temp[2])
-            if status == 'start':
+        d = [0] * n
+        stack = []
+        
+        prev_time = 0
+        
+        for log in logs:
+            job, state, time = log.split(':')
+            job = int(job)
+            time = int(time)
+            
+            if state == 'start':
                 if stack:
-                    res[stack[-1]] += time - pre
-                stack.append(_id)
-                pre = time
+                    d[stack[-1]] += time - prev_time 
+                stack.append(job)
+                prev_time = time
             else:
-                stack.pop()
-                res[_id] += time - pre + 1
-                pre = time + 1
-        return res
+                d[stack.pop()] += time - prev_time + 1
+                prev_time = time + 1
+                
+        return d
+
+
+
+class Solution:
+    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
+        d = [0] * n
+        stack = []
+        
+        for log in logs:
+            job, state, time = log.split(':')
+            job = int(job)
+            time = int(time)
+            
+            if state == 'start':
+                stack.append((job, time))
+            else:
+                start = stack.pop()[1]
+                duration = time - start + 1
+                d[job] += duration
+                
+                if stack:
+                    d[stack[-1][0]] -= duration   # 需要减去被别的任务占用的时间
+                
+        return d

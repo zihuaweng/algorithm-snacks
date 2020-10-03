@@ -22,3 +22,18 @@ class Solution:
                     for j in range(col_b):
                         res[i][j] += A[i][k] * B[k][j]
         return res
+
+# brute force
+class Solution:
+    def multiply(self, A: List[List[int]], B: List[List[int]]) -> List[List[int]]:
+        m = len(A)
+        n = len(B[0])
+        l = len(A[0])
+        res = [[0] * n for _ in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                for k in range(l):
+                    res[i][j] += A[i][k] * B[k][j]
+                    
+        return res

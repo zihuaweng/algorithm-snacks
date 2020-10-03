@@ -342,6 +342,11 @@ dx, dy = dy, -dx
 dx, dy = -dy, dx
 # down
 dx, dy = dx, -dy
+
+diagnoal
+
+row == col
+row+col == size-1
 ```
 
 ### Binary search
