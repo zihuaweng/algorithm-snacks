@@ -51,6 +51,11 @@ class Solution:
 
 class Solution:
     def minMeetingRooms(self, intervals):
+        """
+        0.            30
+          5 10
+                15 20
+        """
         lst = []
         for start, end in intervals:
             lst.append((start, 1))

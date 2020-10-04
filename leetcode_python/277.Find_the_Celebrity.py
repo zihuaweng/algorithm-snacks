@@ -7,6 +7,13 @@
 
 class Solution:
     def findCelebrity(self, n: int) -> int:
+        """
+        0123456 7 89
+                c
+                
+        01 -> know(0, 1) true: 0 is not c, 1 might be c
+                        false: 1 is not c, 0 might be c
+        """
         # first we need to find a candidate by looking through the list
         candidate = 0
         for i in range(1, n):

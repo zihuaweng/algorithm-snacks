@@ -14,24 +14,23 @@
 
 class Solution:
     def minmaxGasDist(self, stations: List[int], K: int) -> float:
-
+        
         def valid(mid):
             c = 0
             for a, b in zip(stations, stations[1:]):
-                c += math.ceil((b - a) / mid) - 1
+                c += math.ceil((b-a)/mid)-1
             if c > K:
                 return False
             else:
                 return True
-
-        i = 1e-6
-        j = stations[-1] - stations[0]
-        while i <= j:
-            # print(i,j)
-            mid = (i + j) / 2
+        
+        i = 0
+        j = stations[-1]-stations[0]
+        while j - i > 1e-6:
+            mid = (i+j) / 2
             if valid(mid):
-                j = mid - 1e-6
+                j = mid
             else:
-                i = mid + 1e-6
-
+                i = mid
+                
         return i

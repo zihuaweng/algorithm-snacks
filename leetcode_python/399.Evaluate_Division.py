@@ -24,11 +24,11 @@ class Solution:
                 node, cur_product = queue.popleft()
                 if node == e:
                     return cur_product
-                seen.add(node)
+                
                 for next_node, value in graph[node]:
                     if next_node not in seen:
                         queue.append((next_node, value * cur_product))
-
+                        seen.add(next_node)
             return -1
 
         return [calculate(query) for query in queries]

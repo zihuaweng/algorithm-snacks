@@ -8,37 +8,47 @@
 
 class Solution:
     def calculate(self, s: str) -> int:
-        if not s:
-            return 0
+        """
+        1*4+5*2-3+6/8
+                |
+        stack to store all num, return sum(stack)
+        
+        sign = -
+        num = 3
+        stack = [4,10]
+        
+        """
         s = s.replace(' ', '')
         stack = []
         num = 0
-        sig = '+'
-
-        for i in range(len(s)):
-            char = s[i]
+        sign = '+'
+        
+        s += '+'   # in order to calculate the last part
+        print(s)
+        for char in s:
             if char.isdigit():
-                num = num * 10 + ord(char) - ord('0')
-            if not char.isdigit() or i == len(s) - 1:
-                if sig == '+':
+                num = num*10+int(char)
+            else:
+                if sign == '+':
                     stack.append(num)
-                elif sig == '-':
+                elif sign == '-':
                     stack.append(-num)
-                elif sig == '*':
-                    stack.append(stack.pop() * num)
+                elif sign == '*':
+                    stack.append(stack.pop()*num)
                 else:
                     temp = stack.pop()
                     if temp < 0:
                         stack.append(-(abs(temp) // num))
                     else:
                         stack.append(temp // num)
-
-                sig = char
+                        
+                sign = char
                 num = 0
-
+                
         return sum(stack)
 
 
+        
 class Solution:
     def calculate(self, s: str) -> int:
         if not s:

@@ -25,3 +25,24 @@ class Solution:
         slow.next = slow.next.next
 
         return res.next
+
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        fast = head
+        for _ in range(n):
+            fast = fast.next
+        
+        if not fast:
+            return head.next
+            
+        slow = head
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+            
+        slow.next = slow.next.next
+        
+        return head
+            
+        

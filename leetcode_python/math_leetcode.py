@@ -86,6 +86,22 @@ class Solution:
 # devide
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
+        """
+        a / b = c
+        
+        keep subtracting b, a faster way is to -2*b, -4*b, -1024*b
+
+        if a > 2 * b  => c should be bigger than 2 (1<<1)
+        if a > 4 * b  => c should be bigger than 4 (1<<2)
+        if a > 1024 * b  => c should be bigger than 1024 (1<<10)
+
+        a might == 1024*b + 4*b + 2*b
+        c = (1024+4+2)
+
+        2 * b == b << 1
+        1024 * b == b << 10
+        
+        """
         sig = (dividend < 0) == (divisor < 0)
         a, b, res = abs(dividend), abs(divisor), 0
         while a >= b:
@@ -127,3 +143,24 @@ class Solution:
                 l = mid + 1
 
         return r
+
+
+# root of number, x is the number and n is the root
+def root(x, n):
+  if x == 0:
+    return 0
+  
+  low = 0
+  hi = max(1, x)
+  root = (low+hi) / 2.0
+  
+  while root - low >= 0.001:
+    if root**n > x:
+      hi = root
+    elif root**n < x:
+      low = root
+    else:
+      break
+    root = (low+hi) / 2.0
+    
+  return root

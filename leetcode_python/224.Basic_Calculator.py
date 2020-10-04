@@ -9,6 +9,19 @@
 
 class Solution:
     def calculate(self, s):
+        """
+        1+(4+5+2)-3+(6+8)
+                |
+        sign_stack: 1
+        num_stack: 1
+        
+        num = 2
+        sign = 1
+        
+        cur_sum = 11   (+sign*num)  
+        when we find '(':  add sign to sign_stack and num to num_stack 
+        when we find ')':  cur_sum * sign_stack.pop() + num_stack.pop()
+        """
         res, num, sign, stack = 0, 0, 1, []
         for ss in s:
             if ss.isdigit():
@@ -27,7 +40,6 @@ class Solution:
                 res += stack.pop()
                 num = 0
         return res + num*sign
-
 
 class Solution:
     def calculate(self, s: str) -> int:

@@ -138,6 +138,39 @@ def dfs(self, board, i, j, word):
     return FalseF
 ```
 
+#### BFS
+
+```python
+def bfs(self, grid, r, c):
+        queue = collections.deque()
+        queue.append((r, c))
+        grid[r][c] = '0'    # 加入queue就立马标记visits，不会有重复的在queue里，效率更高
+        while queue:
+            directions = [(0,1), (0,-1), (-1,0), (1,0)]
+            r, c = queue.popleft()
+            for d in directions:
+                nr, nc = r + d[0], c + d[1]    
+                if self.is_valid(grid, nr, nc) and grid[nr][nc] == '1':
+                    queue.append((nr, nc))
+                    grid[nr][nc] = '0'   # 加入queue就标记visits，不会有重复的在queue里，效率更高
+
+# 包含路径数目计算：
+def shortestPathBinaryMatrix(grid):
+	n = len(grid)
+	if grid[0][0] or grid[n-1][n-1]:
+		return -1
+	q = collections.deque([(0, 0, 1)])
+    while q:
+	    i, j, d = q.popleft()
+		if i == n-1 and j == n-1: 
+            return d
+		for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)):F
+			if 0 <= x < n and 0 <= y < n and not grid[x][y]:
+				grid[x][y] = 1
+				q.append((x, y, d+1))
+	return -1
+```
+
 #### Critical Connections
 ```python
 # 需要找到critical-connections就是需要找不在环上面的边，他们都是critical-connections。
@@ -220,6 +253,8 @@ each shortest path can contain at most n−1 edges
 
 #### Connectivity
 1. Union find
+    - Counting Number of connections using graph
+    - 给定顶点之间connections, 求相连组件的数量
 2. DFS / BFS
 
 #### Negative Cycles
@@ -351,50 +386,8 @@ row+col == size-1
 
 ### Binary search
 https://www.youtube.com/watch?v=UyFShaHNbNY
-如果需要在中间返回结果，使用下面模板：
-```python
-def bs(arr):
-    left = 0
-    right = len(arr) - 1
-    while left <= right:
-        mid = (left+right) // 2
-        if check(mid) == target:
-            return mid
-        elif check(mid) < target:
-            left = mid + 1
-        else:
-            right = mid - 1
-```
-
-如果需要返回index，使用下面模板：
-这样的写法终止条件是left==right, 区间就剩下一个元素，所以如果有结果一定是left，如果left不对，那就返回默认值
-```python
-# 寻找右边界
-def bs(arr):
-    left = 0
-    right = len(arr)
-    while left < right:
-        mid = (left+right) // 2
-        if check(mid):
-            left = mid + 1
-        else:
-            right = mid
-
-# 寻找左边界
-def bs(arr):
-    left = 0
-    right = len(arr)
-    while left < right:
-        mid = (left+right+1) // 2  # 看到left=mid，就需要上取整！不然会进入死循环
-        if check(mid):
-            right = mid - 1
-        else:
-            left = mid   
-
-# mid = (left+right+1) // 2 的原因：
-# 如果最后剩下两个元素，我们有left=mid，而(left+right) // 2 会给我们上区间，就是left的位置，所以
-# 所以mid最后还是会等于left，就产生死循环，所以+1后我们可以得到下区间，退出循环。
-```
+template:
+leetcode_python/binary_search_example.py
 
 
 ### 题目总结
@@ -405,6 +398,54 @@ def bs(arr):
         - 提前走到终点，该路径不符合条件
         - 如果走到一个点只能选两个方向中一个，证明一定会有另一边的路径不能走到，该路径不符合条件
     - Meet in the middle: 将任务分成两组，对于2^n任务来说可以优化时间
+    - permutations:
+    ```python
+    # Function to print permutations of string 
+    # This function takes three parameters: 
+    # 1. String 
+    # 2. Starting index of the string 
+    # 3. Ending index of the string. 
+    def permute(a, l, r): 
+        if l==r: 
+            print toString(a) 
+        else: 
+            for i in xrange(l,r+1): 
+                a[l], a[i] = a[i], a[l] 
+                permute(a, l+1, r) 
+                a[l], a[i] = a[i], a[l] # backtrack 
+
+
+    # Python function to print permutations of a given list 
+    def permutation(lst): 
+  
+        # If lst is empty then there are no permutations 
+        if len(lst) == 0: 
+            return [] 
+    
+        # If there is only one element in lst then, only 
+        # one permuatation is possible 
+        if len(lst) == 1: 
+            return [lst] 
+    
+        # Find the permutations for lst if there are 
+        # more than 1 characters 
+    
+        l = [] # empty list that will store current permutation 
+    
+        # Iterate the input(lst) and calculate the permutation 
+        for i in range(len(lst)): 
+        m = lst[i] 
+    
+        # Extract lst[i] or m from the list.  remLst is 
+        # remaining list 
+        remLst = lst[:i] + lst[i+1:] 
+    
+        # Generating all permutations where m is first 
+        # element 
+        for p in permutation(remLst): 
+            l.append([m] + p) 
+        return l 
+    ```
 
 
 2. Greedy algorithms
