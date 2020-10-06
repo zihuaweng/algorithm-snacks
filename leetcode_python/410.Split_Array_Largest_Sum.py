@@ -43,33 +43,29 @@ class Solution:
         
         """
         hi = sum(nums)
-        low = sum(nums) // m
+        low = max(sum(nums) // m, max(nums))
         
         while low < hi:
             mid = (low+hi) // 2
-            if self.is_valid(nums, mid, m):
-                hi = mid    # 因为mid本身也是valid的，所以要包含进来
-            else:
+            splits = self.get_splits(nums, mid)
+            if splits > m:
                 low = mid + 1
-                
+            else:
+                hi = mid
         return low
             
             
-    def is_valid(self, nums, target, m):
+    def get_splits(self, nums, target):
         count = 0
         cur_sum = 0
-        for i, val in enumerate(nums):
-            # if val > target, it can't be split
-            if val > target:
-                return False
-            
+        for val in nums:
             if cur_sum + val <= target:
                 cur_sum += val
             else:
                 count += 1
                 cur_sum = val
         count += 1
-        return count <= m
+        return count
         
 
 # https://leetcode.com/problems/split-array-largest-sum/discuss/141497/AC-Java-DFS-%2B-memorization

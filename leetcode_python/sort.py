@@ -51,8 +51,8 @@ class InsertionSort:
         return arr
 
 
-class Solution:
-    def sortArray(self, nums: List[int]) -> List[int]:
+class QuickSort:
+    def sortArray(self, nums):
 
         ## quick sort:
         def quick_sort(head, tail):
@@ -68,13 +68,18 @@ class Solution:
                     r -= 1
                 if l < r:
                     nums[l], nums[r] = nums[r], nums[l]
+            print(r, l, p, nums[r], nums[head:tail+1])
             nums[r], nums[p] = nums[p], nums[r]
             quick_sort(head, l - 1)
             quick_sort(r + 1, tail)
 
         quick_sort(0, len(nums) - 1)
+        return nums
 
-        ## merge sort
+
+class MergeSort:
+    ## merge sort
+    def sort(self, nums):
         def merge_sort(array):
             if len(array) == 1:
                 return
@@ -110,7 +115,7 @@ class Solution:
 # Build Max Heap O(n)
 # heap sort is O(nlogn)
 class Solution:
-    def sortArray(self, nums: List[int]) -> List[int]:
+    def sortArray(self, nums):
 
         def heapify(i, last):  # O(logn)
             largest = i
@@ -136,3 +141,7 @@ class Solution:
 
         return nums
 
+
+
+q = QuickSort()
+print(q.sortArray([1,8,2,7,9,8,2,4]))

@@ -29,3 +29,21 @@ class Solution:
                 continue
             c = candidates[i]
             self.helper(target - c, candidates, i + 1, tmp + [c], res)
+
+
+class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+        n = len(candidates)
+        for i in range(1<<n):
+            cur_sum = 0
+            temp = []
+            for j in range(n-1, -1, -1):
+                if i & (1<<j):
+                    if j > 0 and candidates[j] == candidates[j-1]:
+                        continue
+                    cur_sum += candidates[j]
+                    temp.append(candidates[j])
+            if cur_sum == target:
+                res.append(temp)

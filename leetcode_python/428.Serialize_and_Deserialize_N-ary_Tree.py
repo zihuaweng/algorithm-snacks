@@ -1,63 +1,54 @@
-#!/usr/bin/env python3
-# coding: utf-8
-
-# Time complexity: O()
-# Space complexity: O()
-
-# https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/
-
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+"""
 class Codec:
-
-    def serialize(self, root):
+    def serialize(self, root: 'Node') -> str:
         """Encodes a tree to a single string.
-
-        :type root: TreeNode
+        
+        :type root: Node
         :rtype: str
         """
-        data = []
-
-        def helper(root):
+        pre_order = []
+        
+        def dfs(root):
             if not root:
-                data.append('#')
-                return
-            data.append(str(root.val))
-            helper(root.left)
-            helper(root.right)
-
-        helper(root)
-        return ','.join(data)
-
-
-    def deserialize(self, data):
+                return None
+            pre_order.append(str(root.val))
+            pre_order.append(str(len(root.children)))
+            for c in root.children:
+                dfs(c)
+                
+        dfs(root)
+        return ','.join(pre_order)
+	
+    def deserialize(self, data: str) -> 'Node':
         """Decodes your encoded data to tree.
-
+        
         :type data: str
-        :rtype: TreeNode
+        :rtype: Node
         """
         if not data:
             return None
+        
         queue = collections.deque(data.split(','))
-
-        def helper(queue):
+        
+        def dfs():
             if not queue:
                 return None
-            tmp = queue.popleft()
-            if tmp == '#':
-                return None
-            root = TreeNode(int(tmp))
-            root.left = helper(queue)
-            root.right = helper(queue)
-            return root
-
-        return helper(queue)
-
+            val = int(queue.popleft())
+            count = int(queue.popleft())
+            node = Node(val, [])
+            for _ in range(count):
+                node.children.append(dfs())
+                
+            return node
+        
+        return dfs()
+        
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()

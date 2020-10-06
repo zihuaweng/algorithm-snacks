@@ -13,18 +13,37 @@
 
 class Solution:
     def minEatingSpeed(self, piles: List[int], H: int) -> int:
-
-        def valid(mid):
-            c = sum((p + mid - 1) // mid for p in piles)
-            return True if c > H else False
-
-        i = 1
-        j = max(piles)
-        while i <= j:
-            mid = (i + j) // 2
-            if valid(mid):
-                i = mid + 1
+        """
+        [3,6,7,11] 8
+        
+        - try : k in 1 - sum(piles)   binary search O(logn)
+            k = 1:  hours > 8   k ++
+            k = sum, hours < 8  k --
+        
+        - lo = 1, hi = sum(piles)
+        - calculate the hours it take Koko to finish the bana
+            - if hours > H:  increase k, lo = k + 1
+            - if hours < H:  decrease k, hi = k
+            - if hours = H:  decrease k, hi = k
+        """
+        lo = 1
+        hi = sum(piles)
+        
+        while lo < hi:
+            mid = (lo+hi)//2
+            hours = self.get_hours(piles, mid)
+            # print(lo, hi, mid, hours, mid)
+            if hours > H:
+                lo = mid + 1
             else:
-                j = mid - 1
-
-        return i
+                hi = mid
+        return lo
+            
+            
+    def get_hours(self, piles, target):
+        hours = 0
+        for p in piles:
+            hours += p // target
+            if p % target > 0:
+                hours += 1
+        return hours 

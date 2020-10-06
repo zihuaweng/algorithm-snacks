@@ -4,7 +4,6 @@
 # Time complexity: O()
 # Space complexity: O()
 
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, x):
@@ -17,39 +16,44 @@ class Codec:
     def serialize(self, root: TreeNode) -> str:
         """Encodes a tree to a single string.
         """
-        data = []
-
-        def helper(root):
+        pre_order = []
+        
+        def dfs(root):
             if not root:
-                return
-            data.append(str(root.val))
-            helper(root.left)
-            helper(root.right)
-
-        helper(root)
-        return ','.join(data)
+                return None
+            pre_order.append(str(root.val))
+            dfs(root.left)
+            dfs(root.right)
+            
+        dfs(root)
+        return ','.join(pre_order)
 
     def deserialize(self, data: str) -> TreeNode:
         """Decodes your encoded data to tree.
         """
         if not data:
             return None
+        
         queue = collections.deque(data.split(','))
-
-        def helper(queue, max_val, min_val):
+        
+        def dfs(min_val, max_val):
             if not queue:
                 return None
-            tmp = int(queue[0])
-            if tmp < min_val or tmp > max_val:
+            val = int(queue[0])
+            if val < min_val or val > max_val:
                 return None
-            tmp = int(queue.popleft())
-            root = TreeNode(tmp)
-            root.left = helper(queue, tmp, min_val)
-            root.right = helper(queue, max_val, tmp)
-            return root
-
-        return helper(queue, float('inf'), float('-inf'))
+            val = int(queue.popleft())
+            node = TreeNode(val)
+            node.left = dfs(min_val, val)
+            node.right = dfs(val, max_val)
+            return node
+        
+        return dfs(float('-inf'), float('inf'))
 
 # Your Codec object will be instantiated and called as such:
-# codec = Codec()
-# codec.deserialize(codec.serialize(root))
+# Your Codec object will be instantiated and called as such:
+# ser = Codec()
+# deser = Codec()
+# tree = ser.serialize(root)
+# ans = deser.deserialize(tree)
+# return ans

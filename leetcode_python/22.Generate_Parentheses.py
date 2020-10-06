@@ -12,23 +12,25 @@
 # 如果左括号不多于右括号, 那么此时只能添加一个左括号, 递归进入下一层
 
 class Solution:
-    def generateParenthesis(self, n: int):
-        if n == 0:
-            return ''
+    def generateParenthesis(self, n: int) -> List[str]:
+        """
+        when num_left > 0, we can add '('
+        
+        only add ')' when num_left < num_right
+        """
         res = []
-        self.helper(n, n, '', res)
+        self.dfs(n, n, '', res)
         return res
-
-    def helper(self, l, r, string, res):
-        if l > r:
-            return
-        if l == 0 and r == 0:
-            res.append(string)
-        if l > 0:
-            self.helper(l - 1, r, string + '(', res)
-        if r > 0:
-            self.helper(l, r - 1, string + ')', res)
-
+        
+    def dfs(self, num_l, num_r, temp, res):
+        if num_l == num_r == 0:
+            res.append(temp)
+            
+        if num_l:
+            self.dfs(num_l-1, num_r, temp+'(', res)
+        
+        if num_l < num_r:
+            self.dfs(num_l, num_r-1, temp+')', res)
 
 # https://www.youtube.com/watch?v=PCb1Ca_j6OU
 

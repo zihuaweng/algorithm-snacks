@@ -15,44 +15,50 @@ class Codec:
 
     def serialize(self, root):
         """Encodes a tree to a single string.
-
+        
         :type root: TreeNode
         :rtype: str
         """
-        res = []
-
-        def pre_order(node):
-            if node:
-                res.append(str(node.val))
-                pre_order(node.left)
-                pre_order(node.right)
+        pre_order = []
+        
+        def dfs(root):
+            if not root:
+                pre_order.append('#')
             else:
-                res.append('#')
-
-        pre_order(root)
-
-        return ' '.join(res)
+                pre_order.append(str(root.val))
+                dfs(root.left)
+                dfs(root.right)
+                
+        dfs(root)
+                
+        return ','.join(pre_order)
+        
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
-
+        
         :type data: str
         :rtype: TreeNode
         """
-        vals = iter(data.split())   # 也可以写成一个queue
-
-        def pre_order():
-            val = next(vals)
+        if not data:
+            return None
+        
+        queue = collections.deque(data.split(','))
+        
+        def dfs():
+            val = queue.popleft()
             if val == '#':
                 return None
-            node = TreeNode(int(val))
-            node.left = pre_order()
-            node.right = pre_order()
+            else:
+                val = int(val)
+                node = TreeNode(val)
+                node.left = dfs()
+                node.right = dfs()
+                
             return node
-
-        root = pre_order()
-
-        return root
+        
+        return dfs()
+                
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()

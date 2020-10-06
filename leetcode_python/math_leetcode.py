@@ -26,7 +26,7 @@ def divisor1(num):
     return count
 
 
-# count prime
+# count prime， 
 class Solution:
     def countPrimes(self, n: int) -> int:
         if n < 3:
@@ -35,9 +35,19 @@ class Solution:
         primes[0] = primes[1] = False
         for i in range(int(n ** 0.5) + 1):
             if primes[i]:
-                for j in range(i + i, n, i):
+                for j in range(i + i, n, i):   # delete all its multiples
                     primes[j] = False
         return sum(primes)
+
+
+# Use upper limit of (n**0.5)+1, because:
+#  (a) the smallest factor of a non-prime number will not be > sqrt(n).
+#      Ex. non-prime = 100,
+#           5*20
+#           10*10,
+#           20*5   # !! we have seen 5 before.
+
+
 
 # 判断prime，因为所有prime都是6n+1或者6n-1，同时我们只需要计算到sqrt(n)就可以
 def find_primer(n):

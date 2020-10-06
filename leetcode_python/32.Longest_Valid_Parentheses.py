@@ -8,34 +8,44 @@
 
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-
-        #         )   (  (      (         )       )     (       )   ) )
-        # idx    0   1   2     3         4       5     6        7
-        # left   -1  0   0     0         0       0     0        0
-        # stack  [] [1]  [1,2] [1,2,3]  [1,2]   [1]   [1,6]    [1]
-        # max    0   0    0     0       4-2     5-1    4       7-1
-
-        if not s:
-            return 0
-
-        left = -1
+        """
+        if (: add to stack
+        if ): 
+            if stack and stack[-1] == (: pop and calculate the max
+            else: add to stack
+        
+        calculate the max:
+        ( * * * * ( * *  
+        0 1 2 3 4 5 6 7 
+        
+        * means the string is popped
+        so we have
+        stack = [0, 5]
+        so we already have 5 - 0 - 1= 4 valid parentheses
+        
+        if we have next string == ), index = 8
+        now stack[-1] == (, stack.pop()
+        now stack = [0]
+        then the valid length will be 8 - 0 = 7
+        so:
+            if stack: max = max(max, idx - stack[-1])
+            else:     max = max(max, idx - (-1))    # when stack is empty
+        """
         stack = []
-        max_len = 0
-        for i in range(len(s)):
-            if s[i] == ')':
-                if stack:
-                    stack.pop()
-                    if stack:
-                        max_len = max(max_len, i - stack[-1])
-                    else:
-                        max_len = max(max_len, i - left)
-                else:
-                    left = i
-            else:
+        res = 0
+        
+        for i, char in enumerate(s):
+            if char == '(':
                 stack.append(i)
-
-        return max_len
-
-
-
-
+            else:
+                if stack and s[stack[-1]] == '(':
+                    stack.pop()
+                    
+                    offset = stack[-1] if stack else -1
+                    res = max(res, i - offset)
+                else:
+                    stack.append(i)
+                    
+        return res
+        
+        
