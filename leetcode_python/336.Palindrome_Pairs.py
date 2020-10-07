@@ -9,15 +9,36 @@
 
 class Solution:
     def palindromePairs(self, words: List[str]) -> List[List[int]]:
-        d = {w: i for i, w in enumerate(words)}
-        print(d)
-        res = set()
-        for i, w in enumerate(words):
-            for j in range(len(w) + 1):
-                pre, pos = w[:j], w[j:]
-                if pre == pre[::-1] and pos[::-1] in d and d[pos[::-1]] != i:
-                    res.add((d[pos[::-1]], i))
-                if pos == pos[::-1] and pre[::-1] in d and d[pre[::-1]] != i:
-                    res.add((i, d[pre[::-1]]))
-
+        """
+        one in the pair should be the part of the other pair
+        
+        xxxx  yy yyyy
+        we want xxxx[::-1] == yyyy and yy itself is a palindrome
+        or
+        yyyy yy xxxx
+        vice versa
+        
+        so we can put all words in a dict
+        find if they are the substring of any other word
+        
+        
+        """
+        d = {w : i for i, w in enumerate(words)}
+        
+        res = []
+        for idx, word in enumerate(words):
+            for i in range(len(word)+1):
+                str1 = word[:i]
+                str2 = word[i:]
+                # first part should be palindrome, second part (reverse) should be in w
+                if str1 == str1[::-1]:
+                    back = str2[::-1]
+                    if back in d and back != word:
+                        res.append([d[str2[::-1]], idx])
+                # second part should be palindrome, first part (reverse) should be in w
+                if str2 and str2 == str2[::-1]:   # if the last part is empty, it is calculated before 
+                    back = str1[::-1]
+                    if back in d and back != word: 
+                        res.append([idx, d[str1[::-1]]])
+            # print(res)
         return res

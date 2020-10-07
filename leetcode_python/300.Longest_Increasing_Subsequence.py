@@ -59,10 +59,10 @@ class Solution:
             r = n
             while l < r:
                 m = (l+r) // 2
-                if num < dp[m]:
-                    r = m
-                else:
+                if num > dp[m]:
                     l = m + 1
+                else:
+                    r = m
             
             index = l
             if dp[index-1] < num and num < dp[index]:

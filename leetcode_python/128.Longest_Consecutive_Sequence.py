@@ -33,8 +33,8 @@ class Solution:
         1. sort array.  O(nlogn)
         2. look for num and get the continues nums.  O(n)
 
-        O(nlogn)
-        O(1) # sort in place
+        time O(nlogn)
+        space O(n) 
 
 
         [100, 4, 200, 1, 3, 2]
