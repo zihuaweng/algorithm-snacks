@@ -31,7 +31,7 @@ class Solution:
         for i in range(n):
             dp[i][i] = 1
         
-        for l in range(2, n+1):
+        for l in range(2, n+1):   # length
             for i in range(n-l+1):
                 j = i + l - 1
                 if s[i] == s[j]:

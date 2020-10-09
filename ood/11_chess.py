@@ -58,8 +58,6 @@ class Box:
 
 
 
-
-
 from abc import ABC, abstractmethod
 
 class Piece(ABC):
@@ -81,9 +79,6 @@ class Piece(ABC):
 
   def can_move(self, board, start_box, end_box):
     None
-
-
-
 
 
 
@@ -141,9 +136,6 @@ class King(Piece):
 
 
 
-
-
-
 class Knight(Piece):
   def __init__(self, white):
     super().__init__(white)
@@ -157,10 +149,6 @@ class Knight(Piece):
     x = abs(start.get_x() - end.get_x())
     y = abs(start.get_y() - end.get_y())
     return x * y == 2
-
-
-
-
 
 
 
@@ -230,10 +218,6 @@ class Move:
 
   def set_castling_move(self, castling_move):
     self.__castling_move = castling_move
-
-
-
-
 
 
 

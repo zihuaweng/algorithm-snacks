@@ -456,12 +456,14 @@ Constructs a solution to the problem by always making a choice that looks the be
 
 
 3. Dynamic programming
+[DP summary from Huifeng](https://docs.google.com/presentation/d/1f1gLTRmQTBxvZzHjlGzrMv8aHdNnCMilKm72Rxlptmk/edit)
 Combines the correctness of complete search and the efficiency of greedy algorithms.
 
     - 使用场景
         - Finding an optimal solution
         - Counting the number of solutions
         - 下一个结果只依赖前一个结果
+        - 将大问题拆成几个小问题，且满足无后效性， 最优子结构性质。
     - coin problem：
         - 一组subset的sum需要等于一个target  （从0到target，当前k只会依赖于target-k的结果）
         - 多少组subset的sum可以等于一个target  （从0到target，当前k只会依赖于target-k的结果）
