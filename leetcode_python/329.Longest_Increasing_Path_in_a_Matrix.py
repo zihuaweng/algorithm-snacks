@@ -11,8 +11,7 @@ class Solution:
         res = 0
         for i in range(m):
             for j in range(n):
-                self.dfs(matrix, i, j, dp)
-                res = max(res, dp[i][j])
+                res = max(res, self.dfs(matrix, i, j, dp))
                 
         return res
     

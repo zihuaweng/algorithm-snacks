@@ -9,29 +9,46 @@
 
 class Solution:
     def addOperators(self, num: str, target: int) -> List[str]:
-        res = []
+        """
+        1 2 3
+         +
+         -
+         *
+         
+        dfs + backtrack
+        
+        [12 + 3]     [- 4]  dfs(5568980898)
+        pre_total     prev
+        
+        [12 + 3]     [- 4 * 5 * 56]  dfs(8980898)
+        pre_total         prev
+        
+        """
         if not num:
-            return res
-
-        self.dfs(res, num, target, '', 0, 0, 0)
+            return []
+        
+        res = []
+        self.dfs(num, 0, '', res, target, 0, 0)
         return res
-
-    def dfs(self, res, num, target, path, cal, idx, pre_cal):
-        # 终止运算
+    
+    def dfs(self, num, idx, temp, res, target, prev_total, prev):
         if idx == len(num):
-            if cal == target:
-                res.append(path)
+            if target == prev_total + prev:
+                res.append(temp)
             return
-
-        for i in range(idx, len(num)):
-            cur = num[idx:i + 1]
-            if len(cur) > 1 and cur[0] == '0':
-                break
-            val = int(cur)
-            if idx == 0:
-                self.dfs(res, num, target, path + cur, cal + val, i + 1, val)
+        
+        for i in range(idx+1, len(num)+1):
+            if num[idx] == '0' and i > idx+1:   # 05 starts with 0 but isn't a valid number
+                continue
+                
+            cur = num[idx:i]
+            val = int(cur) 
+            
+            if idx == 0:    # we don't need to add operators to the first one
+                self.dfs(num, i, cur, res, target, prev_total+prev, val)
             else:
-                self.dfs(res, num, target, path + '+' + cur, cal + val, i + 1, val)
-                self.dfs(res, num, target, path + '-' + cur, cal - val, i + 1, -val)
-                self.dfs(res, num, target, path + '*' + cur, cal - pre_cal + pre_cal * val, i + 1, pre_cal * val)
-
+                self.dfs(num, i, temp+'+'+cur, res, target, prev_total+prev, val)
+                self.dfs(num, i, temp+'-'+cur, res, target, prev_total+prev, -val)
+                self.dfs(num, i, temp+'*'+cur, res, target, prev_total, prev*val)
+        
+        

@@ -9,6 +9,30 @@
 
 class Solution:
     def minTransfers(self, transactions: List[List[int]]) -> int:
+        """
+        [[0,1,10], [1,0,1], [1,2,5], [2,0,5]]
+        
+        balance:
+        0: -10 + 1 + 5 => -4
+        1: 10 - 1 - 5 => 4
+        2: 5 - 5 => 0
+        
+        0 + 1 == 0: balance
+        
+        [[0,1,10], [2,0,5]]
+        
+        0: -10 + 5 => -5
+        1: 10 
+        2: -5 
+        
+        1. calculate the balance of all nodes (dict)
+        2. dfs backtrack to find the min path
+        
+            start: first n with debt
+            end: reach the end of debt
+            everytime pick the one with opposite sign 
+            
+        """
         total = collections.defaultdict(int)
         for s, r, money in transactions:
             total[s] -= money

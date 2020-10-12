@@ -21,3 +21,28 @@ class Solution:
                 step += 1
         return step
 
+
+# 与55 类似的代码
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        
+        n = len(nums)
+        start = end = 0
+        step = 0
+        if n == 1:
+            return step
+        
+        while start <= end:
+            new_end = 0
+            for i in range(start, end+1):
+                new_end = max(new_end, i+nums[i])
+                if new_end >= n-1:
+                    return step + 1
+            step += 1
+            start = end + 1
+            end = new_end
+            
+        return -1
+

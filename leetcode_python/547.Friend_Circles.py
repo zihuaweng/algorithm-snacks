@@ -64,7 +64,7 @@ class Solution:
             if p_x != p_y:
                 parent[p_y] = p_x
 
-        for i in range(n):
+        for i in range(n-1):
             for j in range(i + 1, n):
                 if M[i][j] == 1:
                     union(i, j)

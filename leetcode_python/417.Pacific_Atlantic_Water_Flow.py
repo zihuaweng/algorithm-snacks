@@ -13,42 +13,58 @@
 
 class Solution:
     def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+        """
+        dfs
+        treverse the graph twoice, and if the location can be reached by two directions
+        that is the result.
+        
+        start: pac: left up  | atl: right, down
+        end: if we can't go to the next
+        
+        """
         if not matrix:
             return []
-
+        
+        res = []
+        
         m = len(matrix)
         n = len(matrix[0])
-        pacific_m = [[False for _ in range(n)] for _ in range(m)]
-        atlantic_m = [[False for _ in range(n)] for _ in range(m)]
-
+        
+        pac_m = [[0] * n for _ in range(m)]        
+        atl_m = [[0] * n for _ in range(m)]
+        
         for i in range(m):
-            # 从第一列（pacific）到对面atlantic
-            self.dfs(matrix, i, 0, pacific_m)
-            # 从最后一列（atlantic）到对面pacific
-            self.dfs(matrix, i, n - 1, atlantic_m)
-
-        for i in range(n):
-            # 从第一行（pacific）到最后一行atlantic
-            self.dfs(matrix, 0, i, pacific_m)
-            # 从最后一行（atlantic）到第一行pacific
-            self.dfs(matrix, m - 1, i, atlantic_m)
-
-        res = []
+            self.dfs(matrix, pac_m, i, 0)
+            
+        for j in range(n):
+            self.dfs(matrix, pac_m, 0, j)
+        
+        for i in range(m):
+            self.dfs(matrix, atl_m, i, n-1)
+            
+        for j in range(n):
+            self.dfs(matrix, atl_m, m-1, j)
+            
         for i in range(m):
             for j in range(n):
-                if pacific_m[i][j] and atlantic_m[i][j]:
-                    res.append([i, j])
+                if pac_m[i][j] == 1 and atl_m[i][j] == 1:
+                    res.append([i,j])
+                    
         return res
-
-    def dfs(self, matrix, x, y, visited):
-        visited[x][y] = True
-        # 存放一个四个方位的var方便计算左右上下
-        for i, j in [(0, -1), (0, 1), (-1, 0), (1, 0)]:
-            nx, ny = x + i, y + j
-            if 0 <= nx < len(matrix) and 0 <= ny < len(matrix[0]) and not visited[nx][ny] and matrix[nx][ny] >= \
-                    matrix[x][y]:
-                self.dfs(matrix, nx, ny, visited)
-
+    
+    
+    def dfs(self, matrix, seen, i, j):
+        seen[i][j] = 1
+        
+        for x, y in [(i+1, j), (i-1, j), (i, j-1), (i, j+1)]:
+            if x < 0 or x >= len(matrix) or y < 0 or y >= len(matrix[0]):
+                continue
+            if seen[x][y] == 1:
+                continue
+            if matrix[x][y] < matrix[i][j]:
+                continue
+            self.dfs(matrix, seen, x, y)
+            
 
 # 第二种方法是bfs，使用一个queue去记录可以到达的点，最后同样是合并来给你个能到达的列表的重合返回。
 

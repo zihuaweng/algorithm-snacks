@@ -33,31 +33,43 @@ class Solution:
 
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        left_corner = [False] * (2*n-1) 
-        right_corner = [False] * (2*n-1) 
-        res = []
+        """
+        dfs 
+        start : first row
+        end : last row
         
-        def dfs(queens):
-            row = len(queens)
-            if row == n:
-                res.append(queens)
-                return
-            
-            for col in range(n):
-                left = row+col
-                right = row-col+n-1
-                if col in queens or left_corner[left] or right_corner[right]:
-                    continue
-                left_corner[left] = right_corner[right] = True     # backtrack
-                dfs(queens+[col])
-                left_corner[left] = right_corner[right] = False    # backtrack
-                    
+        store col in cols_set
+        
+        """
+        cols = set()
+        left_diagonal = set()
+        right_diagonal = set()
+        res = []
+        self.dfs(n, 0, cols, left_diagonal, right_diagonal, [], res)
+        return res
+    
+    def dfs(self, n, row, cols, left_diagonal, right_diagonal, temp, res):
+        if row == n:
+            res.append(temp)
+            return
+        
+        for col in range(n):
+            left = col+row
+            right = n+row-col-1
+            if col in cols or left in left_diagonal or right in right_diagonal:
+                continue
+                
+            # add it to the set
+            cols.add(col)
+            left_diagonal.add(left)   # n*2-1
+            right_diagonal.add(right)   
+            cur_row = '.'*col + 'Q' + '.'*(n-col-1)
 
-        dfs([])
-        result = []
-        for r in res:
-            queen = []
-            for col in r:
-                queen.append('.'*col + 'Q' + '.'*(n-col-1))
-            result.append(queen)
-        return result
+            self.dfs(n, row+1, cols, left_diagonal, right_diagonal, temp+[cur_row], res)
+
+            # backtrack
+            cols.remove(col)
+            left_diagonal.remove(left)
+            right_diagonal.remove(right)
+
+                

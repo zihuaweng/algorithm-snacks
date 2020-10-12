@@ -5,16 +5,32 @@
 # Time complexity: O(n)
 # Space complexity: O(1)
 class Solution:
-    def canJump(self, nums: list) -> bool:
-        max_step = 0
+    def canJump(self, nums: List[int]) -> bool:
+        """
+        [2,3,1,1,4]
+         | | |
+           | | | |
+           
+           
+        [3,2,1,0,4]
+         | | | |
+           | | |
+               |
+               
+        time O(n**2)
+        
+        """
+        n = len(nums)
+        
         i = 0
-        while i < len(nums) and i <= max_step:
-            max_step = max(max_step, i + nums[i])
-            if max_step >= len(nums) - 1:
+        end = 0
+        while i <= end and i < n:
+            end = max(end, i + nums[i])
+            if end >= n-1:
                 return True
             i += 1
+            
         return False
-
 
 # 第二种greedy的方法，从后往前
 # goal是列表的长度，从后到前，看一下有没有点能满足，在当前位置可以到goal，有的话前移goal到这个点，继续。
