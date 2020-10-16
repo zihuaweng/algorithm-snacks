@@ -137,6 +137,24 @@ def dfs(self, board, i, j, word):
     board[i][j] = temp
     return FalseF
 ```
+2. 使用memorization保存前面的计算
+    1. 如果是单个node的visits，直接使用dict
+    2. 如果是组合的dfs，例如Campus Bikes II，可以使用状态压缩，binary来保存key
+        ```python
+        # 如果是n个数的组合，0000， 可以有1<<n种状态
+        mo = [0] * (1<<n)  
+
+        # ---------------
+        if mo[state] != 0:
+            return mo[state]
+
+        if state & (1<<j) == 0:  # 意味这j没有被访问过
+            st = state | (1<<j)  # 加入j生成新的状态
+            res = dfs(st, xxxx)
+
+        mo[state] = res
+        return res
+        ```
 
 #### BFS
 
@@ -164,7 +182,7 @@ def shortestPathBinaryMatrix(grid):
 	    i, j, d = q.popleft()
 		if i == n-1 and j == n-1: 
             return d
-		for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)):F
+		for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)):
 			if 0 <= x < n and 0 <= y < n and not grid[x][y]:
 				grid[x][y] = 1
 				q.append((x, y, d+1))

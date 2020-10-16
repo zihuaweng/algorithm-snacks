@@ -45,7 +45,7 @@ class Medication:
 
         return self.week_schedule
 
-    def update_week_schedule(self):
+    def update_week_schedule(self): 
         self.week_schedule = {}
         day = date.today()
         weekday = day.weekday()

@@ -21,6 +21,8 @@ def dijkstra(edges, f, t):
 
     while q:
         (cost, v1) = heapq.heappop(q)
+        if v1 == t:
+            return dist[t], prev      # 提前结束
         seen.add(v1)
         # lazy dijkstra 会添加重复的node，但是cost不是最优的，这一步可以跳过重复且非最优的结果。
         # eager dijkstra 如果使用index priority queue可以避免加入重复的值，可以省略这一步
@@ -35,8 +37,7 @@ def dijkstra(edges, f, t):
                 prev[v2] = v1    # 记录上一个节点
                 heapq.heappush(q, (new_cost, v2))
                     
-        if v1 == t:
-            return dist[t], prev      # 提前结束
+        
     return float('inf'), prev
 
 def function(edges, f, t):

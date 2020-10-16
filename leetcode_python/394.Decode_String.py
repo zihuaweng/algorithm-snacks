@@ -5,24 +5,34 @@
 # Space complexity: O()
 
 
-class Solution(object):
-    def decodeString(self, s):
+class Solution:
+    def decodeString(self, s: str) -> str:
         """
-        :type s: str
-        :rtype: str
+        3[a2[c]4[a]]
+        
+        3 * a2[c]
+            a
+              2 * c
+            
+        stack:  ('', 3), 
+        num: 
+        str: accaaaa
+        
         """
-        stack, num = [["", 1]], 0
-
-        for c in s:
-            if c.isdigit():
-                num = num * 10 + int(c)
-            elif c == '[':
-                stack.append(["", num])
+        stack = []
+        num = 0
+        string = ''
+        for char in s:
+            if char.isdigit():
+                num = num * 10 + int(char)
+            elif char == '[':
+                stack.append((string, num))
+                string = ''
                 num = 0
-            elif c == ']':
-                top_num, count = stack.pop()
-                stack[-1][0] += top_num * count
+            elif char == ']':
+                prev, _num = stack.pop()
+                string = prev + string * _num 
             else:
-                stack[-1][0] += c
-
-        return stack[-1][0]
+                string += char
+        
+        return string

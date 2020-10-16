@@ -4,99 +4,73 @@
 # Time complexity: O()
 # Space complexity: O()
 
-# 另外两题可以使用一样的代码
 
 class Solution:
     def calculate(self, s: str) -> int:
-        if not s:
-            return 0
-
-        queue = [i for i in s if i != ' ']
-        queue.append(' ')  # 终止符号，不然后面计算会漏掉
-        return self.helper(queue)
-
-    def helper(self, queue):
-        num = 0
-        pre_sum = 0
-        pre = 0
-        sig = '+'
-        while queue:
-            # print(num, pre, pre_sum, sig)
-            cur = queue.pop(0)
-            if cur.isdigit():
-                num = num * 10 + ord(cur) - ord('0')
-            elif cur == '(':
-                num = self.helper(queue)
-            else:
-                if sig == '+':
-                    pre_sum += pre
-                    pre = num
-                elif sig == '-':
-                    pre_sum += pre
-                    pre = -num
-                elif sig == '*':
-                    pre *= num
-                else:
-                    if pre < 0:
-                        pre = -(abs(pre) // num)
-                    else:
-                        pre //= num
-                if cur == ')':
-                    break
-                sig = cur
-                num = 0
-        return pre + pre_sum
-
-
-# https://leetcode.com/problems/basic-calculator-iii/discuss/202979/A-generic-solution-for-Basic-Calculator-I-II-III
-# 通用方法
-# 但是需要处理负数问题
-
-class Solution:
-    def calculate(self, s: str) -> int:
-        if not s:
-            return 0
-
-        # remove the space and correct negative integers.
+        """
+        think it as multiple string of basic calculator II
+        
+        (2+6* 3+5- (3*14/7+2)*5)+3
+        
+        1. (3*14/7+2)  -> sum1
+        2. (2+6* 3+5- sum *5) -> sum2 
+        3. sum2 + 3 
+        
+        what we need is a function eval() to calculate +-*/ without ()
+        
+        since the return eval() might be negative, it could be
+        
+        2+-6*-3+5--3*-14
+        ->
+        [2, -6*-3, 5, -(-3*-4)]
+        
+        """
         s = s.replace(' ', '')
-        for i in range(len(s)):
-            if s[i] == '-' and (i == 0 or s[i - 1] == '('):
-                s = s[:i] + '0' + s[i:]
-
-        order_mp = {'+': 0, '-': 0, '*': 1, '/': 1, ')': -1}
-        numstack, opstack = [], []
-        i = 0
-        s += '+'
-        while i < len(s):
-            if s[i] == '(':
-                opstack.append(s[i])
-                i += 1
-            elif s[i].isdigit():
-                tmp_num = ''
-                while i < len(s) and s[i].isdigit():
-                    tmp_num += s[i]
-                    i += 1
-                numstack.append(int(tmp_num))
+        stack = []
+        string = ''
+        
+        for char in s:
+            if char == '(':
+                stack.append(string)
+                string = ''
+            elif char == ')':
+                string = stack.pop() + str(self.eval(string))
             else:
-                while opstack and opstack[-1] != '(' and order_mp[s[i]] <= order_mp[opstack[-1]]:
-                    num2 = numstack.pop(-1)
-                    num1 = numstack.pop(-1)
-                    tmp_res = self.helper(num1, num2, opstack.pop(-1))
-                    numstack.append(tmp_res)
-
-                if s[i] == ')':
-                    opstack.pop(-1)
+                string += char
+                
+        return self.eval(string)
+    
+    
+    def eval(self, s):
+        print(s)
+        stack = []
+        num = 0
+        sign = '+'
+        negative = 1
+        
+        s += ' '
+        
+        for i, char in enumerate(s):
+            if char.isdigit():
+                num = num*10 + int(char)
+            else:
+                # the only different with basic calculator II is this to add negative to num
+                if char == '-' and (i == 0 or not s[i-1].isdigit()):  
+                    negative = -1
+                    continue
+                num *= negative
+                negative = 1
+                if sign == '+' or sign == '-':
+                    temp = num if sign == '+' else -num
+                    stack.append(temp)
+                elif sign == '*':
+                    stack[-1] *= num
                 else:
-                    opstack.append(s[i])
-                i += 1
-        return numstack[0]
-
-    def helper(self, n1, n2, op):
-        if op == '+':
-            return n1 + n2
-        elif op == '-':
-            return n1 - n2
-        elif op == '*':
-            return n1 * n2
-        else:
-            return n1 // n2
+                    temp_sign = -1 if stack[-1] < 0 else 1
+                    stack[-1] = temp_sign * (abs(stack[-1])//num)
+                num = 0
+                sign = char
+                
+        return sum(stack)
+        
+        

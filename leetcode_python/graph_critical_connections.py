@@ -19,11 +19,12 @@ def find_critical_connections(graph):
                 rank[node] = min(rank[node], ids[child])   # 如果已经走过了，比较子节点的level(就是访问时id)，和当前rank
     
     dfs(0, -1, 0)
+    print(ids)
     return bridges
 
 
 # 更加高效的写法
-def find_critical_connections(graph):
+def find_critical_connections2(graph):
     length = len(graph)
     rank = [-1] * length   # -1 表示没有visited
     bridges = []

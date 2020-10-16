@@ -10,42 +10,48 @@
 
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
-        graph = {}
-        in_degree = {}
-        self.build_graph(graph, in_degree, words)
-        res = self.dfs(graph, in_degree)
-        return res
-
-    def build_graph(self, graph, in_degree, words):
-        for w in words:            #  这里很重要，否则例子['z', 'z']会报错 # 或者使用一个长度26的list保存
+        """
+        1. build graph
+            find the order
+        wrt wrf.  t -> f
+        er ett   r->t
+        w -> e
+        e->r
+        
+        compare each word with the next word, find the first diff char
+    
+        2. topological sort
+            count indegree for each char
+            start with node with 0 indegree, -1 if we visit the node
+            keep adding node with 0 indegree
+        w e r t f
+        
+        """
+        # build graph
+        in_degree = {}        
+        for w in words:
             for c in w:
-                graph[c] = set()
-                in_degree[c] = 0
-
+                in_degree[c] = 0    # important for ['z', 'z'] case
+                
+        graph = collections.defaultdict(set)
         for i in range(1, len(words)):
-            a = words[i - 1]
+            a = words[i-1]
             b = words[i]
-            idx = 0
-            while idx < len(a) and idx < len(b):
-                if a[idx] != b[idx]:
-                    if b[idx] not in graph[a[idx]]:  # 防止同样组合多次出现
-                        graph[a[idx]].add(b[idx])
-                        in_degree[b[idx]] += 1
+            if len(a) > len(b) and a.startswith(b):
+                return ''
+            for j in range(min(len(a), len(b))):
+                if a[j] != b[j]:
+                    if b[j] not in graph[a[j]]:   # in case we add duplicated keys
+                        graph[a[j]].add(b[j])
+                        in_degree[b[j]] += 1
                     break
-                idx += 1
-
-    def dfs(self, graph, in_degree):
-        res = ''
-        queue = [i for i in graph if in_degree[i] == 0]
+                        
+        # read graph
+        queue = [w for w, count in in_degree.items() if count == 0]
         for q in queue:
-            res += q
-            for char in graph[q]:
-                in_degree[char] -= 1
-                if in_degree[char] == 0:
-                    queue.append(char)
-
-        if len(res) == len(graph):
-            return res
-        else:
-            return ""
-
+            for c in graph[q]:
+                in_degree[c] -= 1
+                if in_degree[c] == 0:
+                    queue.append(c)
+                    
+        return ''.join(queue) if len(queue) == len(in_degree) else ""

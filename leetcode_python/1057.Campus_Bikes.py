@@ -7,26 +7,46 @@
 
 class Solution:
     def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> List[int]:
+        """
+        brute force
+
+        1. calculate dist between each bike and person, put them in the list    O(n*n)
+        2. sort the list    O(nlogn)
+        3. go throught the list, save the bike-person pair and make token bikes and people to visited. O(n)
+
+        O(n*n)
+
+        超时
+        1. calculate dist between each bike and person, put them in the list.  O(n*n)
+        2. put dist to a heap, (dist, bike, person)  O(logn)
+        3. go throught the list, save the bike-person pair and make token bikes and people to visited. O(n)
+
+
+        bucket sort
+        it's O(M * N) time and O(M * N)
+        """
         n = len(workers)
         m = len(bikes)
-        dis = [[] for _ in range(2001)]
+        seen_b = [0] * m
+        res = [-1] * n
+        buckets = [[] for _ in range(2001)]
+        
         for i in range(n):
             for j in range(m):
-                idx = self.dist(workers[i], bikes[j])
-                dis[idx].append([i, j])
-
-        assigned = [False for _ in range(n)]
-        occupied = [False for _ in range(m)]
-        res = [None] * n
-        for d in dis:
-            if d:
-                for w, b in d:
-                    if not assigned[w] and not occupied[b]:
-                        res[w] = b
-                        assigned[w] = True
-                        occupied[b] = True
-
+                w = workers[i]
+                b = bikes[j]
+                dist = self.get_dist(w, b)
+                buckets[dist].append((i,j))
+                
+        for idx in range(2001):
+            for i, j in buckets[idx]:
+                if res[i] == -1 and seen_b[j] == 0:
+                    res[i] = j
+                    seen_b[j] = 1
+                    
         return res
-
-    def dist(self, worker, bike):
-        return abs(worker[0] - bike[0]) + abs(worker[1] - bike[1])
+            
+            
+    def get_dist(self, worker, bike):
+        dist = abs(worker[0]-bike[0]) + abs(worker[1]-bike[1])
+        return dist

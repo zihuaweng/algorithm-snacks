@@ -10,62 +10,57 @@
 class Solution:
     # 简单dfs需要n!计算， TLE
     def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:
-
-        self.workers = workers
-        self.bikes = bikes
-        self.min = float('inf')
         n = len(bikes)
         visited = [False] * n
-        self.dfs(0, visited, 0)
-        return self.min
+        return self.dfs(0, visited, workers, bikes)
 
-    def dfs(self, index, visited, min_dis):
-        if index == len(self.workers):
-            self.min = min(self.min, min_dis)
-            return
+    def dfs(self, i, visited, w, b):
+        # print(i, visited)
+        if i == len(w):
+            return 0
 
-        if min_dis >= self.min:
-            return
+        dist = float('inf')
 
-        for i in range(len(visited)):
-            if not visited[i]:
-                visited[i] = True
-                self.dfs(index + 1, visited, min_dis + self.dist(self.workers[index], self.bikes[i]))
-                visited[i] = False
+        for j in range(len(visited)):
+            if not visited[j]:
+                visited[j] = True
+                dist = min(dist, self.dfs(i + 1, visited, w, b) + self.dist(w[i], b[j]))
+                visited[j] = False
+                           
+        return dist
 
     def dist(self, w, b):
         return abs(w[0] - b[0]) + abs(w[1] - b[1])
 
 
-# 和上一个一样，但是使用了位运算dp
+# 和上一个一样，但是使用了位运算保存state, dfs + momorization
 # https://www.youtube.com/watch?v=nyOE2x5vTUk&t=640s
 # 这里有具体的位运算解释
 class Solution:
     def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:
-
-        self.workers = workers
-        self.bikes = bikes
         n = len(bikes)
-        dp = [0] * (1 << n)
-        return self.dfs(0, 0, dp)
+        mo = [0] * (1<<n)  
+        return self.dfs(0, mo, 0, workers, bikes)
 
-    def dfs(self, index, state, dp):
-        if index == len(self.workers):
+    def dfs(self, i, mo, state, w, b):
+        # print(i, visited)
+        if i == len(w):
             return 0
-        if dp[state] != 0:
-            return dp[state]
+        if mo[state] != 0:
+            return mo[state]
 
-        min_dis = float('inf')
-        for i in range(len(self.bikes)):
-            if state & (1 << i) == 0:
-                min_dis = min(min_dis,
-                              self.dist(index, i) + self.dfs(index + 1, state | (1 << i), dp))
-        dp[state] = min_dis
-        return min_dis
+        dist = float('inf')
 
-    def dist(self, i, j):
-        return abs(self.workers[i][0] - self.bikes[j][0]) + abs(self.workers[i][1] - self.bikes[j][1])
+        for j in range(len(b)):
+            if state & (1<<j) == 0:
+                st = state | (1<<j)
+                dist = min(dist, self.dfs(i + 1, mo, st, w, b) + self.dist(w[i], b[j]))
+                    
+        mo[state] = dist
+        return dist
 
+    def dist(self, w, b):
+        return abs(w[0] - b[0]) + abs(w[1] - b[1])
 
 # 使用 priorityqueue , 类似Djikstra's
 # https://leetcode.com/problems/campus-bikes-ii/discuss/303422/Python-Priority-Queue

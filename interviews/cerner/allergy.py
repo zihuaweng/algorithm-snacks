@@ -4,7 +4,7 @@
 """
 
 
-from enum import Enum
+from enum import Enum 
 from abc import ABC
 
 class Severity(Enum):
