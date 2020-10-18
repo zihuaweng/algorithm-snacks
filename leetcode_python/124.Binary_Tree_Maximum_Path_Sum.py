@@ -43,18 +43,37 @@ class Solution(object):
         time O(n)
         space O(1)
         """
-        self.max_sum = float('-inf')
-        if not root:
-            return self.max_sum
+        self.max_val = float('-inf')
         self.dfs(root)
-        return self.max_sum
-
-    def dfs(self, node):
-        if not node:
+        return self.max_val
+        
+    def dfs(self, root):
+        if not root:
             return 0
-        left = max(self.dfs(node.left), 0)
-        right = max(self.dfs(node.right), 0)
+        
+        left = self.dfs(root.left)
+        right = self.dfs(root.right)
+        
+        cur = root.val + left + right
+        self.max_val = max(self.max_val, cur)
+        
+        return max(0, root.val + max(left, right))
 
-        cur = node.val + left + right
-        self.max_sum = max(self.max_sum, cur)
-        return node.val + max(left, right)
+
+# without global valuable
+class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        res = self.dfs(root)
+        return res[1]
+        
+    def dfs(self, root):
+        if not root:
+            return 0, float('-inf')
+        
+        left, left_max = self.dfs(root.left)
+        right, right_max = self.dfs(root.right)
+        
+        cur = root.val + left + right
+        cur_max = max(left_max, right_max, cur)
+        
+        return max(0, root.val + max(left, right)), cur_max

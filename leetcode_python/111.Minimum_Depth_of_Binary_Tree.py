@@ -30,3 +30,19 @@ class Solution:
                 if q.right:
                     temp.append(q.right)
             queue = temp
+
+class Solution:
+    def minDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        queue = collections.deque([(root, 1)])
+        while queue:
+            root, depth = queue.popleft()
+            if not root.left and not root.right:
+                return depth
+            if root.left:
+                queue.append((root.left, depth+1))
+            if root.right:
+                queue.append((root.right, depth+1))
+            

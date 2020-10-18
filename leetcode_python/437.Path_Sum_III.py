@@ -31,6 +31,9 @@ class Solution:
 # Space complexity: O(n)
 class Solution:
     def pathSum(self, root: TreeNode, target: int) -> int:
+        """
+        Use prefix sum
+        """
         if not root:
             return 0
         mapping = {0: 1}

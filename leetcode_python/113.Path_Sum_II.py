@@ -14,20 +14,19 @@
 #         self.right = None
 
 class Solution:
-    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
-        self.res = []
+    def pathSum(self, root: TreeNode, k: int) -> List[List[int]]:
+        res = []
+        self.dfs(root, k, [], res)
+        return res
+        
+    def dfs(self, root, k, temp, res):
         if not root:
-            return self.res
-
-        self.dfs(root, target, [])  # todo
-        return self.res
-
-    def dfs(self, node, target, temp):
-        if not node:
             return
-        if not node.left and not node.right and node.val == target:
-            self.res.append(temp + [node.val])
+        
+        if not root.left and not root.right and root.val == k:
+            res.append(temp + [root.val])
             return
-
-        self.dfs(node.left, target - node.val, temp + [node.val])
-        self.dfs(node.right, target - node.val, temp + [node.val])
+        
+        self.dfs(root.left, k-root.val, temp+[root.val], res)
+        self.dfs(root.right, k-root.val, temp+[root.val], res)
+    
