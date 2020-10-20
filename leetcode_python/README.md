@@ -184,7 +184,7 @@ def shortestPathBinaryMatrix(grid):
             return d
 		for x, y in ((i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)):
 			if 0 <= x < n and 0 <= y < n and not grid[x][y]:
-				grid[x][y] = 1
+				grid[x][y] = 1   # 加入q同时立马标记seen才不会出错
 				q.append((x, y, d+1))
 	return -1
 ```

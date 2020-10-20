@@ -7,7 +7,7 @@ from functools import wraps
 
 def rate_limited(max_per_second: int):
     """Rate-limits the decorated function locally, for one process."""
-    lock = threading.Lock()
+    lock = threading.RLock()
     min_interval = 1.0 / max_per_second
 
     def decorate(func):

@@ -10,6 +10,12 @@
 
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
+        """
+          0 1---------11  (amount)
+        1  
+        2 
+        5 
+        """
         dp = [0] + [amount + 1] * amount
 
         for i in range(1, len(dp)):

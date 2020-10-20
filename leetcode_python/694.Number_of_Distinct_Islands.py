@@ -6,35 +6,35 @@
 
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
-
-        # 11011
-        # 10000
-        # 00001
-        # 11011
-
-        if not grid or not grid[0]:
-            return 0
-
+        """
+        1. find islands
+            dfs, mark visited node to 2
+        2. store islands
+            represent the island using relative location
+            
+        """
         m = len(grid)
         n = len(grid[0])
         res = set()
-
-        def dfs(position, pos, i, j):
-            x = i + pos[0]
-            y = j + pos[1]
-            if x < 0 or x >= m or y < 0 or y >= n or grid[x][y] != 1:
-                return
-            grid[x][y] = -1
-            position.append(pos)
-            for k in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
-                dfs(position, (pos[0] + k[0], pos[1] + k[1]), i, j)
-
+        
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    positions = []
-                    dfs(positions, (0, 0), i, j)
-                    res.add(tuple(positions))
-        # print(res)
+                    paths = []
+                    self.dfs(grid, i, j, 0, 0, paths)  # TODO
+                    res.add(tuple(paths))
+                    
         return len(res)
-
+    
+    
+    def dfs(self, grid, i, j, x, y, paths):
+        grid[i][j] = -1
+        paths.append((x, y))
+        for _x, _y in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            new_i = i+_x
+            new_j = j+_y
+            if 0 <= new_i < len(grid) and 0 <= new_j < len(grid[0]) and grid[new_i][new_j] == 1:
+                self.dfs(grid, new_i, new_j, x+_x, y+_y, paths)
+                
+                
+                
