@@ -6,29 +6,41 @@
 
 class Solution:
     def nextPermutation(self, nums: list) -> None:
+        class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
+        
+        15245  -> 15254
+        
+        12642  -> 14[622]. -> 14[226] 
+         | 2 is the first smaller 
+        
+        1. from the end of nums, keep looking for the first num that is < next
+            start from len(nums)-2 (cur | next)
+        2. if found smaller num: 
+                swap the cur num with the first bigger number after cur
+                since the last part is decreasing, we need to reverse it to get the smallest num
+            not found, idx == -1:
+                return nums[::-1]
+        
+        corner case:
+            len(nums) <= 1 
         """
-        n = len(nums) - 2
-        while n >= 0 and nums[n + 1] <= nums[n]:
-            n -= 1
+        idx = len(nums) - 2
+        while idx >= 0 and nums[idx] >= nums[idx+1]:
+            idx -= 1
 
-        if n >= 0:
-            j = len(nums) - 1
-            while j >= 0 and nums[j] <= nums[n]:
-                j -= 1
-            nums[n], nums[j] = nums[j], nums[n]
-
-        start = n + 1
-        end = len(nums) - 1
-        while end > start:
-            nums[end], nums[start] = nums[start], nums[end]
-            end -= 1
-            start += 1
-
-
-
-
-
-
-
+        if idx >= 0:
+            i = len(nums) - 1
+            while i >= 0 and nums[i] <= nums[idx]:
+                i -= 1
+            nums[i], nums[idx] = nums[idx], nums[i]
+        
+        l = idx+1
+        r = len(nums)-1
+        while l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
+            

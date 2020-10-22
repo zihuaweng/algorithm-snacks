@@ -15,20 +15,38 @@
 
 class Solution:
     def verticalOrder(self, root: TreeNode) -> List[List[int]]:
+        """
+        
+           3
+          /\
+         /  \
+         9  20
+            /\
+           /  \
+          15   7 
+        -1 
+          0. 1. 2
+          
+        1. keep track of the vertical order of the tree, the root is 0, left -= 1 right += 1
+        2. treverse the tree by horizontal levels, bfs, deque
+        3. add the val to the res, return by vertical order.
+        """
         if not root:
-            return None
-
+            return []
+        
         graph = collections.defaultdict(list)
-
-        queue = [(root, 0)]
-        for node, x in queue:
-            if node:
-                graph[x].append(node.val)
-                queue.append((node.left, x - 1))
-                queue.append((node.right, x + 1))
-
+        queue = collections.deque([(root, 0)])
+        
+        while queue:
+            node, order = queue.popleft()
+            graph[order].append(node.val)
+            if node.left:
+                queue.append((node.left, order-1))
+            if node.right:
+                queue.append((node.right, order+1))
+                
         res = []
-        for x in sorted(graph):
-            res.append(graph[x])
-
+        for key in sorted(graph):
+            res.append(graph[key])
+            
         return res

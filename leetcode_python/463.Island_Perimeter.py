@@ -7,33 +7,26 @@
 
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
-        if not grid or not grid[0]:
-            return 0
-
+        """
+        find the bondary
+        where:
+        x < 0
+        x >= m
+        y < 0
+        y >= n
+        grid[x][y] == 0
+        
+        each bondary += 1
+        """
         m = len(grid)
         n = len(grid[0])
         count = 0
+        
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == 1:
-                    count += 4  # 每个格子都是4-相邻的边
-                    if i > 0 and grid[i - 1][j] == 1: count -= 1
-                    if i < m - 1 and grid[i + 1][j] == 1: count -= 1
-                    if j > 0 and grid[i][j - 1] == 1: count -= 1
-                    if j < n - 1 and grid[i][j + 1] == 1: count -= 1
+                    for x, y in [(i, j-1),(i, j+1),(i-1, j), (i+1, j)]:
+                        if x < 0 or x >= m or y < 0 or y >= n or grid[x][y] == 0:
+                            count += 1
+                    
         return count
-
-
-
-class Solution:
-    def islandPerimeter(self, grid: List[List[int]]) -> int:
-        m = len(grid)
-        n = len(grid[0])
-        res = 0
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] == 1:
-                    res += 4
-                    if i < m - 1 and grid[i + 1][j] == 1: res -= 2
-                    if j < n - 1 and grid[i][j + 1] == 1: res -= 2
-        return res
