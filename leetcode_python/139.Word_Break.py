@@ -19,3 +19,23 @@ class Solution:
         return dp[-1]
 
 
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        """
+          l e e t c o d e
+         |      T
+                |       T
+        """
+        word_set = set(wordDict)
+        n = len(s)
+        dp = [True] + [False] * n
+        
+        for i in range(n):
+            if dp[i]:
+                for j in range(i+1, n+1):
+                    target = s[i:j]
+                    if target in word_set:
+                        dp[j] = True
+                        
+        return dp[-1]
+

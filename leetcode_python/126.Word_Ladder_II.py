@@ -6,41 +6,70 @@
 
 
 class Solution:
-    # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
-    #     class Solution:
-    def findLadders(self, beginWord, endWord, wordList):
-        res = []
-        words = set(wordList)
-        if endWord not in words:
-            return res
-
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        """
+        - build the graph: bfs
+            - for each word, generate new word
+                h. i. t
+                25 25 25
+            - check if the new word in word_set
+                - add path to the graph
+            - get the shortest path [step]
+                
+        - build the paths: dfs
+            - start from beginWord
+            - stop at endWord and step == 0
+        
+        """
+        word_set = set(wordList)
+        
+        if endWord not in word_set:
+            return []
+        
         graph = collections.defaultdict(set)
-        q = set()
-        q.add(beginWord)
-        next_q = set()
+        queue = set()
+        queue.add(beginWord)
+        seen = set()
         found = False
-        while q and not found:
-            words -= q
-            for w in q:
-                # 替换每个w里面每个字母
-                for i in range(len(w)):
-                    for e in 'qwertyuiopasdfghjklzxcvbnm':
-                        new_w = w[:i] + e + w[i + 1:]
-                        if new_w in words:
-                            graph[w].add(new_w)
-                            if new_w == endWord:
-                                found = True
-                            else:
-                                next_q.add(new_w)
-
-            q = next_q
-            next_q = set()
-
-        def bt(x):
-            return [[x]] if x == endWord else [[x] + rest for y in graph[x] for rest in bt(y)]
-
-        return bt(beginWord)
-
+        steps = 1
+        res = []
+        
+        while queue:
+            next_words = set()
+            for word in queue:
+                for i in range(len(word)):
+                    for j in range(26):
+                        char = chr(ord('a')+j)
+                        new_word = word[:i] + char + word[i+1:]
+                        if new_word == endWord:
+                            found = True
+                        if new_word not in seen and new_word in word_set:
+                            next_words.add(new_word)
+                            graph[word].add(new_word)
+                            
+            if found:
+                break
+            steps += 1
+            queue = next_words
+            seen |= next_words
+            
+        
+        def dfs(word, endWord, temp, steps):
+            if steps < 0:
+                return
+            
+            if word == endWord:
+                res.append(temp)
+                return
+            
+            for next_word in graph[word]:
+                dfs(next_word, endWord, temp+[next_word], steps-1)
+                
+        dfs(beginWord, endWord, [beginWord], steps)
+        
+        return res
+            
+        
 # 另一种实现
 class Solution:
     # def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:

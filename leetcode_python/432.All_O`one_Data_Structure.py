@@ -4,7 +4,7 @@ https://leetcode.com/problems/all-oone-data-structure/discuss/91401/Python-O(1)-
 double linked list:
 
 head. ---- freq1         ----    freq2           ------     freq3    --- tail
-()       (key1, key2)       (key3, key4, key5)              (key6)        ()
+()       set(key1, key2)     set(key3, key4, key5)         set(key6)        ()
 
 key2node dict:
 key1 : node(freq1)

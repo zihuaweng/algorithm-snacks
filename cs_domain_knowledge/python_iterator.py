@@ -24,7 +24,7 @@ print('------')
 
 
 # 3. create an iterator (defines __iter__ and __next__ )
-class uc_iter:
+class Iter:
     def __init__(self, text):
         self.text = text
         self.index = 0
@@ -33,15 +33,14 @@ class uc_iter:
         return self
 
     def __next__(self):
-        try:
-            result = self.text[self.index]
-        except IndexError:
+        if self.index == len(self.text):
             raise StopIteration
+        res = self.text[self.index]
         self.index += 1
-        return result
+        return res
 
 
-iterator = uc_iter('abc')
+iterator = Iter('abc')
 for char in iterator:
     print(char, end=' ')
 print()
@@ -54,3 +53,5 @@ for char in iterator:
 print(iterator)
 print()
 print('------')
+
+

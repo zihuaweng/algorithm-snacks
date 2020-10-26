@@ -24,8 +24,15 @@
 ## API
 ```python
 Response(data, status=None, template_name=None, headers=None, content_type=None)
-
 tweet(api_dev_key: str, tweet_data: str, tweet_location: str, user_location: str, media_ids: List[str]) -> Response
+
+post_tweet(api_dev_key: str, tweet_data: str) -> Response (include a tweet id)
+delete_tweet(api_dev_key: str, tweet_id: str) -> Response
+like_or_unlike_tweet(api_dev_key: str, tweet_id: str, like: bool) -> Response
+follow_user(api_dev_key: str, user_id: str) -> Response
+create_home_timeline(api_dev_key: str, page_token: str, page_size: int) -> Response
+create_user_timeline(api_dev_key: str, page_token: str, page_size: int) -> Response
+search_tweets(api_dev_key: str, search_query: str, page_token: str, page_size: int) -> Response
 
 ```
 

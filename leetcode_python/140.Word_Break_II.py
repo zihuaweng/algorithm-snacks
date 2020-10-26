@@ -10,23 +10,41 @@
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        """
+        pineapplepenapple
+        
+        pine + func(applepenapple)  
+        pineapple + func(penapple)
 
-        def dfs(s, memo):
-            if s in memo:
-                return memo[s]
-            if not s:
-                return []
+        applepenapple 
+        apple + func(penapple)
+        applepen + func(apple)
+        
+        func(applepenapple)  -> returns [aa, bb]
+        
+        pine aa 
+        pine bb
+        
+        optimization:
+            memerize the prev result
+        """
+        d = {}  # key: string, value : list
+        
+        def dfs(s):
+            if s in d:
+                return d[s]
+            
             res = []
             for word in wordDict:
                 if s.startswith(word):
-                    if len(s) == len(word):
+                    idx = len(word)
+                    if idx == len(s):
                         res.append(word)
                     else:
-                        next_res = dfs(s[len(word):], memo)
-                        for i in next_res:
-                            res.append(word + ' ' + i)
-
-            memo[s] = res
+                        for result in dfs(s[idx:]):   # return a list
+                            res.append(word + ' ' + result)
+            d[s] = res
             return res
-
-        return dfs(s, {})
+        
+        return dfs(s)
+        

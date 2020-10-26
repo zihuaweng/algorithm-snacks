@@ -25,13 +25,14 @@
 
 ## API
 ```python
-create_url(api_dev_key: str, original_url: str, custom_alias: str = '', user_name: str = '', expire_date: str = '') -> str
+# log in to get user_token
 
-```
-api_dev_key (string): The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota.
+create_url(user_token: str, original_url: str, custom_alias: str = '', user_name: str = '', expire_date: str = '') -> str
 
-```python
-delete_url(api_dev_key: str, url_key: str) -> bool
+# user_token (string): The API developer key of a registered account. This will be used to, among other things, throttle users based on their allocated quota.
+get_url(user_token: str, short_url: str) -> long_url
+delete_url(user_token: str, url_key: str) -> bool
+
 ```
 
 To prevent abuse, we can limit users via their api_dev_key. Each api_dev_key can be limited to a certain number of URL creations and redirections per some time period (which may be set to a different duration per developer key). 
@@ -54,8 +55,8 @@ We don’t need to use relationships between objects – a NoSQL store like Dyna
 
 ## Basic system design & algorithm
 ### encoding url
-    1. unique hashing code (MD5 / SHA256)
-    2. Base64 encoding
+    1. unique hashing code (MD5 128bit 21 char / SHA256)
+    2. Base64 encoding  ('A-Z', 'a-z', '0-9', '_', '-')
     3. Would generate same url for diff people. solution: add an incresing number or hash with user id
 
 ### generate url offline

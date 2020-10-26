@@ -76,3 +76,51 @@ class Solution:
                     return (max(max_left_x, max_left_y) + min(min_right_x, min_right_y)) / 2  # even case
                 else:
                     return min(min_right_x, min_right_y)  # odd case
+
+
+
+class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        """
+        k = half 
+        The the first k num of two sorted arr
+        
+        xxxx[i] xxxx
+        yyy[j] yyyy
+        
+        i + j == k
+        for x: we get k/2 or k1
+        for y: we get k/2 or k2
+        if x[k/2] < y[k/2]:
+            the median in x[k/2:] and y[0:]
+            then we find the first k-k1 in x[k/2:] and y[0:]
+        """
+        m = len(nums1)
+        n = len(nums2)
+        
+        if (m+n) & 1 == 1:
+            return self.find_median(nums1, nums2, (m+n+1)//2)
+        else:
+            return (self.find_median(nums1, nums2, (m+n)//2) + self.find_median(nums1, nums2, (m+n)//2+1)) / 2
+        
+    def find_median(self, num1, num2, k):
+        m = len(num1)
+        n = len(num2)
+        
+        if m > n:
+            return self.find_median(num2, num1, k)
+        
+        if not num1:
+            return num2[k-1]
+        
+        if k == 1:
+            return min(num1[0], num2[0])
+        
+        k1 = min(k//2, m)
+        k2 = k - k1
+        
+        if num1[k1-1] < num2[k2-1]:
+            return self.find_median(num1[k1:], num2, k-k1)
+        else:
+            return self.find_median(num1, num2[k2:], k-k2)
+        

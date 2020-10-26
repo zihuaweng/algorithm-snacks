@@ -72,3 +72,92 @@ class LRUCache:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+
+
+
+class Node:
+    def __init__(self, key=None, val=None, prev=None, n=None):
+        self.key = key
+        self.val = val
+        self.prev = prev
+        self.next = n
+        
+    def delete(self):
+        self.prev.next = self.next
+        self.next.prev = self.prev
+        self.preb = None
+        self.next = None
+        
+
+class LRUCache:
+    """
+    nodes: double linkedlist: head - node - tail
+    key2node: dict, find linkedlist node using key
+    
+    get: 
+        - find if key in key2node
+            - yes: 
+                - del key from nodes
+                - add key to the end of nodes
+                - update key2node
+            - no: return -1
+        
+    put
+        - find if key in key2node
+            - yes: 
+                - del key from nodes
+                - add key to the end of nodes
+                - update key2node
+                - update node val
+            - no:
+                - check if oversize
+                    - yes, delete first one
+                - create node
+                - add key to the end of nodes
+                - add node to key2node
+    
+    """
+
+    def __init__(self, capacity: int):
+        self.size = capacity
+        self.head = Node()
+        self.tail = Node()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.d = {}
+        
+
+    def get(self, key: int) -> int:
+        # print(self.d.keys())
+        if key in self.d:
+            node = self.d[key]
+            node.delete()
+            self._add(node)
+            return node.val
+        else:
+            return -1
+            
+
+    def put(self, key: int, value: int) -> None:
+        # print(self.d.keys())
+        if key in self.d:
+            node = self.d[key]
+            node.delete()
+        else:
+            if len(self.d) == self.size:
+                first = self.head.next
+                first.delete()
+                del self.d[first.key]
+        
+        node = Node(key, value)
+        self._add(node)
+        
+    
+    def _add(self, node):
+        last = self.tail.prev
+        last.next = node
+        node.prev = last
+        node.next = self.tail
+        self.tail.prev = node
+        self.d[node.key] = node

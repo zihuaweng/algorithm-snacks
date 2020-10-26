@@ -82,6 +82,18 @@ class NestedIterator:
 #        """
 
 class NestedIterator(object):
+    """
+    [1,[4,[6]]]
+
+    [[4,[6]], 1]
+    1
+    [[4,[6]]]
+    [[6], 4]
+    4
+    [[6]]
+    [6]
+    6
+    """
 
     def __init__(self, nestedList):
         """
