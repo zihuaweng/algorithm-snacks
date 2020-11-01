@@ -9,33 +9,33 @@
 
 class Solution:
     def backspaceCompare(self, S: str, T: str) -> bool:
-        s_idx = len(S) - 1
-        t_idx = len(T) - 1
-
-        s_count = 0
-        t_count = 0
-
-        while s_idx >= 0 or t_idx >= 0:
-            while s_idx >= 0 and (s_count > 0 or S[s_idx] == '#'):
-                if S[s_idx] == '#':
-                    s_count += 1
-                else:
-                    s_count -= 1
-                s_idx -= 1
-            left = S[s_idx] if s_idx >= 0 else '$'
-
-            while t_idx >= 0 and (t_count > 0 or T[t_idx] == '#'):
-                if T[t_idx] == '#':
-                    t_count += 1
-                else:
-                    t_count -= 1
-                t_idx -= 1
-
-            right = T[t_idx] if t_idx >= 0 else '$'
-            if right != left:
-                return False
-
-            s_idx -= 1
-            t_idx -= 1
-
-        return True
+        """
+         ab#c  ad#c
+         l
+            r
+        right pointer keep going to the end
+        left pointer:
+            char == '#':
+                left -= 1
+            else:
+                s[left] = s[right]
+                left += 1
+        """
+        index_l, s = self.get_idx(S)
+        index_r, t = self.get_idx(T)
+        
+        return s[:index_l] == t[:index_r]
+    
+    def get_idx(self, string):
+        string = list(string)
+        i = 0
+        for j, char in enumerate(string):
+            if char != '#':
+                string[i] = char
+                i += 1
+            else:
+                i = max(0, i-1)
+                
+        return i, ''.join(string)
+        
+            

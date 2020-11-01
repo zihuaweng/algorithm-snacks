@@ -50,10 +50,7 @@ def print_boundary(root):
         return
     print(root.val)
     print_left(root.left)
-
-    print_leaves(root.left)
-    print_leaves(root.right)
-
+    print_leaves(root)
     print_right(root.right)
 
 

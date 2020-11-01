@@ -41,3 +41,62 @@ class Solution:
                 else:
                     break
         return x, y
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def recoverTree(self, root: TreeNode) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+                 x
+              y1 
+            x1
+          y2
+        x
+                 x
+         y1      
+            x1
+                y2
+        x        
+        
+        the inorder treversal
+        y2 < x1 < y2
+        
+        the swap order:
+        y1 > x1
+        x1 > y2
+        """
+        self.first = None
+        self.second = None
+        self.prev = TreeNode(float('-inf'))
+        self.dfs(root)
+        # print(self.first.val, self.second.val)
+        self.first.val, self.second.val = self.second.val, self.first.val
+        
+        
+    def dfs(self, root):
+        if not root:
+            return
+        
+        
+        
+        self.dfs(root.left)
+        if root.val < self.prev.val:
+            if not self.first:
+                self.first = self.prev
+                self.second = root
+                self.prev = root
+            else:
+                self.second = root
+                return
+        else:
+            self.prev = root
+        self.dfs(root.right)
+        
+        

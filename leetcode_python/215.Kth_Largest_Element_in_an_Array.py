@@ -70,13 +70,10 @@ class Solution(object):
         #         0 1 2 3
         #         [6 5 5 4]
 
-        if not nums:
-            return 0
-
-        heap = nums[:k]
-        heapq.heapify(heap)
-
-        for n in nums[k:]:
-            heapq.heappushpop(heap, n)
-
-        return min(heap)
+        heap = []
+        for n in nums:
+            heapq.heappush(heap, n)
+            if len(heap) > k:
+                heapq.heappop(heap)
+                
+        return heapq.heappop(heap)

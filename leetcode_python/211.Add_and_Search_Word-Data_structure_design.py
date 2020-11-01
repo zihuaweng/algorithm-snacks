@@ -35,24 +35,26 @@ class WordDictionary:
         Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
         """
         node = self.trie
-        self.res = False  # 每次都要初始化成false
-        self.dfs(word, node)
-        return self.res
+        return self.dfs(word, node)
 
     def dfs(self, w, node):
         if not w:
             if node.end:
-                self.res = True
-            return
+                return True
+            return False
 
         if w[0] == '.':
             for n in node.children.values():
-                self.dfs(w[1:], n)
+                if self.dfs(w[1:], n):
+                    return True
         else:
             node = node.children.get(w[0])
             if not node:
-                return
-            self.dfs(w[1:], node)
+                return False
+            if self.dfs(w[1:], node):
+                return True
+        
+        return False
 
 # Your WordDictionary object will be instantiated and called as such:
 # obj = WordDictionary()

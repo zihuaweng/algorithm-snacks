@@ -28,3 +28,37 @@ class Solution:
                     res += 1
         # print(dp)
         return res
+
+
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        """
+        aabaaca
+          i
+          
+        1. for each i, we find [xxixx] as palind  count_odd = len(xx)
+        2. for each i, i+1, we find [xxi,i+1xx] as palind  count_even = len(xx)
+        3. return count_odd + count_even
+        
+        time O(n^2)
+        """
+        n = len(s)
+        count = 0
+        for i in range(n):
+            # get odd
+            l = r = i
+            while l >= 0 and r <= n-1 and s[l] == s[r]:
+                count += 1
+                l -= 1
+                r += 1
+                    
+            l = i
+            r = i+1
+            while l >= 0 and r <= n-1 and s[l] == s[r]:
+                count += 1
+                l -= 1
+                r += 1
+                
+        return count
+        
+        
