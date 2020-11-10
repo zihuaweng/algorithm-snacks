@@ -61,3 +61,7 @@ print(x.upper())
     - Move clockwise on the ring until finding the first cache it encounters.
     - That cache is the one that contains the key.
 
+## Database Design
+1. 如果有关系放SQL
+    - 如果有某些col更新非常频繁，需要单独弄一个新的表
+2. media 数据放在object database（S3)
